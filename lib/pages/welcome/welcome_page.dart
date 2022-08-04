@@ -1,7 +1,8 @@
 import 'package:flash/l10n/l10n.dart';
-import 'package:flash/pages/welcome_page/widgets/welcome_icon_widget.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
+
+import './widgets/welcome_icon_widget.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
