@@ -1,6 +1,6 @@
 import 'package:adwaita/adwaita.dart';
 import 'package:flutter/material.dart';
-import 'package:gamecontrastbooster/pages/welcome_page.dart';
+import 'package:gamecontrastbooster/main_page.dart';
 import 'package:gamecontrastbooster/widgets/rounded_app/rounded_app.dart';
 
 void main() {
@@ -24,6 +24,6 @@ class GameContrastBoosterApp extends StatelessWidget {
   }
 
   Widget _getHome() {
-    return const WelcomePage();
+    return const MainPage();
   }
 }
