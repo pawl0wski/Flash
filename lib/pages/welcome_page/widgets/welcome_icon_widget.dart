@@ -5,9 +5,11 @@ class WelcomeIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      Icons.flare_sharp,
-      size: 128,
-    );
+    return const Opacity(
+        opacity: 0.7,
+        child: Icon(
+          Icons.flare_sharp,
+          size: 128,
+        ));
   }
 }
