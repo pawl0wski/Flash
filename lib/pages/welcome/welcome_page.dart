@@ -33,7 +33,7 @@ class WelcomePage extends StatelessWidget {
   List<Widget> _getAppTitleWithBottomDivider(BuildContext context) {
     return [
       Text(
-        context.l10n.appTitle,
+        context.l10n.welcomeTo(context.l10n.appTitle),
         style: Theme.of(context).textTheme.headline1,
       ),
       const TransparentDividerWidget(height: 15),

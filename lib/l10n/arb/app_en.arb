@@ -1,4 +1,12 @@
 {
   "appTitle": "Flash",
-  "appDescription": "Improve visibility in your games with the ability to increase contrast."
+  "appDescription": "Improve visibility in your games with the ability to increase contrast.",
+  "welcomeTo": "Welcome to {welcomeTo}",
+  "@welcomeTo": {
+    "placeholders": {
+      "welcomeTo": {
+        "type": "String"
+      }
+    }
+  }
 }
