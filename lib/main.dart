@@ -4,16 +4,17 @@ import 'package:gamecontrastbooster/main_page.dart';
 import 'package:gamecontrastbooster/widgets/rounded_app/rounded_app_widget.dart';
 
 void main() {
-  runApp(const GameContrastBoosterApp());
+  runApp(const FlashApp());
 }
 
-class GameContrastBoosterApp extends StatelessWidget {
-  const GameContrastBoosterApp({Key? key}) : super(key: key);
+class FlashApp extends StatelessWidget {
+  const FlashApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RoundedApp.withDefaultRadius(
       child: MaterialApp(
+        title: "Flash",
         theme: AdwaitaThemeData.light(),
         darkTheme: AdwaitaThemeData.dark(),
         debugShowCheckedModeBanner: false,
