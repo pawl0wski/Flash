@@ -40,6 +40,7 @@ dependencies:
   adwaita: ^0.5.2
   libadwaita_bitsdojo: ^0.5.5
   intl: ^0.17.0
+  flutter_bloc: ^8.0.1
 
 dev_dependencies:
   flutter_test:
