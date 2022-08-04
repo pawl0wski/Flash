@@ -1,7 +1,7 @@
 import 'package:adwaita/adwaita.dart';
 import 'package:flutter/material.dart';
-import 'package:gamecontrastbooster/main_page.dart';
-import 'package:gamecontrastbooster/widgets/rounded_app/rounded_app_widget.dart';
+import 'package:flash/main_page.dart';
+import 'package:flash/widgets/rounded_app/rounded_app_widget.dart';
 
 void main() {
   runApp(const FlashApp());

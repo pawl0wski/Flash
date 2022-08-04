@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamecontrastbooster/pages/welcome_page/welcome_page.dart';
+import 'package:flash/pages/welcome_page/welcome_page.dart';
 import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';
 

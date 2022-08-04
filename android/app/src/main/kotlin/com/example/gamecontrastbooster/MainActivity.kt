@@ -1,4 +1,4 @@
-package com.example.gamecontrastbooster
+package com.example.flash
 
 import io.flutter.embedding.android.FlutterActivity
 

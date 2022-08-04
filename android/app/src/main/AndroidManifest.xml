@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gamecontrastbooster">
+    package="com.example.flash">
    <application
-        android:label="gamecontrastbooster"
+        android:label="flash"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
