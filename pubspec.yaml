@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   libadwaita: ^1.2.1
   adwaita: ^0.5.2
+  libadwaita_bitsdojo: ^0.5.5
 
 dev_dependencies:
   flutter_test:
