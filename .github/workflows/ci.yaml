@@ -40,7 +40,7 @@ jobs:
         run: flutter pub get
 
       - name: "Run build_runner ⚙"
-        run: make build_runner
+        run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
       # Run tests for our flutter project.
       - name: "Run unit tests 🧪"
