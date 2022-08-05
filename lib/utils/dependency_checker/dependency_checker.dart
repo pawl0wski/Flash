@@ -24,12 +24,15 @@ class DependencyChecker {
     // Get second split of whereis command
     // "executable: /bin/executable /usr/bin/executable" -> "/bin/executable /usr/bin/executable"
     var secondSplitOfWhereIsOutput = whereIsOutput.split(": ").last;
+    if (secondSplitOfWhereIsOutput.isEmpty) {
+      return [];
+    }
     // Split locations by space
     // "/bin/executable /usr/bin/executable" -> ["/bin/executable", "/usr/bin/executable"]
     var locations = secondSplitOfWhereIsOutput.split(" ");
     return locations;
   }
-  
+
   bool _checkIfExistsAccordingToLocations(List<String> locationsOfExecutable) {
     return locationsOfExecutable.isNotEmpty;
   }

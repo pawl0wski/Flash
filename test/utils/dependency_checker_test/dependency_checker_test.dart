@@ -41,5 +41,5 @@ void configureToReturnValueThatSaysItNotExists(
 void configureToReturnValueThatSaysItExists(
     MockCommandExecutor mockCommandExecutor) {
   when(mockCommandExecutor.execute("whereis", ["application"]))
-      .thenReturn("application: /bin/application, /usr/bin/application");
+      .thenReturn("application: /bin/application /usr/bin/application");
 }
