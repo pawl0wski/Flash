@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flash/utils/command_executor/command_executor.dart';
+import 'package:flash/utils/dependency_checker/dependency_checker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -12,10 +11,11 @@ void main() {
   group("DependencyChecker", () {
     late MockCommandExecutor mockCommandExecutor;
     late DependencyChecker dependencyChecker;
-    setUp(() => {
-      mockCommandExecutor =MockCommandExecutor();
-        dependencyChecker =
-        DependencyChecker(commandExecutor: mockCommandExecutor);
+
+    setUp(() {
+      mockCommandExecutor = MockCommandExecutor();
+      dependencyChecker =
+          DependencyChecker(commandExecutor: mockCommandExecutor);
     });
 
     test("should return false if the dependency not exists", () {
