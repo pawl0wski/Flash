@@ -1,13 +1,13 @@
-import 'package:flash/utils/command_executor/command_executor.dart';
+import 'package:flash/utils/commands/whereis_command.dart';
 
 class DependencyChecker {
-  final CommandExecutor _commandExecutor;
+  final WhereisCommand _whereisCommand;
 
-  DependencyChecker({required CommandExecutor commandExecutor})
-      : _commandExecutor = commandExecutor;
+  DependencyChecker({required WhereisCommand commandExecutor})
+      : _whereisCommand = commandExecutor;
 
-  factory DependencyChecker.withDefaultCommandExecutor() {
-    return DependencyChecker(commandExecutor: CommandExecutor());
+  factory DependencyChecker.withDefaultWhereisCommand() {
+    return DependencyChecker(commandExecutor: WhereisCommand());
   }
 
   bool checkIfExists(String executable) {
@@ -17,7 +17,7 @@ class DependencyChecker {
   }
 
   String _executeWhereIsCommand(String executable) {
-    return _commandExecutor.execute("whereis", [executable]);
+    return _whereisCommand.execute([executable]);
   }
 
   List<String> _exportLocationsOfExecutableFrom(String whereIsOutput) {
