@@ -19,6 +19,7 @@ dependencies:
   libadwaita_bitsdojo: ^0.5.5
   intl: ^0.17.0
   flutter_bloc: ^8.0.1
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_test:
