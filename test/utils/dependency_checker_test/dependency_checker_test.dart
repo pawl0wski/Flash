@@ -34,12 +34,12 @@ void main() {
 
 void configureToReturnValueThatSaysItNotExists(
     MockCommandExecutor mockCommandExecutor) {
-  when(mockCommandExecutor.execute)
-      .thenReturn((executable, arguments) => "$executable: ");
+  when(mockCommandExecutor.execute("whereis", ["application"]))
+      .thenReturn("application: ");
 }
 
 void configureToReturnValueThatSaysItExists(
     MockCommandExecutor mockCommandExecutor) {
-  when(mockCommandExecutor.execute).thenReturn((executable, arguments) =>
-      "$executable: /bin/$executable, /usr/bin/$executable");
+  when(mockCommandExecutor.execute("whereis", ["application"]))
+      .thenReturn("application: /bin/application, /usr/bin/application");
 }
