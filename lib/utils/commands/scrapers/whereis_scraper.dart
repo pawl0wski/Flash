@@ -7,7 +7,8 @@ class WhereisScraper extends CommandScraper {
   ScrapedWhereis scrap(String commandOutput) {
     var commandPaths = _scrapPathsOfCommandFrom(commandOutput);
     var commandName = _scrapCommandNameFrom(commandOutput);
-    return _assembleScrapedWhereisUsing(commandPaths: commandPaths, commandName: commandName);
+    return _assembleScrapedWhereisUsing(
+        commandPaths: commandPaths, commandName: commandName);
   }
 
   List<String> _scrapPathsOfCommandFrom(String commandOutput) {
