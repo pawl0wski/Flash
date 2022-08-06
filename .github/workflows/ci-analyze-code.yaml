@@ -1,4 +1,4 @@
-name: CI - Test
+name: CI - Analyze Dart Code
 
 on:
   push:
@@ -7,8 +7,6 @@ on:
       - "**/README.md"
   pull_request:
     branches: [main, dev]
-
-  workflow_dispatch:
 
 jobs:
   build:
@@ -24,7 +22,6 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable" # 'dev', 'alpha', default to: 'stable'
-          # flutter-version: '1.12.x' # you can also specify exact version of flutter
 
       - name: "Run flutter doctor 🥼"
         run: flutter doctor -v
@@ -35,5 +32,5 @@ jobs:
       - name: "Run build_runner ⚙"
         run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
-      - name: "Run unit tests 🧪"
-        run: flutter test -r expanded
+      - name: "Analyze code"
+        run: flutter analyze
