@@ -1,7 +1,8 @@
-import 'package:flash/utils/commands/exceptions/command_invalid_output.dart';
-import 'package:flash/utils/commands/validators/abstract_validator.dart';
 import 'package:flash/utils/process_adapter/process_adapter.dart';
 import 'package:meta/meta.dart';
+
+import 'exceptions/command_invalid_output.dart';
+import 'validators/abstract_validator.dart';
 
 abstract class Command {
   @protected
