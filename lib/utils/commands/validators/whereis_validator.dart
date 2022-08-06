@@ -6,15 +6,10 @@ class WhereisCommandValidator extends AbstractCommandValidator {
 
   @override
   bool isValidOutput(String commandOutput) {
-    return (_checkIfBeginsWithTheExecutable(commandOutput) &&
-        _checkIfHaveOneColon(commandOutput));
-  }
-
-  bool _checkIfBeginsWithTheExecutable(String commandOutput) {
-    return commandOutput.startsWith(commandName);
+    return (_checkIfHaveOneColon(commandOutput));
   }
 
   bool _checkIfHaveOneColon(String commandOutput) {
-    return commandOutput.allMatches(":").length == 1;
+    return ":".allMatches(commandOutput).length == 1;
   }
 }
