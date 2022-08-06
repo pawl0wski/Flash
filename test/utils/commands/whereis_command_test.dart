@@ -1,4 +1,5 @@
 import 'package:flash/utils/commands/exceptions/command_invalid_output.dart';
+import 'package:flash/utils/commands/scrapers/models/scraped_whereis.dart';
 import 'package:flash/utils/commands/whereis_command.dart';
 import 'package:flash/utils/process_adapter/process_adapter.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -31,6 +32,15 @@ void main() {
 
       expect(() => whereis.execute(["test"]),
           throwsA(isA<CommandInvalidOutput>()));
+    });
+
+    test("should return scraped output if everything went fine", () {
+      configureMockProcessAdapterToReturnValidValue(processAdapter);
+
+      var scrapedOutput = whereis.executeAndScrap(["test"]) as ScrapedWhereis;
+
+      expect(scrapedOutput.commandName, "test");
+      expect(scrapedOutput.commandPaths, ["/bin/test"]);
     });
   });
 }
