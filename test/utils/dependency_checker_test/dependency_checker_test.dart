@@ -1,3 +1,4 @@
+import 'package:flash/utils/commands/scrapers/models/scraped_whereis.dart';
 import 'package:flash/utils/commands/whereis_command.dart';
 import 'package:flash/utils/dependency_checker/dependency_checker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,10 +33,12 @@ void main() {
 }
 
 void configureToReturnValueThatSaysItNotExists(MockWhereisCommand mockWhereIs) {
-  when(mockWhereIs.execute(["application"])).thenReturn("application: ");
+  when(mockWhereIs.executeAndScrap(["application"]))
+      .thenReturn(ScrapedWhereis(commandPaths: [], commandName: "application"));
 }
 
 void configureToReturnValueThatSaysItExists(MockWhereisCommand mockWhereIs) {
-  when(mockWhereIs.execute(["application"]))
-      .thenReturn("application: /bin/application /usr/bin/application");
+  when(mockWhereIs.executeAndScrap(["application"])).thenReturn(ScrapedWhereis(
+      commandPaths: ["/bin/application ", "/usr/bin/application"],
+      commandName: "application"));
 }

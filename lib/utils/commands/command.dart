@@ -1,7 +1,10 @@
+import 'package:flash/utils/commands/scrapers/models/scraped_command.dart';
 import 'package:flash/utils/process_adapter/process_adapter.dart';
 import 'package:meta/meta.dart';
 
 import 'exceptions/command_invalid_output.dart';
+import 'exceptions/scraper_not_provided.dart';
+import 'scrapers/command_scraper.dart';
 import 'validators/command_validator.dart';
 
 abstract class Command {
@@ -9,18 +12,26 @@ abstract class Command {
   final String commandName;
   final CommandValidator? _validator;
   final ProcessAdapter _processAdapter;
+  final CommandScraper? _scraper;
 
   Command(this.commandName,
-      {CommandValidator? validator, ProcessAdapter? processAdapter})
+      {CommandValidator? validator,
+      ProcessAdapter? processAdapter,
+      CommandScraper? commandScraper})
       : _validator = validator,
-        _processAdapter = processAdapter ?? ProcessAdapter();
+        _processAdapter = processAdapter ?? ProcessAdapter(),
+        _scraper = commandScraper;
 
   String execute(List<String> arguments) {
     var commandOutput = _processAdapter.execute(commandName, arguments);
-    if (_isValidatorNotNullAndOutputIsInvalid(commandOutput)) {
-      _throwExceptionIfOutputIsInvalid(commandOutput);
-    }
+    _throwExceptionIfOutputIsInvalid(commandOutput);
     return commandOutput;
+  }
+
+  ScrapedCommand executeAndScrap(List<String> arguments) {
+    var commandOutput = execute(arguments);
+    _throwExceptionIfScraperIsNotProvided();
+    return _scraper!.scrap(commandOutput);
   }
 
   bool _isValidatorNotNullAndOutputIsInvalid(String commandOutput) {
@@ -28,7 +39,19 @@ abstract class Command {
   }
 
   _throwExceptionIfOutputIsInvalid(String commandOutput) {
-    throw CommandInvalidOutput(
-        commandName: commandName, commandOutput: commandOutput);
+    if (_isValidatorNotNullAndOutputIsInvalid(commandOutput)) {
+      throw CommandInvalidOutput(
+          commandName: commandName, commandOutput: commandOutput);
+    }
+  }
+
+  _throwExceptionIfScraperIsNotProvided() {
+    if (_scraper == null) {
+      throw ScraperNotProvided(executorName: _getCurrentClassName());
+    }
+  }
+
+  String _getCurrentClassName() {
+    return runtimeType.toString();
   }
 }

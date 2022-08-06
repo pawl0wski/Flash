@@ -1,3 +1,4 @@
+import 'package:flash/utils/commands/scrapers/models/scraped_whereis.dart';
 import 'package:flash/utils/commands/whereis_command.dart';
 
 class DependencyChecker {
@@ -11,29 +12,11 @@ class DependencyChecker {
   }
 
   bool checkIfExists(String executable) {
-    var whereIsOutput = _executeWhereIsCommand(executable);
-    var locationsOfExecutable = _exportLocationsOfExecutableFrom(whereIsOutput);
-    return _checkIfExistsAccordingToLocations(locationsOfExecutable);
+    var whereisOutput = _executeWhereIsCommand(executable);
+    return whereisOutput.commandExist;
   }
 
-  String _executeWhereIsCommand(String executable) {
-    return _whereisCommand.execute([executable]);
-  }
-
-  List<String> _exportLocationsOfExecutableFrom(String whereIsOutput) {
-    // Get second split of whereis command
-    // "executable: /bin/executable /usr/bin/executable" -> "/bin/executable /usr/bin/executable"
-    var secondSplitOfWhereIsOutput = whereIsOutput.split(": ").last;
-    if (secondSplitOfWhereIsOutput.isEmpty) {
-      return [];
-    }
-    // Split locations by space
-    // "/bin/executable /usr/bin/executable" -> ["/bin/executable", "/usr/bin/executable"]
-    var locations = secondSplitOfWhereIsOutput.split(" ");
-    return locations;
-  }
-
-  bool _checkIfExistsAccordingToLocations(List<String> locationsOfExecutable) {
-    return locationsOfExecutable.isNotEmpty;
+  ScrapedWhereis _executeWhereIsCommand(String executable) {
+    return _whereisCommand.executeAndScrap([executable]) as ScrapedWhereis;
   }
 }
