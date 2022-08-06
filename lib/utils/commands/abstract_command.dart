@@ -17,7 +17,7 @@ abstract class Command {
   String execute(List<String> arguments) {
     var commandOutput = _processAdapter.execute(commandName, arguments);
     if (_isValidatorNotNullAndOutputIsInvalid(commandOutput)) {
-      _throwExceptionIfOutputIsInvalid(commandOutput)
+      _throwExceptionIfOutputIsInvalid(commandOutput);
     }
     return commandOutput;
   }
@@ -27,6 +27,7 @@ abstract class Command {
   }
 
   _throwExceptionIfOutputIsInvalid(String commandOutput) {
-    throw CommandInvalidOutput(commandName: commandName, commandOutput: commandOutput);
+    throw CommandInvalidOutput(
+        commandName: commandName, commandOutput: commandOutput);
   }
 }
