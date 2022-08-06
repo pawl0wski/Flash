@@ -1,10 +1,10 @@
 import 'package:meta/meta.dart';
 
 abstract class AbstractCommandValidator {
-  @protected
-  final String commandName;
+  AbstractCommandValidator();
 
-  AbstractCommandValidator({required this.commandName});
+  @protected
+  String get commandName;
 
   bool isValidOutput(String commandOutput);
 }

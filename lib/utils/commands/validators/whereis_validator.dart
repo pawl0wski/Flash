@@ -1,7 +1,8 @@
 import 'package:flash/utils/commands/validators/abstract_validator.dart';
 
 class WhereisCommandValidator extends AbstractCommandValidator {
-  WhereisCommandValidator({required super.commandName});
+  @override
+  String get commandName => "whereis";
 
   @override
   bool isValidOutput(String commandOutput) {
