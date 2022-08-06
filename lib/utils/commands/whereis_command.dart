@@ -4,7 +4,7 @@ class WhereisCommand extends Command {
   WhereisCommand() : super("whereis");
 
   @override
-  bool checkResponse(String response) {
+  bool isValidOutput(String response) {
     return (checkIfBeginsWithTheExecutable(response) &&
         checkIfHaveOneColon(response));
   }

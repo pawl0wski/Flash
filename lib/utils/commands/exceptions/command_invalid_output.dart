@@ -1,8 +1,8 @@
-class CommandInvalidResponse implements Exception {
+class CommandInvalidOutput implements Exception {
   late String _message;
   late String _response;
 
-  CommandInvalidResponse(
+  CommandInvalidOutput(
       {required String commandName, required String response}) {
     _message = "$commandName returned invalid response";
     _response = response;

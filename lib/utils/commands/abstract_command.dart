@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flash/utils/commands/exceptions/command_invalid_response.dart';
+import 'package:flash/utils/commands/exceptions/command_invalid_output.dart';
 import 'package:meta/meta.dart';
 
 abstract class Command {
@@ -11,17 +11,17 @@ abstract class Command {
 
   String execute(List<String> arguments) {
     var commandOutput = Process.runSync(commandName, arguments).stdout;
-    if (checkResponse(commandOutput) == false) {
-      throw CommandInvalidResponse(
+    if (isValidOutput(commandOutput) == false) {
+      throw CommandInvalidOutput(
           commandName: commandName, response: commandOutput);
     }
     return commandOutput;
   }
 
-  bool checkResponse(String response);
+  bool isValidOutput(String response);
 
   @protected
-  throwExceptionIfResponseIsInvalid(String response) {
-    throw CommandInvalidResponse(commandName: commandName, response: response);
+  throwExceptionIfOutputIsInvalid(String response) {
+    throw CommandInvalidOutput(commandName: commandName, response: response);
   }
 }
