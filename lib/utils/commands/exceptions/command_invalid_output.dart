@@ -1,11 +1,11 @@
 class CommandInvalidOutput implements Exception {
   late String _message;
-  late String _response;
+  late String _commandOutput;
 
   CommandInvalidOutput(
-      {required String commandName, required String response}) {
+      {required String commandName, required String commandOutput}) {
     _message = "$commandName returned invalid response";
-    _response = response;
+    _commandOutput = commandOutput;
   }
 
   @override
@@ -14,6 +14,6 @@ class CommandInvalidOutput implements Exception {
   }
 
   String getResponse() {
-    return _response;
+    return _commandOutput;
   }
 }

@@ -6,25 +6,27 @@ import 'package:meta/meta.dart';
 abstract class Command {
   @protected
   final String commandName;
-  @protected
-  final AbstractCommandValidator? validator;
+  final AbstractCommandValidator? _validator;
+  final ProcessAdapter _processAdapter;
 
-  Command(this.commandName, {this.validator});
+  Command(this.commandName,
+      {AbstractCommandValidator? validator, ProcessAdapter? processAdapter})
+      : _validator = validator,
+        _processAdapter = processAdapter ?? ProcessAdapter();
 
   String execute(List<String> arguments) {
-    var commandOutput = ProcessAdapter().execute(commandName, arguments);
+    var commandOutput = _processAdapter.execute(commandName, arguments);
     if (_isValidatorNotNullAndOutputIsInvalid(commandOutput)) {
-      throw CommandInvalidOutput(
-          commandName: commandName, response: commandOutput);
+      _throwExceptionIfOutputIsInvalid(commandOutput)
     }
     return commandOutput;
   }
 
   bool _isValidatorNotNullAndOutputIsInvalid(String commandOutput) {
-    return (validator != null && !validator!.isValidOutput(commandOutput));
+    return (_validator != null && !_validator!.isValidOutput(commandOutput));
   }
 
-  _throwExceptionIfOutputIsInvalid(String response) {
-    throw CommandInvalidOutput(commandName: commandName, response: response);
+  _throwExceptionIfOutputIsInvalid(String commandOutput) {
+    throw CommandInvalidOutput(commandName: commandName, commandOutput: commandOutput);
   }
 }
