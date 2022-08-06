@@ -17,6 +17,6 @@ class DependencyChecker {
   }
 
   ScrapedWhereis _executeWhereIsCommand(String executable) {
-    return _whereisCommand.executeAndScrap([executable]) as ScrapedWhereis;
+    return _whereisCommand.executeAndScrap([executable]);
   }
 }
