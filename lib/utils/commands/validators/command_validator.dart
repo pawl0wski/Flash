@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 
-abstract class AbstractCommandValidator {
-  AbstractCommandValidator();
+abstract class CommandValidator {
+  CommandValidator();
 
   @protected
   String get commandName;

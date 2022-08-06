@@ -2,16 +2,16 @@ import 'package:flash/utils/process_adapter/process_adapter.dart';
 import 'package:meta/meta.dart';
 
 import 'exceptions/command_invalid_output.dart';
-import 'validators/abstract_validator.dart';
+import 'validators/command_validator.dart';
 
 abstract class Command {
   @protected
   final String commandName;
-  final AbstractCommandValidator? _validator;
+  final CommandValidator? _validator;
   final ProcessAdapter _processAdapter;
 
   Command(this.commandName,
-      {AbstractCommandValidator? validator, ProcessAdapter? processAdapter})
+      {CommandValidator? validator, ProcessAdapter? processAdapter})
       : _validator = validator,
         _processAdapter = processAdapter ?? ProcessAdapter();
 
