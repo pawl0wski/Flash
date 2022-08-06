@@ -48,3 +48,6 @@ app.*.map.json
 
 # Mockito mocks
 *.mocks.dart
+
+# Coverage folder
+coverage/
