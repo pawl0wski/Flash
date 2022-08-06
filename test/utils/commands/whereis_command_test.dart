@@ -12,6 +12,7 @@ void main() {
   group("WhereisCommand", () {
     late MockProcessAdapter processAdapter;
     late WhereisCommand whereis;
+
     setUp(() {
       processAdapter = MockProcessAdapter();
       whereis = WhereisCommand(processAdapter: processAdapter);
@@ -28,7 +29,8 @@ void main() {
     test("should throw exception if can't find whereis", () {
       configureMockProcessAdapterToReturnWhereisNotFound(processAdapter);
 
-      expect(() => whereis.execute(["test"]), throwsA(isA<CommandInvalidOutput>()));
+      expect(() => whereis.execute(["test"]),
+          throwsA(isA<CommandInvalidOutput>()));
     });
   });
 }
