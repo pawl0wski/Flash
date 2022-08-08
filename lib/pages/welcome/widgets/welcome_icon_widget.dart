@@ -1,3 +1,4 @@
+import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeIconWidget extends StatelessWidget {
@@ -7,8 +8,8 @@ class WelcomeIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Opacity(
         opacity: 0.7,
-        child: Icon(
-          Icons.flare_sharp,
+        child: AdwaitaIcon(
+          AdwaitaIcons.sun,
           size: 128,
         ));
   }
