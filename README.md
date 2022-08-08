@@ -1,16 +1,14 @@
-# flash
+# Flash - Work in progress
 
-A new Flutter project.
+Set the contrast for each of your applications and see more
 
-## Getting Started
+### What is Flash?
 
-This project is a starting point for a Flutter application.
+Flash is an application that allows you to set the gamma and brightness values depending on the application you are
+using. Its main purpose is to aid vision in FPS games.
 
-A few resources to get you started if this is your first Flutter project:
+### Is Flash a cheat?
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+No Flash is not a cheat. It should not be detected by programs like VAC, EAC etc. It works in the same way
+as [Redshift](https://github.com/jonls/redshift)
+works.
