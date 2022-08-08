@@ -1,7 +1,10 @@
 part of 'main_cubit.dart';
 
-class MainState {
-  late int index;
+class MainState extends Equatable {
+  final int index;
 
-  MainState({required this.index});
+  const MainState({required this.index});
+
+  @override
+  List<Object> get props => [index];
 }
