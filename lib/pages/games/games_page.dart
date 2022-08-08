@@ -9,8 +9,7 @@ class GamesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GamesBloc(),
+    return _initializeBloc(
       child: BlocBuilder<GamesBloc, GamesState>(
         builder: (context, state) {
           return Column(
@@ -22,6 +21,10 @@ class GamesPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  _initializeBloc({required Widget child}) {
+    return BlocProvider(create: (context) => GamesBloc(), child: child);
   }
 
   MainAxisAlignment _getMainAxisAlignment({required bool isGamesEmpty}) {
