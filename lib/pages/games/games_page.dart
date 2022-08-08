@@ -1,25 +1,23 @@
-import 'package:flash/l10n/l10n.dart';
-import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
+import 'package:flash/pages/games/widgets/games_title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/games_bloc.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [_buildTitle(context)],
+    return BlocProvider(
+      create: (context) => GamesBloc(),
+      child: Column(
+        children: [_buildTitle(context)],
+      ),
     );
   }
 
   Widget _buildTitle(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Column(children: [
-        Text(context.l10n.games, style: Theme.of(context).textTheme.headline1),
-        const TransparentDivider(height: 10),
-        Text(context.l10n.gamesPageDescription)
-      ]),
-    );
+    return const GamesTitle();
   }
 }
