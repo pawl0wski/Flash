@@ -5,7 +5,7 @@ part 'games_event.dart';
 part 'games_state.dart';
 
 class GamesBloc extends Bloc<GamesEvent, GamesState> {
-  GamesBloc() : super(GamesInitial()) {
+  GamesBloc() : super(const GamesState(games: [])) {
     on<GamesEvent>((event, emit) {
       // TODO: implement event handler
     });

@@ -5,9 +5,9 @@ import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dar
 import 'package:flutter/material.dart';
 
 class GamesTitle extends StatelessWidget {
-  final bool gamesEmpty;
+  final bool isGamesEmpty;
 
-  const GamesTitle({required this.gamesEmpty, Key? key}) : super(key: key);
+  const GamesTitle({required this.isGamesEmpty, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +23,13 @@ class GamesTitle extends StatelessWidget {
   }
 
   EdgeInsets _getPaddingIfGamesIsNotEmpty() {
-    return gamesEmpty
+    return isGamesEmpty
         ? EdgeInsets.zero
         : const EdgeInsets.symmetric(vertical: 20);
   }
 
   Widget _buildBigAdwaitaIconIfGamesIsEmpty() {
-    if (gamesEmpty) {
+    if (isGamesEmpty) {
       return const BigAdwaitaIcon(AdwaitaIcons.gamepad);
     }
     return Container(); // Empty container

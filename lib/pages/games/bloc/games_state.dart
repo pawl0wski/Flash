@@ -1,10 +1,12 @@
 part of 'games_bloc.dart';
 
-abstract class GamesState extends Equatable {
-  const GamesState();
-}
+class GamesState extends Equatable {
+  final List games;
 
-class GamesInitial extends GamesState {
+  const GamesState({required this.games});
+
+  get isGamesEmpty => games.isEmpty;
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [games];
 }

@@ -11,24 +11,29 @@ class GamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GamesBloc(),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: _getMainAxisAlignment(),
-        children: [_buildTitle(context)],
+      child: BlocBuilder<GamesBloc, GamesState>(
+        builder: (context, state) {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment:
+                _getMainAxisAlignment(isGamesEmpty: state.isGamesEmpty),
+            children: [_buildTitle(context, isGamesEmpty: state.isGamesEmpty)],
+          );
+        },
       ),
     );
   }
 
-  MainAxisAlignment _getMainAxisAlignment() {
-    if (true) {
+  MainAxisAlignment _getMainAxisAlignment({required bool isGamesEmpty}) {
+    if (isGamesEmpty) {
       return MainAxisAlignment.center;
     }
     return MainAxisAlignment.start;
   }
 
-  Widget _buildTitle(BuildContext context) {
-    return const GamesTitle(
-      gamesEmpty: true,
+  Widget _buildTitle(BuildContext context, {required bool isGamesEmpty}) {
+    return GamesTitle(
+      isGamesEmpty: isGamesEmpty,
     );
   }
 }
