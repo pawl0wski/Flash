@@ -1,7 +1,4 @@
-import 'package:adwaita_icons/adwaita_icons.dart';
-import 'package:flash/l10n/l10n.dart';
-import 'package:flash/widgets/big_adwaita_icon/big_adwaita_icon_widget.dart';
-import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
+import 'package:flash/pages/welcome/widgets/welcome_title_widget.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -9,45 +6,9 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ..._getWelcomeIconWithBottomDivider(context),
-          ..._getAppTitleWithBottomDivider(context),
-          ..._getAppDescription(context)
-        ],
-      ),
+      child: WelcomeTitleWidget(),
     );
-  }
-
-  List<Widget> _getWelcomeIconWithBottomDivider(BuildContext context) {
-    return const [
-      BigAdwaitaIcon(AdwaitaIcons.sun),
-      TransparentDivider(height: 25),
-    ];
-  }
-
-  List<Widget> _getAppTitleWithBottomDivider(BuildContext context) {
-    return [
-      Text(
-        context.l10n.welcomeTo(context.l10n.appTitle),
-        style: Theme.of(context).textTheme.headline1,
-      ),
-      const TransparentDivider(height: 15),
-    ];
-  }
-
-  List<Widget> _getAppDescription(BuildContext context) {
-    return [
-      SizedBox(
-          width: 300,
-          child: Text(
-            context.l10n.appDescription,
-            textAlign: TextAlign.center,
-          ))
-    ];
   }
 }
