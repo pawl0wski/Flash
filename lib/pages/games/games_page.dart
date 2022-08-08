@@ -17,7 +17,7 @@ class GamesPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(children: [
         Text(context.l10n.games, style: Theme.of(context).textTheme.headline1),
-        const TransparentDividerWidget(height: 10),
+        const TransparentDivider(height: 10),
         Text(context.l10n.gamesPageDescription)
       ]),
     );

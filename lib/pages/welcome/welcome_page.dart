@@ -26,7 +26,7 @@ class WelcomePage extends StatelessWidget {
   List<Widget> _getWelcomeIconWithBottomDivider(BuildContext context) {
     return const [
       WelcomeIconWidget(),
-      TransparentDividerWidget(height: 25),
+      TransparentDivider(height: 25),
     ];
   }
 
@@ -36,7 +36,7 @@ class WelcomePage extends StatelessWidget {
         context.l10n.welcomeTo(context.l10n.appTitle),
         style: Theme.of(context).textTheme.headline1,
       ),
-      const TransparentDividerWidget(height: 15),
+      const TransparentDivider(height: 15),
     ];
   }
 
