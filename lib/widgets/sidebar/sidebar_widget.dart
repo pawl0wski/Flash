@@ -15,6 +15,10 @@ class SidebarWidget extends StatelessWidget {
         currentIndex: currentIndex,
         isDrawer: isDrawer,
         onSelected: (index) => {},
-        children: const [AdwSidebarItem(label: "Welcome")]);
+        children: _getSidebarItems());
+  }
+
+  List<AdwSidebarItem> _getSidebarItems() {
+    return [];
   }
 }
