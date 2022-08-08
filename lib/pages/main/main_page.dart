@@ -1,3 +1,4 @@
+import 'package:flash/pages/games/games_page.dart';
 import 'package:flash/pages/welcome/welcome_page.dart';
 import 'package:flash/widgets/sidebar/sidebar_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +20,22 @@ class MainPage extends StatelessWidget {
   AdwScaffold _buildScaffold(BuildContext context) {
     return AdwScaffold(
       flap: (_) => _buildSidebar(context, currentIndex: 0),
-      body: AdwViewStack(
-        children: _buildViewStackChildren(),
-      ),
+      body: _buildViewStackUsingCubitState(),
       actions: AdwActions().bitsdojo,
     );
   }
 
+  Widget _buildViewStackUsingCubitState() {
+    return BlocBuilder<MainCubit, MainState>(
+      builder: (context, state) {
+        return AdwViewStack(
+            index: state.index, children: _buildViewStackChildren());
+      },
+    );
+  }
+
   List<Widget> _buildViewStackChildren() {
-    return [const WelcomePage()];
+    return [const WelcomePage(), const GamesPage()];
   }
 }
 

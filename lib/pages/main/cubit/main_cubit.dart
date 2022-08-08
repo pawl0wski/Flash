@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
-  MainCubit() : super(MainInitial());
+  MainCubit() : super(MainState(index: 1));
+
+  void setPage(int index) {
+    emit(MainState(index: index));
+  }
 }
