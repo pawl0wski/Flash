@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
-  MainCubit() : super(MainState(index: 0));
+  MainCubit() : super(const MainState(index: 0));
 
   void setPage(int index) {
     emit(MainState(
