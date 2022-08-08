@@ -5,18 +5,18 @@ import 'package:libadwaita/libadwaita.dart';
 
 class SidebarWidget extends StatelessWidget {
   final int currentIndex;
-  final bool isDrawer;
+  final Function(int newIndex)? onIndexChange;
 
   const SidebarWidget(
-      {Key? key, required this.currentIndex, required this.isDrawer})
+      {Key? key, required this.currentIndex, this.onIndexChange})
       : super(key: key);
 
   @override
   AdwSidebar build(BuildContext context) {
     return AdwSidebar(
         currentIndex: currentIndex,
-        isDrawer: isDrawer,
-        onSelected: (index) => {},
+        isDrawer: false,
+        onSelected: onIndexChange ?? (index) => {},
         children: _getSidebarItems(context));
   }
 

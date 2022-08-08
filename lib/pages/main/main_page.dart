@@ -17,21 +17,22 @@ class MainPage extends StatelessWidget {
         create: (context) => MainCubit(), child: _buildScaffold(context));
   }
 
-  AdwScaffold _buildScaffold(BuildContext context) {
-    return AdwScaffold(
-      flap: (_) => _buildSidebar(context, currentIndex: 0),
-      body: _buildViewStackUsingCubitState(),
-      actions: AdwActions().bitsdojo,
+  Widget _buildScaffold(BuildContext context) {
+    return BlocBuilder<MainCubit, MainState>(
+      builder: (context, state) {
+        return AdwScaffold(
+          flap: (_) => _buildSidebarUsingCubitState(context,
+              currentIndex: state.index,
+              onIndexChange: context.read<MainCubit>().setPage),
+          body: _buildViewStack(index: state.index),
+          actions: AdwActions().bitsdojo,
+        );
+      },
     );
   }
 
-  Widget _buildViewStackUsingCubitState() {
-    return BlocBuilder<MainCubit, MainState>(
-      builder: (context, state) {
-        return AdwViewStack(
-            index: state.index, children: _buildViewStackChildren());
-      },
-    );
+  Widget _buildViewStack({required int index}) {
+    return AdwViewStack(index: index, children: _buildViewStackChildren());
   }
 
   List<Widget> _buildViewStackChildren() {
@@ -39,7 +40,11 @@ class MainPage extends StatelessWidget {
   }
 }
 
-AdwSidebar _buildSidebar(BuildContext context, {required int currentIndex}) {
-  var sidebarWidget = SidebarWidget(currentIndex: currentIndex, isDrawer: true);
-  return sidebarWidget.build(context);
+AdwSidebar _buildSidebarUsingCubitState(BuildContext context,
+    {required int currentIndex, required Function(int index) onIndexChange}) {
+  return SidebarWidget(
+    currentIndex: currentIndex - 1,
+    // WelcomePage is first so we must decrement currentIndex
+    onIndexChange: onIndexChange,
+  ).build(context);
 }
