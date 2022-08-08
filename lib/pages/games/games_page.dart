@@ -13,13 +13,13 @@ class GamesPage extends StatelessWidget {
       create: (context) => GamesBloc(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: _getMainAxisAligment(),
+        mainAxisAlignment: _getMainAxisAlignment(),
         children: [_buildTitle(context)],
       ),
     );
   }
 
-  MainAxisAlignment _getMainAxisAligment() {
+  MainAxisAlignment _getMainAxisAlignment() {
     if (true) {
       return MainAxisAlignment.center;
     }
