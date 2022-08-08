@@ -8,5 +8,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "games": "Games"
 }
