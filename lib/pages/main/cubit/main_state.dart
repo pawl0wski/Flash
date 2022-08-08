@@ -1,6 +1,7 @@
 part of 'main_cubit.dart';
 
-@immutable
-abstract class MainState {}
+class MainState {
+  late int index;
 
-class MainInitial extends MainState {}
+  MainState({required this.index});
+}
