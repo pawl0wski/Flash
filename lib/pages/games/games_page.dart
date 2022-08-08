@@ -12,12 +12,23 @@ class GamesPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => GamesBloc(),
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: _getMainAxisAligment(),
         children: [_buildTitle(context)],
       ),
     );
   }
 
+  MainAxisAlignment _getMainAxisAligment() {
+    if (true) {
+      return MainAxisAlignment.center;
+    }
+    return MainAxisAlignment.start;
+  }
+
   Widget _buildTitle(BuildContext context) {
-    return const GamesTitle();
+    return const GamesTitle(
+      gamesEmpty: true,
+    );
   }
 }
