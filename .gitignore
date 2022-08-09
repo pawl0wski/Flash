@@ -51,3 +51,6 @@ app.*.map.json
 
 # Coverage folder
 coverage/
+
+# Generated dart code
+*.g.dart
