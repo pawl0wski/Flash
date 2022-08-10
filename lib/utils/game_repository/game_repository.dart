@@ -23,8 +23,10 @@ class GameRepository {
     _box.delete(gameUuid);
   }
 
-  void addGame(Game newGame) {
-    _box.add(newGame);
+  String addGameAndReturnGameUuid(Game newGame) {
+    String gameUuid = _generateUuid();
+    _box.put(gameUuid, newGame);
+    return gameUuid;
   }
 
   String _generateUuid() {
