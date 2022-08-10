@@ -1,5 +1,6 @@
 import 'package:flash/utils/game_repository/models/game.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 import 'hive_box/game_hive_box.dart';
 
@@ -24,6 +25,10 @@ class GameRepository {
 
   void addGame(Game newGame) {
     _box.add(newGame);
+  }
+
+  String _generateUuid() {
+    return const Uuid().v4();
   }
 
   Box<Game> get _box => _gameHiveBox.box;
