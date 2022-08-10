@@ -22,5 +22,9 @@ class GameRepository {
     _box.delete(gameUuid);
   }
 
+  void addGame(Game newGame) {
+    _box.add(newGame);
+  }
+
   Box<Game> get _box => _gameHiveBox.box;
 }
