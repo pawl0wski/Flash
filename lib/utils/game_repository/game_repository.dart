@@ -18,5 +18,9 @@ class GameRepository {
     return games;
   }
 
+  void deleteGame(String gameUuid) {
+    _box.delete(gameUuid);
+  }
+
   Box<Game> get _box => _gameHiveBox.box;
 }
