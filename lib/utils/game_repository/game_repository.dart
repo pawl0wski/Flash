@@ -6,9 +6,11 @@ import 'hive_box/game_hive_box.dart';
 
 class GameRepository {
   final GameHiveBox _gameHiveBox;
+  final Uuid _uuid;
 
-  GameRepository({GameHiveBox? gameHiveBox})
-      : _gameHiveBox = gameHiveBox ?? GameHiveBox();
+  GameRepository({GameHiveBox? gameHiveBox, Uuid? uuid})
+      : _uuid = uuid ?? const Uuid(),
+        _gameHiveBox = gameHiveBox ?? GameHiveBox();
 
   List<Game> getAllGames() {
     List<Game> games = [];
@@ -30,7 +32,7 @@ class GameRepository {
   }
 
   String _generateUuid() {
-    return const Uuid().v4();
+    return _uuid.v4();
   }
 
   Box<Game> get _box => _gameHiveBox.box;
