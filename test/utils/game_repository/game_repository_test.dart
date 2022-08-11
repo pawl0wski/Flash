@@ -56,6 +56,16 @@ void main() {
       expect(testGame.uuid, fakeUuid);
       verify(mockBox.put(fakeUuid, testGame)).called(1);
     });
+
+    test("updateGame should update game in box", () {
+      _configureMockBoxToPutGame(mockBox: mockBox);
+      var testUuid = "testUuid";
+      var testGame = _createTestGame("testGame")..uuid = testUuid;
+
+      gameRepository.updateGame(testGame);
+
+      verify(mockBox.put(testUuid, testGame)).called(1);
+    });
   });
 }
 
