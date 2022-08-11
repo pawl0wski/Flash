@@ -54,6 +54,7 @@ void main() {
       var testGameUuid = gameRepository.addGameAndReturnGameUuid(testGame);
 
       expect(testGameUuid, fakeUuid);
+      expect(testGame.uuid, fakeUuid);
       verify(mockBox.put(fakeUuid, testGame)).called(1);
     });
   });
