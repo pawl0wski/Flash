@@ -4,6 +4,7 @@ import 'package:flash/widgets/big_adwaita_icon/big_adwaita_icon_widget.dart';
 import 'package:flash/widgets/muted_text/muted_text_widget.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:libadwaita/libadwaita.dart';
 
 class GamesTitle extends StatelessWidget {
   final bool isGamesEmpty;
@@ -21,7 +22,8 @@ class GamesTitle extends StatelessWidget {
         MutedText(
           context.l10n.gamesPageDescription,
           textAlign: TextAlign.center,
-        )
+        ),
+        _buildAddGameButtonIfGamesIsEmpty(context),
       ]),
     );
   }
@@ -35,6 +37,18 @@ class GamesTitle extends StatelessWidget {
   Widget _buildBigAdwaitaIconIfGamesIsEmpty() {
     if (isGamesEmpty) {
       return const BigAdwaitaIcon(AdwaitaIcons.gamepad);
+    }
+    return Container(); // Empty container
+  }
+
+  Widget _buildAddGameButtonIfGamesIsEmpty(BuildContext context) {
+    if (isGamesEmpty) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: AdwButton(
+          child: Text(context.l10n.addNewGame),
+        ),
+      );
     }
     return Container(); // Empty container
   }
