@@ -11,5 +11,6 @@
   },
   "games": "Games",
   "gamesPageDescription": "Add your games and assign them a display mode.",
-  "addNewGame": "Add a new game"
+  "addNewGame": "Add a new game",
+  "loading": "Loading"
 }
