@@ -21,7 +21,8 @@ void main() {
       mockGameHiveBox = MockGameHiveBox();
       mockUuid = MockUuid();
       mockBox = MockBox<Game>();
-      gameRepository = GameRepository(gameHiveBox: mockGameHiveBox);
+      gameRepository =
+          GameRepository(gameHiveBox: mockGameHiveBox, uuid: mockUuid);
       _configureMockGameHiveBoxToReturnMockBox(
           mockBox: mockBox, mockGameHiveBox: mockGameHiveBox);
     });
@@ -42,6 +43,18 @@ void main() {
       gameRepository.deleteGame("testGame");
 
       verify(mockBox.delete("testGame")).called(1);
+    });
+
+    test("addGameAndReturnUuid should add game to box", () {
+      var fakeUuid = "fakeUuid";
+      _configureMockUuidToGenerateFakeUuid(fakeUuid, mockUuid: mockUuid);
+      _configureMockBoxToPutGame(mockBox: mockBox);
+      var testGame = _createTestGame("testGame");
+
+      var testGameUuid = gameRepository.addGameAndReturnGameUuid(testGame);
+
+      expect(testGameUuid, fakeUuid);
+      verify(mockBox.put(fakeUuid, testGame)).called(1);
     });
   });
 }
@@ -66,8 +79,17 @@ void _configureMockBoxToDelete(String gameName,
   when(mockBox.delete(gameName)).thenAnswer((realInvocation) async => {});
 }
 
+void _configureMockBoxToPutGame({required MockBox<Game> mockBox}) {
+  when(mockBox.put(any, any)).thenAnswer((realInvocation) async => {});
+}
+
+void _configureMockUuidToGenerateFakeUuid(String fakeUuid,
+    {required MockUuid mockUuid}) {
+  when(mockUuid.v4()).thenReturn(fakeUuid);
+}
+
 Map<String, Game> _createTestGames() {
-  var firstGame = _createTestGame("firstgame");
+  var firstGame = _createTestGame("firstGame");
   var secondGame = _createTestGame("secondGame");
   return {"uuid1": firstGame, "uuid2": secondGame};
 }
