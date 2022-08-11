@@ -1,3 +1,4 @@
+import 'package:flash/utils/game_repository/exceptions/game_update_exception.dart';
 import 'package:flash/utils/game_repository/models/game.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -32,8 +33,21 @@ class GameRepository {
     return game;
   }
 
+  void updateGame(Game game) {
+    var uuid = _getUuidFromGameOrThrowUpdateException(game,
+        message: "The game you want to update is not added");
+    _box.put(uuid, game);
+  }
+
   String _generateUuid() {
     return _uuid.v4();
+  }
+
+  String _getUuidFromGameOrThrowUpdateException(Game game, {String? message}) {
+    if (game.uuid == "") {
+      throw GameUpdateException(message);
+    }
+    return game.uuid;
   }
 
   Game _assignUuidToGame(String uuid, Game game) {
