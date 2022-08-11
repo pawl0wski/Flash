@@ -10,7 +10,7 @@ Future<void> main() async {
 }
 
 Future<void> initRepositories() async {
-  Hive.initFlutter();
+  await Hive.initFlutter();
 
   await initGameRepository();
 }
