@@ -25,11 +25,11 @@ class GameRepository {
     _box.delete(gameUuid);
   }
 
-  String addGameAndReturnGameUuid(Game game) {
+  Game addGame(Game game) {
     String gameUuid = _generateUuid();
     game = _assignUuidToGame(gameUuid, game);
     _box.put(gameUuid, game);
-    return gameUuid;
+    return game;
   }
 
   String _generateUuid() {

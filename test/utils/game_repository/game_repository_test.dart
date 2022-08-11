@@ -45,15 +45,14 @@ void main() {
       verify(mockBox.delete("testGame")).called(1);
     });
 
-    test("addGameAndReturnUuid should add game to box", () {
+    test("addGame should add game to box", () {
       var fakeUuid = "fakeUuid";
       _configureMockUuidToGenerateFakeUuid(fakeUuid, mockUuid: mockUuid);
       _configureMockBoxToPutGame(mockBox: mockBox);
       var testGame = _createTestGame("testGame");
 
-      var testGameUuid = gameRepository.addGameAndReturnGameUuid(testGame);
+      testGame = gameRepository.addGame(testGame);
 
-      expect(testGameUuid, fakeUuid);
       expect(testGame.uuid, fakeUuid);
       verify(mockBox.put(fakeUuid, testGame)).called(1);
     });
