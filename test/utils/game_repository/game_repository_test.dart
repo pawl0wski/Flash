@@ -15,23 +15,33 @@ void main() {
     late MockGameHiveBox mockGameHiveBox;
     late MockUuid mockUuid;
     late MockBox<Game> mockBox;
+    late GameRepository gameRepository;
 
     setUp(() {
       mockGameHiveBox = MockGameHiveBox();
       mockUuid = MockUuid();
       mockBox = MockBox<Game>();
+      gameRepository = GameRepository(gameHiveBox: mockGameHiveBox);
+      _configureMockGameHiveBoxToReturnMockBox(
+          mockBox: mockBox, mockGameHiveBox: mockGameHiveBox);
     });
 
     test("getAllGames should get all games from box", () {
       var testGames = _createTestGames();
-      _configureMockGameHiveBoxToReturnMockBox(
-          mockBox: mockBox, mockGameHiveBox: mockGameHiveBox);
       _configureMockBoxToReturnTestGames(mockBox: mockBox);
 
-      var allGames = GameRepository(gameHiveBox: mockGameHiveBox).getAllGames();
+      var allGames = gameRepository.getAllGames();
 
       expect(allGames.length, 2);
       expect(testGames["uuid1"], isIn(allGames));
+    });
+
+    test("deleteGame should delete game from box", () {
+      _configureMockBoxToDelete("testGame", mockBox: mockBox);
+
+      gameRepository.deleteGame("testGame");
+
+      verify(mockBox.delete("testGame")).called(1);
     });
   });
 }
@@ -49,6 +59,11 @@ void _configureMockBoxToReturnTestGames({required MockBox<Game> mockBox}) {
     var gameUuid = realInvocation.positionalArguments.first;
     return testGames[gameUuid];
   });
+}
+
+void _configureMockBoxToDelete(String gameName,
+    {required MockBox<Game> mockBox}) {
+  when(mockBox.delete(gameName)).thenAnswer((realInvocation) async => {});
 }
 
 Map<String, Game> _createTestGames() {
