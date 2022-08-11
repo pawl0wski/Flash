@@ -1,3 +1,4 @@
+import 'package:flash/utils/game_repository/exceptions/game_update_exception.dart';
 import 'package:flash/utils/game_repository/game_repository.dart';
 import 'package:flash/utils/game_repository/hive_box/game_hive_box.dart';
 import 'package:flash/utils/game_repository/models/game.dart';
@@ -65,6 +66,15 @@ void main() {
       gameRepository.updateGame(testGame);
 
       verify(mockBox.put(testUuid, testGame)).called(1);
+    });
+
+    test("updateGame should throw GameUpdateException if game don't have uuid",
+        () {
+      _configureMockBoxToPutGame(mockBox: mockBox);
+      var testGame = _createTestGame("testGame");
+
+      expect(() => gameRepository.updateGame(testGame),
+          throwsA(isA<GameUpdateException>()));
     });
   });
 }
