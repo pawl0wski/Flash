@@ -1,6 +1,6 @@
 import 'package:flash/dialog/add_game_dialog/add_game_dialog.dart';
+import 'package:flash/pages/games/widgets/games_list_with_title_widget.dart';
 import 'package:flash/pages/games/widgets/games_loading_widget.dart';
-import 'package:flash/pages/games/widgets/games_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +19,10 @@ class GamesPage extends StatelessWidget {
         listener: _listenState,
         builder: (context, state) {
           if (state is GamesStateLoaded) {
-            return _returnPageIfStateIsLoaded(context, state);
+            return GamesListWithTitle(
+                state: state,
+                showAddGameDialog:
+                    _createEventsAdder(context).showAddGameDialog);
           } else {
             return const GamesLoading();
           }
@@ -45,30 +48,6 @@ class GamesPage extends StatelessWidget {
           context: context,
           builder: (BuildContext context) => dialog.show(context));
     }
-  }
-
-  Widget _returnPageIfStateIsLoaded(
-      BuildContext context, GamesStateLoaded state) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment:
-          _getMainAxisAlignment(isGamesEmpty: state.isGamesEmpty),
-      children: [_buildTitle(context, isGamesEmpty: state.isGamesEmpty)],
-    );
-  }
-
-  MainAxisAlignment _getMainAxisAlignment({required bool isGamesEmpty}) {
-    if (isGamesEmpty) {
-      return MainAxisAlignment.center;
-    }
-    return MainAxisAlignment.start;
-  }
-
-  Widget _buildTitle(BuildContext context, {required bool isGamesEmpty}) {
-    return GamesTitle(
-      isGamesEmpty: isGamesEmpty,
-      onAddGame: _createEventsAdder(context).showAddGameDialog,
-    );
   }
 
   GamesEventsAdder _createEventsAdder(BuildContext context) {
