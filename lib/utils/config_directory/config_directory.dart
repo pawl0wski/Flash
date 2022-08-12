@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 class ConfigDirectory {
-  final _localShare = "~/.local/share/";
+  final _localShare = "${Platform.environment["HOME"]}/.local/share/";
   late String _appName;
   late Directory _directory;
 
@@ -14,6 +14,8 @@ class ConfigDirectory {
     _appName = appName;
     _directory = directory ?? Directory(p.join(_localShare, _appName));
   }
+
+  String get path => _directory.path;
 
   createDirectoryIfNotExists() {
     if (!isDirectoryExist()) {
@@ -27,5 +29,10 @@ class ConfigDirectory {
 
   bool isDirectoryExist() {
     return _directory.existsSync();
+  }
+
+  @override
+  String toString() {
+    return path;
   }
 }
