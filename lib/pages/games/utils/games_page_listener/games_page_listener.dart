@@ -8,10 +8,14 @@ class GamesPageListener {
 
   listen(BuildContext context, GamesState state) {
     if (state is GamesStateShowAddGameDialog) {
-      var dialog = AddGameDialog();
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => dialog.show(context));
+      _showAddGameDialog(context);
     }
+  }
+
+  _showAddGameDialog(BuildContext context) {
+    var addGameDialog = AddGameDialog();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => addGameDialog.show(context));
   }
 }
