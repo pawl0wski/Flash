@@ -16,7 +16,7 @@ class ConfigDirectory {
   }
 
   createDirectoryIfNotExists() {
-    if (isDirectoryExist()) {
+    if (!isDirectoryExist()) {
       createDirectory();
     }
   }
@@ -25,7 +25,7 @@ class ConfigDirectory {
     _directory.createSync();
   }
 
-  isDirectoryExist() {
-    _directory.existsSync();
+  bool isDirectoryExist() {
+    return _directory.existsSync();
   }
 }

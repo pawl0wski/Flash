@@ -26,10 +26,36 @@ void main() {
 
       verify(mockDirectory.createSync()).called(1);
     });
+
+    test("createDirectoryIfNotExist should create directory if not exist", () {
+      _configureMockDirectoryToCreateDirectory(mockDirectory: mockDirectory);
+      _configureMockDirectoryToNotExist(mockDirectory: mockDirectory);
+
+      configDirectory.createDirectoryIfNotExists();
+
+      verify(mockDirectory.createSync()).called(1);
+    });
+
+    test("createDirectoryIfNotExist should not create directory if exist", () {
+      _configureMockDirectoryToCreateDirectory(mockDirectory: mockDirectory);
+      _configureMockDirectoryToExist(mockDirectory: mockDirectory);
+
+      configDirectory.createDirectoryIfNotExists();
+
+      verifyNever(mockDirectory.createSync());
+    });
   });
 }
 
 _configureMockDirectoryToCreateDirectory(
     {required MockDirectory mockDirectory}) {
   when(mockDirectory.createSync()).thenAnswer((realInvocation) {});
+}
+
+_configureMockDirectoryToNotExist({required MockDirectory mockDirectory}) {
+  when(mockDirectory.existsSync()).thenReturn(false);
+}
+
+_configureMockDirectoryToExist({required MockDirectory mockDirectory}) {
+  when(mockDirectory.existsSync()).thenReturn(true);
 }
