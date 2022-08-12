@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flash/utils/config_directory/config_directory.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 import 'config_directory_test.mocks.dart';
 
@@ -11,10 +12,24 @@ void main() {
   group("ConfigDirectoryTest", () {
     late MockDirectory mockDirectory;
     late ConfigDirectory configDirectory;
+
     setUp(() {
       mockDirectory = MockDirectory();
       configDirectory =
           ConfigDirectory(appName: "testApp", directory: mockDirectory);
     });
+
+    test("createDirectory should create directory", () {
+      _configureMockDirectoryToCreateDirectory(mockDirectory: mockDirectory);
+
+      configDirectory.createDirectory();
+
+      verify(mockDirectory.createSync()).called(1);
+    });
   });
+}
+
+_configureMockDirectoryToCreateDirectory(
+    {required MockDirectory mockDirectory}) {
+  when(mockDirectory.createSync()).thenAnswer((realInvocation) {});
 }
