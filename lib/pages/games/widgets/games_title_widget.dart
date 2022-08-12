@@ -46,6 +46,8 @@ class GamesTitle extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(top: 20),
         child: AdwButton(
+          opaque: true,
+          backgroundColor: AdwDefaultColors.blue,
           child: Text(context.l10n.addNewGame),
         ),
       );
