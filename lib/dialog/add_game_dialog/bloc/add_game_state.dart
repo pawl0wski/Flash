@@ -1,6 +1,9 @@
 part of 'add_game_bloc.dart';
 
 @immutable
-abstract class AddGameState {}
+abstract class AddGameState extends Equatable {}
 
-class AddGameInitial extends AddGameState {}
+class AddGameStateClickOnGame extends AddGameState {
+  @override
+  List<Object?> get props => [];
+}

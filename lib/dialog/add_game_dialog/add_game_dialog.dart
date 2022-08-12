@@ -1,6 +1,6 @@
-import 'package:adwaita_icons/adwaita_icons.dart';
+import 'package:flash/dialog/add_game_dialog/utils/add_game_listener/add_game_listener.dart';
+import 'package:flash/dialog/add_game_dialog/widgets/add_game_click_on_game_widget.dart';
 import 'package:flash/l10n/l10n.dart';
-import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
@@ -9,43 +9,29 @@ import '../flash_dialog.dart';
 import 'bloc/add_game_bloc.dart';
 
 class AddGameDialog extends FlashDialog {
+  final AddGameListener _listener;
+
+  AddGameDialog({AddGameListener? listener})
+      : _listener = listener ?? const AddGameListener();
+
   @override
   show(BuildContext context) {
     return BlocConsumer<AddGameBloc, AddGameState>(
       bloc: AddGameBloc(),
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: _listener.listen,
       builder: (context, state) {
         return GtkDialog(
             title: Text(context.l10n.addNewGame),
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-            children: [
-              _buildGameIcon(context),
-              _buildTransparentDivider(context),
-              _buildDescription(context),
-            ]);
+            children: [_buildDialogContent(context, state)]);
       },
     );
   }
 
-  Widget _buildGameIcon(BuildContext context) {
-    return const AdwaitaIcon(
-      AdwaitaIcons.list_add,
-      size: 48,
-    );
-  }
-
-  Widget _buildTransparentDivider(BuildContext context) {
-    return const TransparentDivider(height: 20);
-  }
-
-  Widget _buildDescription(BuildContext context) {
-    return SizedBox(
-      child: Text(
-        context.l10n.clickOnTheGame,
-        textAlign: TextAlign.center,
-      ),
-    );
+  Widget _buildDialogContent(BuildContext context, AddGameState state) {
+    if (state is AddGameStateClickOnGame) {
+      return const AddGameClickOnGame();
+    }
+    return Container();
   }
 }
