@@ -1,4 +1,4 @@
-import 'package:flash/l10n/l10n.dart';
+import 'package:flash/pages/games/widgets/games_loading_widget.dart';
 import 'package:flash/pages/games/widgets/games_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,11 +14,10 @@ class GamesPage extends StatelessWidget {
     return _initializeBloc(
       child: BlocBuilder<GamesBloc, GamesState>(
         builder: (context, state) {
-          if (state is GamesStateLoading) {
-            return _returnPageIfStateIsLoading(context, state);
+          if (state is GamesStateLoaded) {
+            return _returnPageIfStateIsLoaded(context, state);
           } else {
-            return _returnPageIfStateIsLoaded(
-                context, state as GamesStateLoaded);
+            return const GamesLoading();
           }
         },
       ),
@@ -29,13 +28,6 @@ class GamesPage extends StatelessWidget {
     return BlocProvider(
         create: (context) => GamesBloc()..add(GamesEventLoadGames()),
         child: child);
-  }
-
-  Widget _returnPageIfStateIsLoading(
-      BuildContext context, GamesStateLoading state) {
-    return Center(
-      child: Text("${context.l10n.loading}..."),
-    );
   }
 
   Widget _returnPageIfStateIsLoaded(
