@@ -1,11 +1,11 @@
 import 'package:flash/dialog/add_game_dialog/add_game_dialog.dart';
-import 'package:flash/pages/games/widgets/games_list_with_title_widget.dart';
-import 'package:flash/pages/games/widgets/games_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/games_bloc.dart';
 import 'utils/games_event_adder/games_event_adder.dart';
+import 'widgets/games_list_with_title_widget.dart';
+import 'widgets/games_loading_widget.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({Key? key}) : super(key: key);
@@ -16,19 +16,29 @@ class GamesPage extends StatelessWidget {
       child: BlocConsumer<GamesBloc, GamesState>(
         buildWhen: (prev, current) => _stateShouldRebuild(current),
         listenWhen: (prev, current) => !_stateShouldRebuild(current),
-        listener: _listenState,
-        builder: (context, state) {
-          if (state is GamesStateLoaded) {
-            return GamesListWithTitle(
-                state: state,
-                showAddGameDialog:
-                    _createEventsAdder(context).showAddGameDialog);
-          } else {
-            return const GamesLoading();
-          }
-        },
+        listener: _listen,
+        builder: _builder,
       ),
     );
+  }
+
+  _listen(BuildContext context, GamesState state) {
+    if (state is GamesStateShowAddGameDialog) {
+      var dialog = AddGameDialog();
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => dialog.show(context));
+    }
+  }
+
+  Widget _builder(BuildContext context, GamesState state) {
+    if (state is GamesStateLoaded) {
+      return GamesListWithTitle(
+          state: state,
+          showAddGameDialog: _createEventsAdder(context).showAddGameDialog);
+    } else {
+      return const GamesLoading();
+    }
   }
 
   _initializeBloc({required Widget child}) {
@@ -39,15 +49,6 @@ class GamesPage extends StatelessWidget {
 
   _stateShouldRebuild(GamesState state) {
     return state is! GamesStateShowAddGameDialog;
-  }
-
-  _listenState(BuildContext context, GamesState state) {
-    if (state is GamesStateShowAddGameDialog) {
-      var dialog = AddGameDialog();
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => dialog.show(context));
-    }
   }
 
   GamesEventsAdder _createEventsAdder(BuildContext context) {
