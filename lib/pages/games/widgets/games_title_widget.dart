@@ -8,8 +8,11 @@ import 'package:libadwaita/libadwaita.dart';
 
 class GamesTitle extends StatelessWidget {
   final bool isGamesEmpty;
+  final Function onAddGame;
 
-  const GamesTitle({required this.isGamesEmpty, Key? key}) : super(key: key);
+  const GamesTitle(
+      {required this.isGamesEmpty, required this.onAddGame, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,7 @@ class GamesTitle extends StatelessWidget {
           opaque: true,
           backgroundColor: AdwDefaultColors.blue,
           child: Text(context.l10n.addNewGame),
+          onPressed: () => onAddGame(),
         ),
       );
     }

@@ -8,3 +8,8 @@ class GamesEventLoadGames extends GamesEvent {
   @override
   List<Object?> get props => [];
 }
+
+class GamesEventShowAddGameDialog extends GamesEvent {
+  @override
+  List<Object?> get props => [];
+}

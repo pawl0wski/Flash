@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/games_bloc.dart';
+import 'utils/games_event_adder/games_event_adder.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({Key? key}) : super(key: key);
@@ -57,6 +58,11 @@ class GamesPage extends StatelessWidget {
   Widget _buildTitle(BuildContext context, {required bool isGamesEmpty}) {
     return GamesTitle(
       isGamesEmpty: isGamesEmpty,
+      onAddGame: _createEventsAdder(context).showAddGameDialog(),
     );
+  }
+
+  GamesEventsAdder _createEventsAdder(BuildContext context) {
+    return GamesEventsAdder(context);
   }
 }
