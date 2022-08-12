@@ -21,3 +21,8 @@ class GamesStateLoaded extends GamesState {
   @override
   List<Object> get props => [games];
 }
+
+class GamesStateShowAddGameDialog extends GamesState {
+  @override
+  List<Object?> get props => [];
+}

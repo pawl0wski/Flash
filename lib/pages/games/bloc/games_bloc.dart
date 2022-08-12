@@ -4,7 +4,6 @@ import 'package:flash/utils/game_repository/game_repository.dart';
 import 'package:flash/utils/game_repository/models/game.dart';
 
 part 'games_event.dart';
-
 part 'games_state.dart';
 
 class GamesBloc extends Bloc<GamesEvent, GamesState> {
@@ -15,11 +14,17 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
       : _gameRepository = gameRepository ?? GameRepository(),
         super(const GamesStateLoading()) {
     on<GamesEventLoadGames>(_onLoadGames);
+    on<GamesEventShowAddGameDialog>(_onShowAddGameDialog);
   }
 
   _onLoadGames(GamesEventLoadGames event, Emitter<GamesState> emitter) {
     _getGamesFromRepository();
     _emitGamesStateLoaded(emitter);
+  }
+
+  _onShowAddGameDialog(
+      GamesEventShowAddGameDialog event, Emitter<GamesState> emitter) {
+    emitter(GamesStateShowAddGameDialog());
   }
 
   _getGamesFromRepository() {

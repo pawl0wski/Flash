@@ -1,3 +1,4 @@
+import 'package:flash/dialog/add_game_dialog/add_game_dialog.dart';
 import 'package:flash/pages/games/widgets/games_loading_widget.dart';
 import 'package:flash/pages/games/widgets/games_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,10 @@ class GamesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _initializeBloc(
-      child: BlocBuilder<GamesBloc, GamesState>(
+      child: BlocConsumer<GamesBloc, GamesState>(
+        buildWhen: (prev, current) => _stateShouldRebuild(current),
+        listenWhen: (prev, current) => !_stateShouldRebuild(current),
+        listener: _listenState,
         builder: (context, state) {
           if (state is GamesStateLoaded) {
             return _returnPageIfStateIsLoaded(context, state);
@@ -28,6 +32,19 @@ class GamesPage extends StatelessWidget {
     return BlocProvider(
         create: (context) => GamesBloc()..add(GamesEventLoadGames()),
         child: child);
+  }
+
+  _stateShouldRebuild(GamesState state) {
+    return state is! GamesStateShowAddGameDialog;
+  }
+
+  _listenState(BuildContext context, GamesState state) {
+    if (state is GamesStateShowAddGameDialog) {
+      var dialog = AddGameDialog();
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => dialog.show(context));
+    }
   }
 
   Widget _returnPageIfStateIsLoaded(
@@ -50,7 +67,7 @@ class GamesPage extends StatelessWidget {
   Widget _buildTitle(BuildContext context, {required bool isGamesEmpty}) {
     return GamesTitle(
       isGamesEmpty: isGamesEmpty,
-      onAddGame: _createEventsAdder(context).showAddGameDialog(),
+      onAddGame: _createEventsAdder(context).showAddGameDialog,
     );
   }
 
