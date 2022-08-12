@@ -4,11 +4,16 @@ import 'package:path/path.dart' as p;
 
 class ConfigDirectory {
   final _localShare = "~/.local/share/";
-  final String _appName;
+  late String _appName;
+  late Directory _directory;
 
-  ConfigDirectory({required String appName}) : _appName = appName;
-
-  get _directory => Directory(p.join(_localShare, _appName));
+  ConfigDirectory({
+    required String appName,
+    Directory? directory,
+  }) {
+    _appName = appName;
+    _directory = directory ?? Directory(p.join(_localShare, _appName));
+  }
 
   createDirectoryIfNotExists() {
     if (isDirectoryExist()) {
