@@ -2,21 +2,31 @@ import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 
 import '../flash_dialog.dart';
+import 'bloc/add_game_bloc.dart';
 
 class AddGameDialog extends FlashDialog {
   @override
   show(BuildContext context) {
-    return GtkDialog(
-        title: Text(context.l10n.addNewGame),
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        children: [
-          _buildGameIcon(context),
-          _buildTransparentDivider(context),
-          _buildDescription(context),
-        ]);
+    return BlocConsumer<AddGameBloc, AddGameState>(
+      bloc: AddGameBloc(),
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return GtkDialog(
+            title: Text(context.l10n.addNewGame),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+            children: [
+              _buildGameIcon(context),
+              _buildTransparentDivider(context),
+              _buildDescription(context),
+            ]);
+      },
+    );
   }
 
   Widget _buildGameIcon(BuildContext context) {
