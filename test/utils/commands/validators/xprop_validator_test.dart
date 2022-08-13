@@ -1,16 +1,17 @@
-import 'package:flash/utils/commands/validators/whereis_validator.dart';
+import 'package:flash/utils/commands/validators/xprop_validator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group("WhereisCommandValidator", () {
-    late WhereisCommandValidator commandValidator;
+  group("XPropValidator", () {
+    late XPropValidator commandValidator;
 
     setUp(() {
-      commandValidator = WhereisCommandValidator();
+      commandValidator = XPropValidator();
     });
 
     test("should return true if output is valid", () {
-      const validOutput = "test: /bin/test";
+      const validOutput =
+          "_NET_WM_OPAQUE_REGION(CARDINAL) = 0, 0, 1920, 1080\n_NET_TEST = test";
 
       var isValidOutput = commandValidator.isValidOutput(validOutput);
 
@@ -18,7 +19,7 @@ void main() {
     });
 
     test("should return false if output is invalid", () {
-      const validOutput = "sh: command not found: whereis";
+      const validOutput = "sh: command not found: xprop";
 
       var isValidOutput = commandValidator.isValidOutput(validOutput);
 
