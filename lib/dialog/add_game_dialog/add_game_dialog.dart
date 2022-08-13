@@ -21,6 +21,7 @@ class AddGameDialog extends FlashDialog {
       listener: _listener.listen,
       builder: (context, state) {
         return GtkDialog(
+            width: 350,
             title: Text(context.l10n.addNewGame),
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
             children: [_buildDialogContent(context, state)]);
