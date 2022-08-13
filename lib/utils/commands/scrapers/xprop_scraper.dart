@@ -15,12 +15,30 @@ class XPropScraper extends CommandScraper {
   }
 
   _getParameterValue(String commandOutput, String parameter) {
-    var parameterRegrex = RegExp("$parameter = .*\n");
+    var parameterRegrex = RegExp(r".* = .*");
     if (parameterRegrex.hasMatch(commandOutput)) {
-      var parameterMatch = parameterRegrex.firstMatch(commandOutput)!;
-      var parameterValue = parameterMatch.group(0)!.split(" = ");
-      return parameterValue;
+      var regrexMatches = parameterRegrex.allMatches(commandOutput).toList();
+      var entries = _convertMatchesToEntries(regrexMatches);
+      var correctEntry =
+          _getEntryWhichStartsWithTheParameter(entries, parameter);
+      if (correctEntry != null) {
+        return correctEntry.split(" = ").last;
+      }
     }
     throw CantFindParameter(parameter);
+  }
+
+  Iterable<String> _convertMatchesToEntries(Iterable<RegExpMatch> entries) {
+    return entries.map((RegExpMatch e) => e.group(0) as String);
+  }
+
+  String? _getEntryWhichStartsWithTheParameter(
+      Iterable<String> entries, String parameter) {
+    for (var entry in entries) {
+      if (entry.startsWith(parameter)) {
+        return entry;
+      }
+    }
+    return null;
   }
 }
