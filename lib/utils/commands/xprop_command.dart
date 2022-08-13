@@ -15,4 +15,9 @@ class XPropCommand extends Command {
   ScrapedXProp executeAndScrap(List<String> arguments) {
     return super.executeAndScrap(arguments) as ScrapedXProp;
   }
+
+  @override
+  Future<ScrapedXProp> executeAndScrapAsync(List<String> arguments) async {
+    return await super.executeAndScrapAsync(arguments) as ScrapedXProp;
+  }
 }

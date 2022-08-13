@@ -9,4 +9,9 @@ class ProcessAdapter {
     var output = Process.runSync(command, arguments);
     return output.stdout;
   }
+
+  Future<String> executeAsync(String command, List<String> arguments) async {
+    var output = await Process.run(command, arguments);
+    return output.stdout;
+  }
 }

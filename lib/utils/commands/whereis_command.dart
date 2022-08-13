@@ -16,4 +16,9 @@ class WhereisCommand extends Command {
   ScrapedWhereis executeAndScrap(List<String> arguments) {
     return super.executeAndScrap(arguments) as ScrapedWhereis;
   }
+
+  @override
+  Future<ScrapedWhereis> executeAndScrapAsync(List<String> arguments) async {
+    return super.executeAndScrapAsync(arguments) as ScrapedWhereis;
+  }
 }

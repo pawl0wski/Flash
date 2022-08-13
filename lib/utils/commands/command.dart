@@ -34,6 +34,19 @@ abstract class Command {
     return _scraper!.scrap(commandOutput);
   }
 
+  Future<String> executeAsync(List<String> arguments) async {
+    var commandOutput =
+        await _processAdapter.executeAsync(commandName, arguments);
+    _throwExceptionIfOutputIsInvalid(commandOutput);
+    return commandOutput;
+  }
+
+  Future<ScrapedCommand> executeAndScrapAsync(List<String> arguments) async {
+    var commandOutput = await executeAsync(arguments);
+    _throwExceptionIfScraperIsNotProvided();
+    return _scraper!.scrap(commandOutput);
+  }
+
   bool _isValidatorNotNullAndOutputIsInvalid(String commandOutput) {
     return (_validator != null && !_validator!.isValidOutput(commandOutput));
   }

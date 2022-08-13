@@ -17,7 +17,7 @@ class AddGameDialog extends FlashDialog {
   @override
   show(BuildContext context) {
     return BlocConsumer<AddGameBloc, AddGameState>(
-      bloc: AddGameBloc(),
+      bloc: AddGameBloc()..add(AddGameEventShowClickOnGame()),
       listener: _listener.listen,
       builder: (context, state) {
         return GtkDialog(
