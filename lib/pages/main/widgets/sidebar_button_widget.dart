@@ -14,9 +14,14 @@ class SidebarButton extends StatelessWidget {
     return AdwHeaderButton(icon: _getIcon());
   }
 
-  AdwaitaIcon _getIcon() {
+  Widget _getIcon() {
     var iconName =
         _isOpen ? AdwaitaIcons.sidebar_hide : AdwaitaIcons.sidebar_hide;
-    return AdwaitaIcon(iconName);
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: AdwaitaIcon(
+        iconName,
+      ),
+    );
   }
 }

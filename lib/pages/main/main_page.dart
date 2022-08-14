@@ -7,6 +7,7 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';
 
 import 'cubit/main_cubit.dart';
+import 'widgets/sidebar_button_widget.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -21,6 +22,11 @@ class MainPage extends StatelessWidget {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         return AdwScaffold(
+          start: const [
+            SidebarButton(
+              isOpen: true,
+            )
+          ],
           flap: (_) => _buildSidebarUsingCubitState(context,
               currentIndex: state.index,
               onIndexChange: context.read<MainCubit>().setPage),
