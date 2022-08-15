@@ -1,3 +1,4 @@
+import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/utils/game_repository/models/game.dart';
 import 'package:flutter/widgets.dart';
 import 'package:libadwaita/libadwaita.dart';
@@ -15,6 +16,7 @@ class GamesGameTile extends StatelessWidget {
         width: 500,
         child: AdwPreferencesGroup(children: [
           AdwActionRow(
+            start: const AdwaitaIcon(AdwaitaIcons.gamepad),
             title: _game.name,
             subtitle: _game.processName,
           )
