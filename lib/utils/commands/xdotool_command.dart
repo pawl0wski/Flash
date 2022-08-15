@@ -8,7 +8,8 @@ class XDoToolCommand extends Command {
   Game getGameFromPid(int pid) {
     var game = Game();
     var window = _getFirstWindowByPid(pid);
-
+    game.processName = _getProcessNameByWindow(window);
+    game.name = _getWindowNameByWindow(window);
     return game;
   }
 
