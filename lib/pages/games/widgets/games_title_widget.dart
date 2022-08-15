@@ -26,7 +26,7 @@ class GamesTitle extends StatelessWidget {
           context.l10n.gamesPageDescription,
           textAlign: TextAlign.center,
         ),
-        _buildAddGameButtonIfGamesIsEmpty(context),
+        _buildAddGameButton(context),
       ]),
     );
   }
@@ -44,18 +44,15 @@ class GamesTitle extends StatelessWidget {
     return Container(); // Empty container
   }
 
-  Widget _buildAddGameButtonIfGamesIsEmpty(BuildContext context) {
-    if (isGamesEmpty) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: AdwButton(
-          opaque: true,
-          backgroundColor: AdwDefaultColors.blue,
-          child: Text(context.l10n.addNewGame),
-          onPressed: () => onAddGame(),
-        ),
-      );
-    }
-    return Container(); // Empty container
+  Widget _buildAddGameButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: AdwButton(
+        opaque: true,
+        backgroundColor: AdwDefaultColors.blue,
+        child: Text(context.l10n.addNewGame),
+        onPressed: () => onAddGame(),
+      ),
+    );
   }
 }

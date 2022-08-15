@@ -30,7 +30,7 @@ class GamesListWithTitle extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context, {required bool isGamesEmpty}) {
     return GamesTitle(
-      isGamesEmpty: isGamesEmpty,
+      isGamesEmpty: state.games.isEmpty,
       onAddGame: showAddGameDialog,
     );
   }
