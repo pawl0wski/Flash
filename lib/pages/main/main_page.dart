@@ -1,3 +1,4 @@
+import 'package:flash/l10n/l10n.dart';
 import 'package:flash/pages/games/games_page.dart';
 import 'package:flash/pages/welcome/welcome_page.dart';
 import 'package:flash/widgets/sidebar/sidebar_widget.dart';
@@ -21,6 +22,7 @@ class MainPage extends StatelessWidget {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         return AdwScaffold(
+          title: Text(context.l10n.appTitle),
           flap: (_) => _buildSidebarUsingCubitState(context,
               currentIndex: state.index,
               onIndexChange: context.read<MainCubit>().setPage),
