@@ -4,5 +4,9 @@ import 'package:flutter/material.dart';
 class AddGameListener {
   const AddGameListener();
 
-  listen(BuildContext context, AddGameState state) {}
+  listen(BuildContext context, AddGameState state) {
+    if (state is AddGameStateClose) {
+      Navigator.of(context).pop();
+    }
+  }
 }
