@@ -22,11 +22,11 @@ class XDoToolCommand extends Command {
 
   String _getWindowNameByWindow(int window) {
     var windowName = execute(["getwindowname", window.toString()]);
-    return windowName;
+    return windowName.trim();
   }
 
   String _getProcessNameByWindow(int window) {
     var processName = execute(["getwindowclassname", window.toString()]);
-    return processName;
+    return processName.trim();
   }
 }
