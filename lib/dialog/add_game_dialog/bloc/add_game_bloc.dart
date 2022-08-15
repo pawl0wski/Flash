@@ -26,5 +26,6 @@ class AddGameBloc extends Bloc<AddGameEvent, AddGameState> {
 
   _executeXPropAndChangeState() async {
     var output = await _xPropCommand.executeAndScrapAsync([]);
+    var game = _xDoToolCommand.getGameFromPid(output.pid);
   }
 }

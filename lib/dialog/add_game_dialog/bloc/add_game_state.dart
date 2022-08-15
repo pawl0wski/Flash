@@ -7,3 +7,8 @@ class AddGameStateClickOnGame extends AddGameState {
   @override
   List<Object?> get props => [];
 }
+
+class AddGameStateClose extends AddGameState {
+  @override
+  List<Object?> get props => [];
+}
