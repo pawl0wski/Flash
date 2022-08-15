@@ -1,5 +1,6 @@
 import 'package:flash/dialog/add_game_dialog/add_game_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/games_bloc.dart';
 
@@ -15,7 +16,9 @@ class GamesPageListener {
   _showAddGameDialog(BuildContext context) {
     var addGameDialog = AddGameDialog();
     showDialog(
-        context: context,
-        builder: (BuildContext context) => addGameDialog.show(context));
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) => addGameDialog.show(context))
+        .then((value) => context.read<GamesBloc>().add(GamesEventLoadGames()));
   }
 }
