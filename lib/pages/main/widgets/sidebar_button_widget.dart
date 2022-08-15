@@ -4,20 +4,14 @@ import 'package:libadwaita/libadwaita.dart';
 
 class SidebarButton extends StatelessWidget {
   final bool _isOpen;
-  final Function() _onPressed;
 
-  const SidebarButton(
-      {required bool isOpen, required Function() onPressed, Key? key})
-      : _onPressed = onPressed,
-        _isOpen = isOpen,
+  const SidebarButton({required bool isOpen, Key? key})
+      : _isOpen = isOpen,
         super(key: key);
 
   @override
   AdwHeaderButton build(BuildContext context) {
-    return AdwHeaderButton(
-      icon: _getIcon(),
-      onPressed: _onPressed,
-    );
+    return AdwHeaderButton(icon: _getIcon());
   }
 
   Widget _getIcon() {
