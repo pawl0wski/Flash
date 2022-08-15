@@ -11,6 +11,13 @@ class GamesGameTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw AdwPreferencesGroup(children: [AdwActionRow(title: _game.name)]);
+    return SizedBox(
+        width: 500,
+        child: AdwPreferencesGroup(children: [
+          AdwActionRow(
+            title: _game.name,
+            subtitle: _game.processName,
+          )
+        ]));
   }
 }
