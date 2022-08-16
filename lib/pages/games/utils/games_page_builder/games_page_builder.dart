@@ -1,5 +1,6 @@
 import 'package:flash/utils/game_repository/models/game.dart';
 import 'package:flutter/material.dart';
+import 'package:libadwaita/libadwaita.dart';
 
 import '../../bloc/games_bloc.dart';
 import '../../widgets/games_game_tile_widget.dart';
@@ -12,8 +13,8 @@ class GamesPageBuilder {
 
   Widget build(BuildContext context, GamesState state) {
     if (state is GamesStateLoaded) {
-      return Scrollbar(
-          child: ListView(children: [
+      return AdwClamp.scrollable(
+          child: Column(children: [
         GamesListWithTitle(
             state: state,
             showAddGameDialog: _createEventsAdder(context).showAddGameDialog),

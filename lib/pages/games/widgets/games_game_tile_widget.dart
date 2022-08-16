@@ -12,15 +12,12 @@ class GamesGameTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 60),
-      child: AdwPreferencesGroup(children: [
-        AdwActionRow(
-          start: const AdwaitaIcon(AdwaitaIcons.gamepad),
-          title: _game.name,
-          subtitle: _game.processName,
-        )
-      ]),
-    );
+    return AdwPreferencesGroup(children: [
+      AdwActionRow(
+        start: const AdwaitaIcon(AdwaitaIcons.gamepad),
+        title: _game.name,
+        subtitle: _game.processName,
+      )
+    ]);
   }
 }
