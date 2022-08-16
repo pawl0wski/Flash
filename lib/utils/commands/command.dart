@@ -13,17 +13,21 @@ abstract class Command {
   final CommandValidator? _validator;
   final ProcessAdapter _processAdapter;
   final CommandScraper? _scraper;
+  final List<String> _defaultArguments;
 
   Command(this.commandName,
       {CommandValidator? validator,
       ProcessAdapter? processAdapter,
-      CommandScraper? commandScraper})
+      CommandScraper? commandScraper,
+      List<String> defaultArguments = const []})
       : _validator = validator,
         _processAdapter = processAdapter ?? ProcessAdapter(),
-        _scraper = commandScraper;
+        _scraper = commandScraper,
+        _defaultArguments = defaultArguments;
 
   String execute(List<String> arguments) {
-    var commandOutput = _processAdapter.execute(commandName, arguments);
+    var commandOutput = _processAdapter.execute(
+        commandName, _mixArgumentsWithDefaultArguments(arguments));
     _throwExceptionIfOutputIsInvalid(commandOutput);
     return commandOutput;
   }
@@ -35,8 +39,8 @@ abstract class Command {
   }
 
   Future<String> executeAsync(List<String> arguments) async {
-    var commandOutput =
-        await _processAdapter.executeAsync(commandName, arguments);
+    var commandOutput = await _processAdapter.executeAsync(
+        commandName, _mixArgumentsWithDefaultArguments(arguments));
     _throwExceptionIfOutputIsInvalid(commandOutput);
     return commandOutput;
   }
@@ -49,6 +53,10 @@ abstract class Command {
 
   bool _isValidatorNotNullAndOutputIsInvalid(String commandOutput) {
     return (_validator != null && !_validator!.isValidOutput(commandOutput));
+  }
+
+  List<String> _mixArgumentsWithDefaultArguments(List<String> arguments) {
+    return [..._defaultArguments, ...arguments];
   }
 
   _throwExceptionIfOutputIsInvalid(String commandOutput) {
