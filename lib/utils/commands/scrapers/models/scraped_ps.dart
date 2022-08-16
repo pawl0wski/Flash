@@ -4,6 +4,10 @@ class ScrapedPs extends ScrapedCommand {
   final List<PsEntry> entries;
 
   const ScrapedPs({required this.entries});
+
+  PsEntry? getEntryByPid(int pid) {
+    return entries.firstWhere((entry) => entry.pid == pid);
+  }
 }
 
 class PsEntry {
