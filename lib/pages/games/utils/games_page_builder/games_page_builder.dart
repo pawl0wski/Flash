@@ -12,12 +12,13 @@ class GamesPageBuilder {
 
   Widget build(BuildContext context, GamesState state) {
     if (state is GamesStateLoaded) {
-      return Column(children: [
+      return Scrollbar(
+          child: ListView(children: [
         GamesListWithTitle(
             state: state,
             showAddGameDialog: _createEventsAdder(context).showAddGameDialog),
         ..._getGameTitles(state.games),
-      ]);
+      ]));
     } else {
       return const GamesLoading();
     }

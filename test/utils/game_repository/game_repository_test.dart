@@ -115,8 +115,5 @@ Map<String, Game> _createTestGames() {
 }
 
 Game _createTestGame(String gameName) {
-  var game = Game();
-  game.name = gameName;
-  game.processName = gameName;
-  return game;
+  return Game(name: gameName, processName: gameName);
 }

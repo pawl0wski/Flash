@@ -14,6 +14,8 @@ class Game extends HiveObject with EquatableMixin {
   @HiveField(2)
   late String processName;
 
+  Game({required this.name, required this.processName});
+
   @override
   List<Object> get props => [uuid, name, processName];
 }
