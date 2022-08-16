@@ -33,12 +33,13 @@ void main() {
 }
 
 void configureToReturnValueThatSaysItNotExists(MockWhereisCommand mockWhereIs) {
-  when(mockWhereIs.executeAndScrap(["application"]))
-      .thenReturn(ScrapedWhereis(commandPaths: [], commandName: "application"));
+  when(mockWhereIs.executeAndScrap(["application"])).thenReturn(
+      const ScrapedWhereis(commandPaths: [], commandName: "application"));
 }
 
 void configureToReturnValueThatSaysItExists(MockWhereisCommand mockWhereIs) {
-  when(mockWhereIs.executeAndScrap(["application"])).thenReturn(ScrapedWhereis(
-      commandPaths: ["/bin/application ", "/usr/bin/application"],
-      commandName: "application"));
+  when(mockWhereIs.executeAndScrap(["application"])).thenReturn(
+      const ScrapedWhereis(
+          commandPaths: ["/bin/application ", "/usr/bin/application"],
+          commandName: "application"));
 }
