@@ -2,6 +2,7 @@ import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/game_repository/models/game.dart';
 import 'package:flash/widgets/muted_text/muted_text_widget.dart';
+import 'package:flash/widgets/secondary_tile/secondary_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 
@@ -38,7 +39,7 @@ class GamesGameTile extends StatelessWidget {
   }
 
   Widget _editNameTile(BuildContext context, {required void Function() onTap}) {
-    return ListTile(
+    return SecondaryTile(
       leading: const AdwaitaIcon(AdwaitaIcons.edit),
       title: Text(context.l10n.editName),
       onTap: onTap,
@@ -47,7 +48,7 @@ class GamesGameTile extends StatelessWidget {
 
   Widget _buildDeleteTile(BuildContext context,
       {required void Function() onTap}) {
-    return ListTile(
+    return SecondaryTile(
       leading: const AdwaitaIcon(AdwaitaIcons.edit_delete),
       title: Text(context.l10n.deleteGame),
       onTap: onTap,
