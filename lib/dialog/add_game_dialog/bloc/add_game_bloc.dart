@@ -40,10 +40,8 @@ class AddGameBloc extends Bloc<AddGameEvent, AddGameState> {
   Future<Game> _getGame() async {
     var output = await _xPropCommand.executeAndScrapAsync([]);
     var windowName = _xDoToolCommand.getWindowNameByPid(output.pid);
-    var processName = _psCommand
-        .executeAndScrap([])
-        .getEntryByPid(output.pid)
-        ?.executableWithFile;
+    var processName =
+        _psCommand.executeAndScrap([]).getEntryByPid(output.pid)?.command;
     return Game(
         name: windowName,
         processName:

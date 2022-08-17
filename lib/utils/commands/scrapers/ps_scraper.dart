@@ -3,7 +3,7 @@ import 'package:flash/utils/commands/scrapers/models/scraped_ps.dart';
 import 'command_scraper.dart';
 
 class PsScrapper extends CommandScraper {
-  int columnsInPS = 11;
+  int columnsInPS = 2;
 
   @override
   ScrapedPs scrap(String commandOutput) {
@@ -32,7 +32,7 @@ class PsScrapper extends CommandScraper {
 
   List<String> _splitLineBySpaces(String line) {
     var spaceRegexp = RegExp(r" +");
-    for (var i = 1; i < columnsInPS; i++) {
+    for (var i = 0; i < columnsInPS; i++) {
       line = line.replaceFirst(spaceRegexp, "|");
     }
     return line.split("|").toList();
