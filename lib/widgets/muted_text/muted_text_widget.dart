@@ -1,3 +1,4 @@
+import 'package:adwaita/adwaita.dart';
 import 'package:flutter/material.dart';
 
 class MutedText extends StatelessWidget {
@@ -9,12 +10,10 @@ class MutedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.7,
-      child: Text(
-        text,
-        textAlign: textAlign,
-      ),
+    return Text(
+      text,
+      textAlign: textAlign,
+      style: const TextStyle(color: AdwaitaColors.light5),
     );
   }
 }
