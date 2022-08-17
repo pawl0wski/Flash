@@ -14,16 +14,28 @@ class GamesPageBuilder {
 
   Widget build(BuildContext context, GamesState state) {
     if (state is GamesStateLoaded) {
-      return AdwClamp.scrollable(
-          child: Column(children: [
-        GamesListWithTitle(
+      return _buildColumnIfGamesIsNotEmpty(
+        context,
+        games: state.games,
+        child: GamesListWithTitle(
             state: state,
             showAddGameDialog: _createEventsAdder(context).showAddGameDialog),
-        ..._getGameTitles(context, games: state.games),
-      ]));
+      );
     } else {
       return const GamesLoading();
     }
+  }
+
+  Widget _buildColumnIfGamesIsNotEmpty(BuildContext context,
+      {required Widget child, required List<Game> games}) {
+    if (games.isNotEmpty) {
+      return AdwClamp.scrollable(
+          child: Column(children: [
+        child,
+        ..._getGameTitles(context, games: games),
+      ]));
+    }
+    return Center(child: child);
   }
 
   GamesEventsAdder _createEventsAdder(BuildContext context) {
