@@ -1,5 +1,6 @@
 import 'package:flash/utils/game_repository/models/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 
 import '../../bloc/games_bloc.dart';
@@ -18,7 +19,7 @@ class GamesPageBuilder {
         GamesListWithTitle(
             state: state,
             showAddGameDialog: _createEventsAdder(context).showAddGameDialog),
-        ..._getGameTitles(state.games),
+        ..._getGameTitles(context, games: state.games),
       ]));
     } else {
       return const GamesLoading();
@@ -29,7 +30,14 @@ class GamesPageBuilder {
     return GamesEventsAdder(context);
   }
 
-  List<GamesGameTile> _getGameTitles(List<Game> games) {
-    return games.map((Game game) => GamesGameTile(game: game)).toList();
+  List<GamesGameTile> _getGameTitles(BuildContext context,
+      {required List<Game> games}) {
+    return games
+        .map((Game game) => GamesGameTile(
+              game: game,
+              deleteGame: () =>
+                  context.read<GamesBloc>().add(GamesBlocEventDeleteGame(game)),
+            ))
+        .toList();
   }
 }

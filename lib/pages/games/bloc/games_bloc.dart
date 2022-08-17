@@ -15,6 +15,7 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
         super(const GamesStateLoading()) {
     on<GamesEventLoadGames>(_onLoadGames);
     on<GamesEventShowAddGameDialog>(_onShowAddGameDialog);
+    on<GamesBlocEventDeleteGame>(_onDeleteGame);
   }
 
   _onLoadGames(GamesEventLoadGames event, Emitter<GamesState> emitter) {
@@ -25,6 +26,12 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   _onShowAddGameDialog(
       GamesEventShowAddGameDialog event, Emitter<GamesState> emitter) {
     emitter(GamesStateShowAddGameDialog());
+  }
+
+  _onDeleteGame(GamesBlocEventDeleteGame event, Emitter<GamesState> emitter) {
+    _gameRepository.deleteGame(event.gameToDelete.uuid);
+    _getGamesFromRepository();
+    _emitGamesStateLoaded(emitter);
   }
 
   _getGamesFromRepository() {

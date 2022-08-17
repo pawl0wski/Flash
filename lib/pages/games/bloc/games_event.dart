@@ -13,3 +13,12 @@ class GamesEventShowAddGameDialog extends GamesEvent {
   @override
   List<Object?> get props => [];
 }
+
+class GamesBlocEventDeleteGame extends GamesEvent {
+  final Game gameToDelete;
+
+  const GamesBlocEventDeleteGame(this.gameToDelete);
+
+  @override
+  List<Object?> get props => [gameToDelete];
+}

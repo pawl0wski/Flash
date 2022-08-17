@@ -6,9 +6,12 @@ import 'package:libadwaita/libadwaita.dart';
 
 class GamesGameTile extends StatelessWidget {
   final Game _game;
+  final void Function() _deleteGame;
 
-  const GamesGameTile({required Game game, Key? key})
+  const GamesGameTile(
+      {required Game game, required void Function() deleteGame, Key? key})
       : _game = game,
+        _deleteGame = deleteGame,
         super(key: key);
 
   @override
@@ -20,15 +23,17 @@ class GamesGameTile extends StatelessWidget {
         subtitle: Text(_game.processName),
         textColor: Colors.white,
         iconColor: Colors.white,
-        children: [_buildDeleteTile(context)],
+        children: [_buildDeleteTile(context, onTap: _deleteGame)],
       )
     ]);
   }
 
-  Widget _buildDeleteTile(BuildContext context) {
+  Widget _buildDeleteTile(BuildContext context,
+      {required void Function() onTap}) {
     return ListTile(
       leading: const AdwaitaIcon(AdwaitaIcons.edit_delete),
       title: Text(context.l10n.deleteGame),
+      onTap: onTap,
     );
   }
 }
