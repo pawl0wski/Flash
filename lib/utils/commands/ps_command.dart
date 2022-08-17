@@ -5,8 +5,7 @@ import 'package:flash/utils/commands/scrapers/ps_scraper.dart';
 class PsCommand extends Command {
   PsCommand()
       : super("ps",
-            defaultArguments: ["-e", "-o", "pid,comm"],
-            commandScraper: PsScrapper());
+            defaultArguments: ["-e", "-o", "pid,comm"], scraper: PsScrapper());
 
   @override
   ScrapedPs executeAndScrap(List<String> arguments) {

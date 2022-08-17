@@ -10,7 +10,7 @@ class WhereisCommand extends Command {
       : super("whereis",
             validator: WhereisCommandValidator(),
             processAdapter: processAdapter,
-            commandScraper: WhereisScraper());
+            scraper: WhereisScraper());
 
   @override
   ScrapedWhereis executeAndScrap(List<String> arguments) {

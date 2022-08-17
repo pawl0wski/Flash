@@ -18,11 +18,11 @@ abstract class Command {
   Command(this.commandName,
       {CommandValidator? validator,
       ProcessAdapter? processAdapter,
-      CommandScraper? commandScraper,
+      CommandScraper? scraper,
       List<String> defaultArguments = const []})
       : _validator = validator,
         _processAdapter = processAdapter ?? ProcessAdapter(),
-        _scraper = commandScraper,
+        _scraper = scraper,
         _defaultArguments = defaultArguments;
 
   String execute(List<String> arguments) {

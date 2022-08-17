@@ -8,7 +8,7 @@ class XPropCommand extends Command {
   XPropCommand({ProcessAdapter? processAdapter})
       : super("xprop",
             processAdapter: processAdapter,
-            commandScraper: XPropScraper(),
+            scraper: XPropScraper(),
             validator: XPropValidator());
 
   @override

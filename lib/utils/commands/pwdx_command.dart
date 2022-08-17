@@ -9,7 +9,7 @@ class PwdxCommand extends Command {
       : super(
           "pwdx",
           validator: PwdxValidator(),
-          commandScraper: PwdxScraper(),
+          scraper: PwdxScraper(),
         );
 
   @override
