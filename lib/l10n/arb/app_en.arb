@@ -13,5 +13,6 @@
   "gamesPageDescription": "Add your games and assign them a display mode.",
   "addNewGame": "Add a new game",
   "loading": "Loading",
-  "clickOnTheGame": "Click on the game window to add it to the application. If you have any problems, you can add the game manually."
+  "clickOnTheGame": "Click on the game window to add it to the application. If you have any problems, you can add the game manually.",
+  "deleteGame": "Delete game"
 }
