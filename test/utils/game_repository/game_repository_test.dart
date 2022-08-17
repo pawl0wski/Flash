@@ -115,5 +115,6 @@ Map<String, Game> _createTestGames() {
 }
 
 Game _createTestGame(String gameName) {
-  return Game(name: gameName, processName: gameName);
+  return Game(
+      name: gameName, processName: gameName, workingDirectory: gameName);
 }

@@ -30,7 +30,10 @@ class GameCreator {
     var name = _getWindowName(pid: pid);
     var executable = _getExecutable(pid: pid);
     var workingDirectory = _getWorkingDirectory(pid: pid);
-    var game = Game(name: name, processName: executable);
+    var game = Game(
+        name: name,
+        processName: executable,
+        workingDirectory: workingDirectory);
     return _gameRepository.addGame(game);
   }
 
