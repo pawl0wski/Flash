@@ -15,4 +15,21 @@ class PsEntry {
   final String command;
 
   const PsEntry({required this.pid, required this.command});
+
+  String get executable {
+    return _splitCommand.first;
+  }
+
+  String? get file {
+    var argumentRegexp = RegExp(r"[-+]");
+    return _splitCommand[1].startsWith(argumentRegexp)
+        ? null
+        : _splitCommand[1];
+  }
+
+  String get executableWithFile {
+    return "$executable ${file ?? ""}".trimRight();
+  }
+
+  List<String> get _splitCommand => command.split(" ");
 }
