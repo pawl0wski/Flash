@@ -22,3 +22,12 @@ class GamesBlocEventDeleteGame extends GamesEvent {
   @override
   List<Object?> get props => [gameToDelete];
 }
+
+class GamesBlocEventEditGameName extends GamesEvent {
+  final Game gameToEdit;
+
+  const GamesBlocEventEditGameName(this.gameToEdit);
+
+  @override
+  List<Object?> get props => [gameToEdit];
+}

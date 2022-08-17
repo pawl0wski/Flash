@@ -49,6 +49,9 @@ class GamesPageBuilder {
               game: game,
               deleteGame: () =>
                   context.read<GamesBloc>().add(GamesBlocEventDeleteGame(game)),
+              editGameName: () => context
+                  .read<GamesBloc>()
+                  .add(GamesBlocEventEditGameName(game)),
             ))
         .toList();
   }

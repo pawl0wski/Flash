@@ -14,5 +14,8 @@
   "addNewGame": "Add a new game",
   "loading": "Loading",
   "clickOnTheGame": "Click on the game window to add it to the application. If you have any problems, you can add the game manually.",
-  "deleteGame": "Delete game"
+  "deleteGame": "Delete game",
+  "editName": "Edit name",
+  "accept": "Accept",
+  "cancel": "Cancel"
 }

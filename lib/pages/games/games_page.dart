@@ -34,6 +34,7 @@ class GamesPage extends StatelessWidget {
   }
 
   _stateShouldRebuild(GamesState state) {
-    return state is! GamesStateShowAddGameDialog;
+    return state is! GamesStateShowAddGameDialog &&
+        state is! GamesStateShowEditNameDialog;
   }
 }
