@@ -40,10 +40,11 @@ class AddGameBloc extends Bloc<AddGameEvent, AddGameState> {
   Future<Game> _getGame() async {
     var output = await _xPropCommand.executeAndScrapAsync([]);
     var windowName = _xDoToolCommand.getWindowNameByPid(output.pid);
-    var processName = _psCommand.executeAndScrap([]).getEntryByPid(output.pid);
+    var processName =
+        _psCommand.executeAndScrap([]).getEntryByPid(output.pid)?.command;
     return Game(
         name: windowName,
-        processName: (processName ?? "")
-            as String); // TODO: Throw exception if procesName is null
+        processName:
+            processName ?? ""); // TODO: Throw exception if procesName is null
   }
 }
