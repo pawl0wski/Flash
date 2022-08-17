@@ -1,6 +1,7 @@
 import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/widgets/muted_text/muted_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 
@@ -25,7 +26,7 @@ class GamesGameTile extends StatelessWidget {
       ExpansionTile(
         leading: const AdwaitaIcon(AdwaitaIcons.gamepad),
         title: Text(_game.name),
-        subtitle: Text(_game.processName),
+        subtitle: MutedText(_game.processName),
         textColor: Colors.white,
         iconColor: Colors.white,
         children: [
