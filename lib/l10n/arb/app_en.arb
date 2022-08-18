@@ -18,5 +18,6 @@
   "editName": "Edit name",
   "accept": "Accept",
   "cancel": "Cancel",
-  "settings": "Settings"
+  "settings": "Settings",
+  "displaySettings": "Display settings"
 }
