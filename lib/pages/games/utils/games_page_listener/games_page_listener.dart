@@ -1,6 +1,6 @@
 import 'package:flash/dialog/add_game_dialog/add_game_dialog.dart';
 import 'package:flash/dialog/edit_name_dialog/edit_name_dialog.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/models/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

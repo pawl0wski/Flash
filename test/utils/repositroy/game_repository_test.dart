@@ -1,7 +1,7 @@
-import 'package:flash/utils/game_repository/exceptions/game_update_exception.dart';
-import 'package:flash/utils/game_repository/game_repository.dart';
-import 'package:flash/utils/game_repository/hive_box/game_hive_box.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/exceptions/repository_update_exception.dart';
+import 'package:flash/utils/repository/game_repository.dart';
+import 'package:flash/utils/repository/hive_box/game_hive_box.dart';
+import 'package:flash/utils/repository/models/game.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mockito/annotations.dart';
@@ -32,7 +32,7 @@ void main() {
       var testGames = _createTestGames();
       _configureMockBoxToReturnTestGames(mockBox: mockBox);
 
-      var allGames = gameRepository.getAllGames();
+      var allGames = gameRepository.getAll();
 
       expect(allGames.length, 2);
       expect(testGames["uuid1"], isIn(allGames));
@@ -41,7 +41,7 @@ void main() {
     test("deleteGame should delete game from box", () {
       _configureMockBoxToDelete("testGame", mockBox: mockBox);
 
-      gameRepository.deleteGame("testGame");
+      gameRepository.delete("testGame");
 
       verify(mockBox.delete("testGame")).called(1);
     });
@@ -52,7 +52,7 @@ void main() {
       _configureMockBoxToPutGame(mockBox: mockBox);
       var testGame = _createTestGame("testGame");
 
-      testGame = gameRepository.addGame(testGame);
+      testGame = gameRepository.add(testGame);
 
       expect(testGame.uuid, fakeUuid);
       verify(mockBox.put(fakeUuid, testGame)).called(1);
@@ -63,7 +63,7 @@ void main() {
       var testUuid = "testUuid";
       var testGame = _createTestGame("testGame")..uuid = testUuid;
 
-      gameRepository.updateGame(testGame);
+      gameRepository.update(testGame);
 
       verify(mockBox.put(testUuid, testGame)).called(1);
     });
@@ -73,8 +73,8 @@ void main() {
       _configureMockBoxToPutGame(mockBox: mockBox);
       var testGame = _createTestGame("testGame");
 
-      expect(() => gameRepository.updateGame(testGame),
-          throwsA(isA<GameUpdateException>()));
+      expect(() => gameRepository.update(testGame),
+          throwsA(isA<RepositoryUpdateException>()));
     });
   });
 }

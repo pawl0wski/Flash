@@ -1,13 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:flash/utils/repository/mixins/object_with_uuid.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'game.g.dart';
 
 @HiveType(typeId: 0)
-class Game extends HiveObject with EquatableMixin {
-  @HiveField(0, defaultValue: "")
-  String uuid = "";
-
+class Game extends HiveObject with EquatableMixin, ObjectWithUuid {
   @HiveField(1)
   late String name;
 

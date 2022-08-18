@@ -1,5 +1,5 @@
 import 'package:flash/utils/config_directory/config_directory.dart';
-import 'package:flash/utils/game_repository/init_game_repository.dart';
+import 'package:flash/utils/repository/init_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

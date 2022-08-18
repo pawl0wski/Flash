@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flash/utils/game_repository/game_repository.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/game_repository.dart';
+import 'package:flash/utils/repository/models/game.dart';
 import 'package:meta/meta.dart';
 
 part 'edit_name_event.dart';
@@ -29,7 +29,7 @@ class EditNameBloc extends Bloc<EditNameEvent, EditNameState> {
 
   _onSave(EditNameEventSave event, Emitter<EditNameState> emitter) {
     _game.name = _newName;
-    _gameRepository.updateGame(_game);
+    _gameRepository.update(_game);
     emitter(EditNameStateClose());
   }
 

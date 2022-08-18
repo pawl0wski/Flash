@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flash/utils/game_repository/game_repository.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/game_repository.dart';
+import 'package:flash/utils/repository/models/game.dart';
 
 part 'games_event.dart';
 part 'games_state.dart';
@@ -30,7 +30,7 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   }
 
   _onDeleteGame(GamesBlocEventDeleteGame event, Emitter<GamesState> emitter) {
-    _gameRepository.deleteGame(event.gameToDelete.uuid);
+    _gameRepository.delete(event.gameToDelete.uuid);
     _getGamesFromRepository();
     _emitGamesStateLoaded(emitter);
   }
@@ -40,7 +40,7 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   }
 
   _getGamesFromRepository() {
-    _games = _gameRepository.getAllGames();
+    _games = _gameRepository.getAll();
   }
 
   _emitGamesStateLoaded(Emitter<GamesState> emitter) {

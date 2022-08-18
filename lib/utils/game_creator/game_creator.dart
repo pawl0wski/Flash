@@ -3,8 +3,8 @@ import 'package:flash/utils/commands/pwdx_command.dart';
 import 'package:flash/utils/commands/xdotool_command.dart';
 import 'package:flash/utils/commands/xprop_command.dart';
 import 'package:flash/utils/game_creator/exception/cant_find_psentry.dart';
-import 'package:flash/utils/game_repository/game_repository.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/game_repository.dart';
+import 'package:flash/utils/repository/models/game.dart';
 
 class GameCreator {
   final XPropCommand _xPropCommand;
@@ -34,7 +34,7 @@ class GameCreator {
         name: name,
         processName: executable,
         workingDirectory: workingDirectory);
-    return _gameRepository.addGame(game);
+    return _gameRepository.add(game);
   }
 
   Future<int> _clickOnGameAndGetPid() async {

@@ -1,5 +1,5 @@
-import 'package:flash/utils/game_repository/hive_box/game_hive_box.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/hive_box/game_hive_box.dart';
+import 'package:flash/utils/repository/models/game.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mockito/annotations.dart';
@@ -14,7 +14,7 @@ void main() {
 
     tearDown(() {
       reset(mockHiveInterface);
-      GameHiveBox.resetBox();
+      GameHiveBox().resetBox();
     });
 
     test("should create new box if static private value is null", () {

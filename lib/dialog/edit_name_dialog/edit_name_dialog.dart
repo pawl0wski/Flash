@@ -1,7 +1,7 @@
 import 'package:flash/dialog/edit_name_dialog/bloc/edit_name_bloc.dart';
 import 'package:flash/dialog/edit_name_dialog/widget/edit_name_button_widget.dart';
 import 'package:flash/l10n/l10n.dart';
-import 'package:flash/utils/game_repository/models/game.dart';
+import 'package:flash/utils/repository/models/game.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
