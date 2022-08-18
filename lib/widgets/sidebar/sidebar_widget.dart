@@ -22,7 +22,9 @@ class SidebarWidget extends StatelessWidget {
 
   List<AdwSidebarItem> _getSidebarItems(BuildContext context) {
     return [
-      _createSidebarItem(label: context.l10n.games, icon: AdwaitaIcons.gamepad)
+      _createSidebarItem(label: context.l10n.games, icon: AdwaitaIcons.gamepad),
+      _createSidebarItem(
+          label: context.l10n.settings, icon: AdwaitaIcons.settings),
     ];
   }
 

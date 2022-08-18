@@ -17,5 +17,6 @@
   "deleteGame": "Delete game",
   "editName": "Edit name",
   "accept": "Accept",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "settings": "Settings"
 }
