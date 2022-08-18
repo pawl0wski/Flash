@@ -1,4 +1,5 @@
 import 'package:flash/l10n/l10n.dart';
+import 'package:flash/pages/displays/displays_page.dart';
 import 'package:flash/pages/games/games_page.dart';
 import 'package:flash/pages/welcome/welcome_page.dart';
 import 'package:flash/widgets/sidebar/sidebar_widget.dart';
@@ -38,7 +39,7 @@ class MainPage extends StatelessWidget {
   }
 
   List<Widget> _buildViewStackChildren() {
-    return [const WelcomePage(), const GamesPage()];
+    return [const WelcomePage(), const GamesPage(), const DisplaysPage()];
   }
 }
 
