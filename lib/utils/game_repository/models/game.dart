@@ -23,5 +23,5 @@ class Game extends HiveObject with EquatableMixin {
       required this.workingDirectory});
 
   @override
-  List<Object> get props => [uuid, name, processName];
+  List<Object> get props => [uuid, name, processName, workingDirectory];
 }
