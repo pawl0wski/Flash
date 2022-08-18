@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../display_repository/models/display.dart';
+import 'models/display.dart';
 import 'models/game.dart';
 
 Future<void> initGameRepository() async {
