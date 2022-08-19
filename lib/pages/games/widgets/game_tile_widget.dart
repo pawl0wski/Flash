@@ -6,12 +6,12 @@ import 'package:flash/widgets/secondary_tile/secondary_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 
-class GamesGameTile extends StatelessWidget {
+class GameTile extends StatelessWidget {
   final Game _game;
   final void Function() _deleteGame;
   final void Function() _editGameName;
 
-  const GamesGameTile(
+  const GameTile(
       {required Game game,
       required void Function() deleteGame,
       required void Function() editGameName,

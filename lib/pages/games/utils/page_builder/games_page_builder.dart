@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 
+import '../../../../widgets/loading_widget/loading_widget.dart';
 import '../../bloc/games_bloc.dart';
-import '../../widgets/games_game_tile_widget.dart';
-import '../../widgets/games_list_with_title_widget.dart';
-import '../../widgets/games_loading_widget.dart';
+import '../../widgets/column_with_game_title_widget.dart';
+import '../../widgets/game_tile_widget.dart';
 import '../event_adder/games_event_adder.dart';
 
 class GamesPageBuilder {
@@ -17,12 +17,12 @@ class GamesPageBuilder {
       return _buildColumnIfGamesIsNotEmpty(
         context,
         games: state.games,
-        child: GamesListWithTitle(
+        child: ColumnWithGameTitle(
             state: state,
             showAddGameDialog: _createEventsAdder(context).showAddGameDialog),
       );
     } else {
-      return const GamesLoading();
+      return const Loading();
     }
   }
 
@@ -42,10 +42,10 @@ class GamesPageBuilder {
     return GamesEventsAdder(context);
   }
 
-  List<GamesGameTile> _getGameTitles(BuildContext context,
+  List<GameTile> _getGameTitles(BuildContext context,
       {required List<Game> games}) {
     return games
-        .map((Game game) => GamesGameTile(
+        .map((Game game) => GameTile(
               game: game,
               deleteGame: () =>
                   context.read<GamesBloc>().add(GamesBlocEventDeleteGame(game)),
