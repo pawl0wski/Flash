@@ -1,4 +1,3 @@
-import 'package:flash/dialog/add_game_dialog/utils/add_game_listener/add_game_listener.dart';
 import 'package:flash/dialog/add_game_dialog/widgets/add_game_click_on_game_widget.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +8,17 @@ import '../flash_dialog.dart';
 import 'bloc/add_game_bloc.dart';
 
 class AddGameDialog extends FlashDialog {
-  final AddGameListener _listener;
-
-  AddGameDialog({AddGameListener? listener})
-      : _listener = listener ?? const AddGameListener();
+  AddGameDialog();
 
   @override
   show(BuildContext context) {
     return BlocConsumer<AddGameBloc, AddGameState>(
       bloc: AddGameBloc()..add(AddGameEventShowClickOnGame()),
-      listener: _listener.listen,
+      listener: (BuildContext context, AddGameState state) {
+        if (state is AddGameStateClose) {
+          Navigator.of(context).pop();
+        }
+      },
       builder: (context, state) {
         return GtkDialog(
             width: 350,
