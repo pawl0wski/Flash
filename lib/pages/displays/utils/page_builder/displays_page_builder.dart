@@ -16,8 +16,10 @@ class DisplaysPageBuilder {
 
   TitleWidget _buildTitle(BuildContext context) {
     return TitleWidget(
-        icon: AdwaitaIcons.sun,
-        title: context.l10n.displays,
-        description: context.l10n.displaysDescription);
+      icon: AdwaitaIcons.sun,
+      title: context.l10n.displays,
+      description: context.l10n.displaysDescription,
+      buttonText: context.l10n.addNewDisplay,
+    );
   }
 }

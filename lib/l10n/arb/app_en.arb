@@ -20,5 +20,6 @@
   "cancel": "Cancel",
   "settings": "Settings",
   "displays": "Displays",
-  "displaysDescription": "Create a display mode so that you can assign it to a game later"
+  "displaysDescription": "Create a display mode so that you can assign it to a game later",
+  "addNewDisplay": "Add a new display"
 }
