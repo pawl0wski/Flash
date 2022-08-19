@@ -9,6 +9,7 @@ class DisplaysPageBuilder {
 
   Widget build(BuildContext context, DisplaysState state) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [_buildTitle(context)],
     );
   }
@@ -17,6 +18,6 @@ class DisplaysPageBuilder {
     return TitleWidget(
         icon: AdwaitaIcons.sun,
         title: context.l10n.displays,
-        description: ""); // TODO: Add description
+        description: context.l10n.displaysDescription);
   }
 }

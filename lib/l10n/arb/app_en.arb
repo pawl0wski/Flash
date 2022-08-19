@@ -19,5 +19,6 @@
   "accept": "Accept",
   "cancel": "Cancel",
   "settings": "Settings",
-  "displays": "Displays"
+  "displays": "Displays",
+  "displaysDescription": "Create a display mode so that you can assign it to a game later"
 }

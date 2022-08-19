@@ -38,7 +38,10 @@ class TitleWidget extends StatelessWidget {
 
   Widget _buildBigAdwaitaIcon() {
     if (showBigAdwaitaIcon) {
-      return BigAdwaitaIcon(icon);
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: BigAdwaitaIcon(icon),
+      );
     }
     return Container();
   }
