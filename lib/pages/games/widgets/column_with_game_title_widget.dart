@@ -5,11 +5,11 @@ import 'package:flash/utils/repository/models/game.dart';
 import 'package:flash/widgets/title_widget/title_widget.dart';
 import 'package:flutter/material.dart';
 
-class ColumnWithGameTitle extends StatelessWidget {
+class ColumnWithGameTile extends StatelessWidget {
   final GamesStateLoaded state;
   final Function showAddGameDialog;
 
-  const ColumnWithGameTitle(
+  const ColumnWithGameTile(
       {required this.state, required this.showAddGameDialog, Key? key})
       : super(key: key);
 

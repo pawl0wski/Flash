@@ -17,12 +17,12 @@ class GamesPageBuilder {
       return _buildColumnIfGamesIsNotEmpty(
         context,
         games: state.games,
-        child: ColumnWithGameTitle(
+        child: ColumnWithGameTile(
             state: state,
             showAddGameDialog: _createEventsAdder(context).showAddGameDialog),
       );
     } else {
-      return const Loading();
+      return const LoadingWidget();
     }
   }
 

@@ -26,7 +26,8 @@ class DisplaysPage extends StatelessWidget {
 
   Widget _initializeBloc({required Widget child}) {
     return BlocProvider(
-      create: (BuildContext context) => DisplaysBloc(),
+      create: (BuildContext context) =>
+          DisplaysBloc()..add(const DisplaysEventLoad()),
       child: child,
     );
   }

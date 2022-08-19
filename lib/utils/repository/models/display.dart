@@ -6,14 +6,18 @@ part 'display.g.dart';
 
 @HiveType(typeId: 1)
 class Display extends HiveObject with EquatableMixin, ObjectWithUuid {
-  @HiveField(1)
-  double brightness;
+  @HiveField(1, defaultValue: "")
+  String name;
 
   @HiveField(2)
+  double brightness;
+
+  @HiveField(3)
   RGB rgb;
 
   Display({
     required this.rgb,
+    required this.name,
     this.brightness = 1.0,
   });
 
