@@ -1,9 +1,9 @@
-import 'package:flash/pages/games/utils/games_page_builder/games_page_builder.dart';
-import 'package:flash/pages/games/utils/games_page_listener/games_page_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/games_bloc.dart';
+import 'utils/page_builder/games_page_builder.dart';
+import 'utils/page_listener/games_page_listener.dart';
 
 class GamesPage extends StatelessWidget {
   final GamesPageBuilder _builder;

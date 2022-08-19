@@ -7,7 +7,7 @@ import '../../bloc/games_bloc.dart';
 import '../../widgets/games_game_tile_widget.dart';
 import '../../widgets/games_list_with_title_widget.dart';
 import '../../widgets/games_loading_widget.dart';
-import '../games_event_adder/games_event_adder.dart';
+import '../event_adder/games_event_adder.dart';
 
 class GamesPageBuilder {
   const GamesPageBuilder();
