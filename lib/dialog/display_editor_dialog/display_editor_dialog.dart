@@ -2,7 +2,7 @@ import 'package:flash/dialog/display_editor_dialog/bloc/display_editor_bloc.dart
 import 'package:flash/dialog/flash_dialog.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/repository/models/display.dart';
-import 'package:flash/widgets/resized_text_field/resized_text_field_widget.dart';
+import 'package:flash/widgets/text_field_with_label/text_field_with_label_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
@@ -41,7 +41,8 @@ class DisplayEditorDialog extends FlashDialog {
 
   Widget _buildTextField(
       BuildContext context, DisplayEditorStateShowDisplay state) {
-    return ResizedTextField(
+    return TextFieldWithLabel(
+      label: context.l10n.name,
       initialValue: state.display.name,
       onChanged: (String newName) => context
           .read<DisplayEditorBloc>()

@@ -22,5 +22,6 @@
   "displays": "Displays",
   "displaysDescription": "Create a display mode so that you can assign it to a game later",
   "addNewDisplay": "Add a new display",
-  "editDisplay": "Edit display"
+  "editDisplay": "Edit display",
+  "name": "Name"
 }
