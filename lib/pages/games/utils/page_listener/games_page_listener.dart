@@ -1,5 +1,5 @@
 import 'package:flash/dialog/add_game_dialog/add_game_dialog.dart';
-import 'package:flash/dialog/edit_name_dialog/edit_name_dialog.dart';
+import 'package:flash/dialog/game_editor_dialog/game_editor_dialog.dart';
 import 'package:flash/utils/repository/models/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +28,7 @@ class GamesPageListener {
   }
 
   _showEditNameDialog(BuildContext context, {required Game game}) {
-    var editNameDialog = EditNameDialog(game);
+    var editNameDialog = GameEditorDialog(game);
     showDialog(
             context: context,
             barrierDismissible: true,

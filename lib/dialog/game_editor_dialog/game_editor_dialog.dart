@@ -1,5 +1,4 @@
-import 'package:flash/dialog/edit_name_dialog/bloc/edit_name_bloc.dart';
-import 'package:flash/dialog/edit_name_dialog/widget/edit_name_button_widget.dart';
+import 'package:flash/dialog/game_editor_dialog/bloc/game_editor_bloc.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/repository/models/game.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
@@ -8,18 +7,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 
 import '../flash_dialog.dart';
+import 'widget/game_editor_button_widget.dart';
 
-class EditNameDialog extends FlashDialog {
+class GameEditorDialog extends FlashDialog {
   final Game game;
 
-  EditNameDialog(this.game);
+  GameEditorDialog(this.game);
 
   @override
   Widget show(BuildContext context) {
     return _buildBloc(
-      child: BlocConsumer<EditNameBloc, EditNameState>(
+      child: BlocConsumer<GameEditorBloc, GameEditorState>(
         listener: (context, state) {
-          if (state is EditNameStateClose) {
+          if (state is GameEditorStateClose) {
             Navigator.of(context).pop();
           }
         },
@@ -40,7 +40,7 @@ class EditNameDialog extends FlashDialog {
 
   _buildBloc({required Widget child}) {
     return BlocProvider(
-      create: (BuildContext context) => EditNameBloc(game: game),
+      create: (BuildContext context) => GameEditorBloc(game: game),
       child: child,
     );
   }
@@ -51,7 +51,7 @@ class EditNameDialog extends FlashDialog {
       child: TextFormField(
         initialValue: game.name,
         onChanged: (String newText) => {
-          context.read<EditNameBloc>().add(EditNameEventChangeName(newText))
+          context.read<GameEditorBloc>().add(GameEditorEventChangeName(newText))
         },
       ),
     );
@@ -60,7 +60,7 @@ class EditNameDialog extends FlashDialog {
   _buildButtons(BuildContext context) {
     return Row(
       children: [
-        EditNameButton(
+        GameEditorButton(
           text: context.l10n.accept,
           onClick: () => {_onAccept(context)},
           mainButton: true,
@@ -68,14 +68,14 @@ class EditNameDialog extends FlashDialog {
         const SizedBox(
           width: 10,
         ),
-        EditNameButton(
+        GameEditorButton(
             text: context.l10n.cancel, onClick: () => {_onCancel(context)}),
       ],
     );
   }
 
   _onAccept(BuildContext context) {
-    context.read<EditNameBloc>().add(const EditNameEventSave());
+    context.read<GameEditorBloc>().add(const GameEditorEventSave());
   }
 
   _onCancel(BuildContext context) {
