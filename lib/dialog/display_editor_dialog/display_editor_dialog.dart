@@ -58,9 +58,11 @@ class DisplayEditorDialog extends FlashDialog {
       BuildContext context, DisplayEditorStateShowDisplay state) {
     return SliderWithLabel(
         label: context.l10n.brightness,
-        initialValue: state.display.brightness,
-        onChanged: (double newValue) => context
-            .read<DisplayEditorBloc>()
-            .add(DisplayEditorEventChangeBrightness(newBrightness: newValue)));
+        value: state.display.brightness,
+        onChanged: (double newValue) {
+          context
+              .read<DisplayEditorBloc>()
+              .add(DisplayEditorEventChangeBrightness(newBrightness: newValue));
+        });
   }
 }

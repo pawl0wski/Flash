@@ -2,12 +2,12 @@ import 'package:flash/widgets/muted_text/muted_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class SliderWithLabel extends StatelessWidget {
-  final double initialValue;
+  final double value;
   final Function(double newValue) onChanged;
   final String label;
 
   const SliderWithLabel(
-      {required this.initialValue,
+      {required this.value,
       required this.onChanged,
       required this.label,
       Key? key})
@@ -22,7 +22,10 @@ class SliderWithLabel extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 10),
           child: MutedText(label),
         ),
-        Slider(value: initialValue, onChanged: onChanged)
+        Slider(
+          value: value,
+          onChanged: onChanged,
+        )
       ],
     );
   }

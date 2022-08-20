@@ -29,7 +29,7 @@ class Display extends HiveObject with EquatableMixin, ObjectWithUuid {
   }
 
   @override
-  List<Object?> get props => throw [];
+  List<Object> get props => [uuid, name, brightness, rgb];
 }
 
 class RGB {

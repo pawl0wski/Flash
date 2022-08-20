@@ -1,10 +1,11 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flash/utils/repository/display_repository.dart';
 import 'package:flash/utils/repository/models/display.dart';
 
 part 'display_editor_event.dart';
-
 part 'display_editor_state.dart';
 
 class DisplayEditorBloc extends Bloc<DisplayEditorEvent, DisplayEditorState> {
@@ -16,6 +17,30 @@ class DisplayEditorBloc extends Bloc<DisplayEditorEvent, DisplayEditorState> {
       : _display = display,
         _displayRepository = displayRepository ?? DisplayRepository(),
         super(DisplayEditorStateShowDisplay(display: display)) {
-    on<DisplayEditorEvent>((event, emit) {});
+    on<DisplayEditorEventChangeName>(_onChangeName);
+    on<DisplayEditorEventChangeBrightness>(_onChangeBrightness);
+    on<DisplayEditorEventChangeRGB>(_onChangeRGB);
+  }
+
+  _onChangeName(
+      DisplayEditorEventChangeName event, Emitter<DisplayEditorState> emitter) {
+    _display.name = event.newName;
+    _emitChangeDisplay(emitter);
+  }
+
+  _onChangeBrightness(DisplayEditorEventChangeBrightness event,
+      Emitter<DisplayEditorState> emitter) {
+    _display.brightness = event.newBrightness;
+    _emitChangeDisplay(emitter);
+  }
+
+  _onChangeRGB(
+      DisplayEditorEventChangeRGB event, Emitter<DisplayEditorState> emitter) {
+    _display.rgb = event.newRGB;
+    _emitChangeDisplay(emitter);
+  }
+
+  _emitChangeDisplay(Emitter<DisplayEditorState> emitter) {
+    emitter(DisplayEditorStateShowDisplay(display: _display));
   }
 }
