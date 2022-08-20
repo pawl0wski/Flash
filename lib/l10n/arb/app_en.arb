@@ -24,5 +24,6 @@
   "addNewDisplay": "Add a new display",
   "editDisplay": "Edit display",
   "name": "Name",
-  "brightness": "Brightness"
+  "brightness": "Brightness",
+  "gamma": "Gamma"
 }

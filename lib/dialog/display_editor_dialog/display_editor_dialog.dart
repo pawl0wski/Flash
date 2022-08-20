@@ -40,7 +40,8 @@ class DisplayEditorDialog extends FlashDialog {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: _buildBrightnessSlider(context, state),
-            )
+            ),
+            _buildGammaSlider(context, state)
           ]);
     }
     return Container();
@@ -53,7 +54,7 @@ class DisplayEditorDialog extends FlashDialog {
       initialValue: state.display.name,
       onChanged: (String newName) => context
           .read<DisplayEditorBloc>()
-          .add(DisplayEditorEventChangeName(newName: newName)),
+          .add(DisplayEditorEventChangeName(newName)),
     );
   }
 
@@ -67,5 +68,15 @@ class DisplayEditorDialog extends FlashDialog {
               .read<DisplayEditorBloc>()
               .add(DisplayEditorEventChangeBrightness(newBrightness: newValue));
         });
+  }
+
+  Widget _buildGammaSlider(
+      BuildContext context, DisplayEditorStateShowDisplay state) {
+    return SliderWithLabel(
+        value: state.display.rgb.gamma,
+        onChanged: (double newValue) => context
+            .read<DisplayEditorBloc>()
+            .add(DisplayEditorEventChangeGamma(newValue)),
+        label: context.l10n.gamma);
   }
 }

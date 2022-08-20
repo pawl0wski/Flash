@@ -38,4 +38,11 @@ class RGB {
   final int b;
 
   const RGB({required this.r, required this.g, required this.b});
+
+  double get gamma => ((r + g + b) / 3 / 255);
+
+  static fromGamma(double gamma) {
+    var color = (gamma * 255).floor();
+    return RGB(r: color, g: color, b: color);
+  }
 }

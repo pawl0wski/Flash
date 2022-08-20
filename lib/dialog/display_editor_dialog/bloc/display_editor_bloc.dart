@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flash/utils/repository/display_repository.dart';
@@ -20,6 +18,7 @@ class DisplayEditorBloc extends Bloc<DisplayEditorEvent, DisplayEditorState> {
     on<DisplayEditorEventChangeName>(_onChangeName);
     on<DisplayEditorEventChangeBrightness>(_onChangeBrightness);
     on<DisplayEditorEventChangeRGB>(_onChangeRGB);
+    on<DisplayEditorEventChangeGamma>(_onChangeGamma);
   }
 
   _onChangeName(
@@ -37,6 +36,12 @@ class DisplayEditorBloc extends Bloc<DisplayEditorEvent, DisplayEditorState> {
   _onChangeRGB(
       DisplayEditorEventChangeRGB event, Emitter<DisplayEditorState> emitter) {
     _display.rgb = event.newRGB;
+    _emitChangeDisplay(emitter);
+  }
+
+  _onChangeGamma(DisplayEditorEventChangeGamma event,
+      Emitter<DisplayEditorState> emitter) {
+    _display.rgb = RGB.fromGamma(event.gamma);
     _emitChangeDisplay(emitter);
   }
 

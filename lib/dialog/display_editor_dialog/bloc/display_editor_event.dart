@@ -7,7 +7,7 @@ abstract class DisplayEditorEvent extends Equatable {
 class DisplayEditorEventChangeName extends DisplayEditorEvent {
   final String newName;
 
-  const DisplayEditorEventChangeName({required this.newName});
+  const DisplayEditorEventChangeName(this.newName);
 
   @override
   List<Object?> get props => [newName];
@@ -16,10 +16,19 @@ class DisplayEditorEventChangeName extends DisplayEditorEvent {
 class DisplayEditorEventChangeRGB extends DisplayEditorEvent {
   final RGB newRGB;
 
-  const DisplayEditorEventChangeRGB({required this.newRGB});
+  const DisplayEditorEventChangeRGB(this.newRGB);
 
   @override
   List<Object?> get props => [newRGB];
+}
+
+class DisplayEditorEventChangeGamma extends DisplayEditorEvent {
+  final double gamma;
+
+  const DisplayEditorEventChangeGamma(this.gamma);
+
+  @override
+  List<Object?> get props => [gamma];
 }
 
 class DisplayEditorEventChangeBrightness extends DisplayEditorEvent {
