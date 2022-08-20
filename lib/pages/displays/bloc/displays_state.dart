@@ -17,3 +17,12 @@ class DisplaysStateLoaded extends DisplaysState {
   @override
   List<Object> get props => [];
 }
+
+class DisplaysStateEditDisplay extends DisplaysState {
+  final Display displayToEdit;
+
+  const DisplaysStateEditDisplay({required this.displayToEdit});
+
+  @override
+  List<Object?> get props => [displayToEdit];
+}

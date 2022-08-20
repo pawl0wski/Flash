@@ -14,11 +14,18 @@ class DisplaysBloc extends Bloc<DisplaysEvent, DisplaysState> {
       : _displayRepository = displayRepository ?? DisplayRepository(),
         super(DisplaysStateLoading()) {
     on<DisplaysEventLoad>(_onLoad);
+    on<DisplaysEventCreateNewDisplay>(_onCreateNewDisplay);
   }
 
   _onLoad(DisplaysEventLoad event, Emitter<DisplaysState> emitter) {
     _getDisplaysFromRepository();
     emitter(DisplaysStateLoaded(displays: _displays));
+  }
+
+  _onCreateNewDisplay(
+      DisplaysEventCreateNewDisplay event, Emitter<DisplaysState> emitter) {
+    var newBlankDisplay = Display.createBlank();
+    emitter(DisplaysStateEditDisplay(displayToEdit: newBlankDisplay));
   }
 
   _getDisplaysFromRepository() {

@@ -21,7 +21,9 @@ class DisplaysPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return _initializeBloc(
         child: BlocConsumer<DisplaysBloc, DisplaysState>(
-            builder: _pageBuilder.build, listener: _pageListener.listen));
+            buildWhen: _buildWhen,
+            builder: _pageBuilder.build,
+            listener: _pageListener.listen));
   }
 
   Widget _initializeBloc({required Widget child}) {
@@ -30,5 +32,9 @@ class DisplaysPage extends StatelessWidget {
           DisplaysBloc()..add(const DisplaysEventLoad()),
       child: child,
     );
+  }
+
+  bool _buildWhen(DisplaysState prev, DisplaysState next) {
+    return next is! DisplaysStateEditDisplay;
   }
 }

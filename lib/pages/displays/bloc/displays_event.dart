@@ -10,3 +10,10 @@ class DisplaysEventLoad extends DisplaysEvent {
   @override
   List<Object?> get props => [];
 }
+
+class DisplaysEventCreateNewDisplay extends DisplaysEvent {
+  const DisplaysEventCreateNewDisplay();
+
+  @override
+  List<Object?> get props => [];
+}

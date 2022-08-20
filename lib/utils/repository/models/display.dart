@@ -21,6 +21,13 @@ class Display extends HiveObject with EquatableMixin, ObjectWithUuid {
     this.brightness = 1.0,
   });
 
+  static Display createBlank() {
+    return Display(
+        rgb: const RGB(r: 255, g: 255, b: 255),
+        brightness: 1,
+        name: 'Blank Display');
+  }
+
   @override
   List<Object?> get props => throw [];
 }
