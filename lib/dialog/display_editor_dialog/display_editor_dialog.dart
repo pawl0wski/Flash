@@ -37,7 +37,10 @@ class DisplayEditorDialog extends FlashDialog {
           padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
           children: [
             _buildTextField(context, state),
-            _buildBrightnessSlider(context, state)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: _buildBrightnessSlider(context, state),
+            )
           ]);
     }
     return Container();
