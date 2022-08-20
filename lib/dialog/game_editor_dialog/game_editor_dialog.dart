@@ -28,7 +28,7 @@ class GameEditorDialog extends FlashDialog {
           return GtkDialog(
               title: Text(context.l10n.editName),
               width: 300,
-              padding: const EdgeInsets.only(bottom: 20, left: 30, right: 30),
+              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
               children: [
                 _buildTextField(context),
                 const TransparentDivider(height: 15),
