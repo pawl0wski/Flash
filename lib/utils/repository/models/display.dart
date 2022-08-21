@@ -23,7 +23,7 @@ class Display extends HiveObject with EquatableMixin, ObjectWithUuid {
 
   static Display createBlank() {
     return Display(
-        rgb: const RGB(r: 255, g: 255, b: 255),
+        rgb: const RGB(r: 128, g: 128, b: 128),
         brightness: 1,
         name: 'Blank Display');
   }
