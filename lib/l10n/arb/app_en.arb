@@ -25,5 +25,6 @@
   "editDisplay": "Edit display",
   "name": "Name",
   "brightness": "Brightness",
-  "gamma": "Gamma"
+  "gamma": "Gamma",
+  "previewAndSave": "Preview & Save"
 }
