@@ -11,6 +11,7 @@ class PreviewDisplayBloc
   PreviewDisplayBloc() : super(const PreviewDisplayStateSetSecond(10)) {
     on<PreviewDisplayEventStartTimer>(_onStartTimer);
     on<PreviewDisplayEventAccept>(_onAccept);
+    on<PreviewDisplayEventClose>(_onClose);
   }
 
   _onStartTimer(PreviewDisplayEventStartTimer event,
@@ -23,4 +24,7 @@ class PreviewDisplayBloc
 
   _onAccept(
       PreviewDisplayEventAccept event, Emitter<PreviewDisplayState> emitter) {}
+
+  _onClose(
+      PreviewDisplayEventClose event, Emitter<PreviewDisplayState> emitter) {}
 }

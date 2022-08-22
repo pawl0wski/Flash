@@ -12,3 +12,7 @@ class PreviewDisplayEventStartTimer extends PreviewDisplayEvent {
 class PreviewDisplayEventAccept extends PreviewDisplayEvent {
   const PreviewDisplayEventAccept();
 }
+
+class PreviewDisplayEventClose extends PreviewDisplayEvent {
+  const PreviewDisplayEventClose();
+}
