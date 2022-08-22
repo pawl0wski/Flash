@@ -5,6 +5,6 @@ abstract class PreviewDisplayEvent {
   const PreviewDisplayEvent();
 }
 
-class PreviewDisplayEventDecrementSecond extends PreviewDisplayEvent {
-  const PreviewDisplayEventDecrementSecond() : super();
+class PreviewDisplayEventStartTimer extends PreviewDisplayEvent {
+  const PreviewDisplayEventStartTimer() : super();
 }

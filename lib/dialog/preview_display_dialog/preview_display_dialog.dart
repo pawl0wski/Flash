@@ -12,7 +12,7 @@ class PreviewDisplayDialog extends FlashDialog {
   Widget show(BuildContext context) {
     return _initializeBloc(
         child: BlocConsumer<PreviewDisplayBloc, PreviewDisplayState>(
-            listener: (BuildContext context, PreviewDisplayState state) => {},
+            listener: (BuildContext context, PreviewDisplayState state) {},
             builder: (BuildContext context, PreviewDisplayState state) {
               if (state is PreviewDisplayStateSetSecond) {
                 return GtkDialog(
@@ -32,7 +32,9 @@ class PreviewDisplayDialog extends FlashDialog {
 
   _initializeBloc({required Widget child}) {
     return BlocProvider<PreviewDisplayBloc>(
-        child: child, create: (BuildContext context) => PreviewDisplayBloc());
+        child: child,
+        create: (BuildContext context) =>
+            PreviewDisplayBloc()..add(const PreviewDisplayEventStartTimer()));
   }
 
   _buildTimerText(BuildContext context, PreviewDisplayStateSetSecond state) {
