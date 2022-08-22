@@ -32,7 +32,7 @@ class GamesPageBuilder {
       return AdwClamp.scrollable(
           child: Column(children: [
         child,
-        ..._getGameTitles(context, games: games),
+        ..._buildGameTitles(context, games: games),
       ]));
     }
     return Center(child: child);
@@ -42,17 +42,18 @@ class GamesPageBuilder {
     return GamesEventsAdder(context);
   }
 
-  List<GameTile> _getGameTitles(BuildContext context,
+  List<GameTile> _buildGameTitles(BuildContext context,
       {required List<Game> games}) {
-    return games
-        .map((Game game) => GameTile(
-              game: game,
-              deleteGame: () =>
-                  context.read<GamesBloc>().add(GamesBlocEventDeleteGame(game)),
-              editGameName: () => context
-                  .read<GamesBloc>()
-                  .add(GamesBlocEventEditGameName(game)),
-            ))
-        .toList();
+    List<GameTile> gameTiles = [];
+    for (var game in games) {
+      gameTiles.add(GameTile(
+        game: game,
+        deleteGame: () =>
+            context.read<GamesBloc>().add(GamesBlocEventDeleteGame(game)),
+        editGameName: () =>
+            context.read<GamesBloc>().add(GamesBlocEventEditGameName(game)),
+      ));
+    }
+    return gameTiles;
   }
 }

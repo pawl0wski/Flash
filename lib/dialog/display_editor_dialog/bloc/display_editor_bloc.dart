@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flash/utils/repository/display_repository.dart';
 import 'package:flash/utils/repository/models/display.dart';
+import 'package:flash/utils/repository/models/rgb.dart';
 
 part 'display_editor_event.dart';
 part 'display_editor_state.dart';

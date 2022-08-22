@@ -11,7 +11,7 @@ class DisplayTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw AdwPreferencesGroup(
+    return AdwPreferencesGroup(
       children: [ExpansionTile(title: Text(_display.name))],
     );
   }
