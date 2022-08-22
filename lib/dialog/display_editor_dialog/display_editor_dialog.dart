@@ -2,6 +2,7 @@ import 'package:flash/dialog/display_editor_dialog/bloc/display_editor_bloc.dart
 import 'package:flash/dialog/flash_dialog.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/repository/models/display.dart';
+import 'package:flash/widgets/expanded_button/expanded_button.dart';
 import 'package:flash/widgets/slider_with_label/slider_with_label.dart';
 import 'package:flash/widgets/text_field_with_label/text_field_with_label_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,8 @@ class DisplayEditorDialog extends FlashDialog {
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: _buildBrightnessSlider(context, state),
             ),
-            _buildGammaSlider(context, state)
+            _buildGammaSlider(context, state),
+            _createButtons(context, onPreview: () => {}, onCancel: () => {}),
           ]);
     }
     return Container();
@@ -78,5 +80,25 @@ class DisplayEditorDialog extends FlashDialog {
             .read<DisplayEditorBloc>()
             .add(DisplayEditorEventChangeGamma(newValue)),
         label: context.l10n.gamma);
+  }
+
+  Widget _createButtons(BuildContext context,
+      {required void Function() onPreview, required void Function() onCancel}) {
+    return Row(
+      children: [
+        ExpandedButton(
+          mainButton: true,
+          onClick: onPreview,
+          text: context.l10n.previewAndSave,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        ExpandedButton(
+          onClick: onCancel,
+          text: context.l10n.cancel,
+        )
+      ],
+    );
   }
 }

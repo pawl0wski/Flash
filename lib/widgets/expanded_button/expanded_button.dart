@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:libadwaita/libadwaita.dart';
 
-class GameEditorButton extends StatelessWidget {
+class ExpandedButton extends StatelessWidget {
   final String text;
   final bool mainButton;
   final void Function() _onClick;
 
-  const GameEditorButton(
+  const ExpandedButton(
       {required this.text,
       this.mainButton = false,
       required void Function() onClick,
