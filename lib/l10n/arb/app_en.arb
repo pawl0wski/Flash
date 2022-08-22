@@ -26,5 +26,6 @@
   "name": "Name",
   "brightness": "Brightness",
   "gamma": "Gamma",
-  "previewAndSave": "Preview & Save"
+  "previewAndSave": "Preview & Save",
+  "acceptDisplay": "Accept this display if it fits or cancel and edit. "
 }
