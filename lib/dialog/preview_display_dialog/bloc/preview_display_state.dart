@@ -10,3 +10,11 @@ class PreviewDisplayStateSetSecond extends PreviewDisplayState {
 
   const PreviewDisplayStateSetSecond(this.second) : super();
 }
+
+class PreviewDisplayStateClose extends PreviewDisplayState {
+  const PreviewDisplayStateClose();
+}
+
+class PreviewDisplayStateBackToEdit extends PreviewDisplayState {
+  const PreviewDisplayStateBackToEdit();
+}

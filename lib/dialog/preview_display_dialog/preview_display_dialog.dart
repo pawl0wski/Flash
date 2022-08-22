@@ -1,5 +1,6 @@
 import 'package:flash/dialog/preview_display_dialog/bloc/preview_display_bloc.dart';
 import 'package:flash/l10n/l10n.dart';
+import 'package:flash/utils/repository/models/display.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,10 @@ import 'package:libadwaita/libadwaita.dart';
 import '../flash_dialog.dart';
 
 class PreviewDisplayDialog extends FlashDialog {
+  final Display display;
+
+  PreviewDisplayDialog(this.display);
+
   @override
   Widget show(BuildContext context) {
     return _initializeBloc(
@@ -33,8 +38,8 @@ class PreviewDisplayDialog extends FlashDialog {
   _initializeBloc({required Widget child}) {
     return BlocProvider<PreviewDisplayBloc>(
         child: child,
-        create: (BuildContext context) =>
-            PreviewDisplayBloc()..add(const PreviewDisplayEventStartTimer()));
+        create: (BuildContext context) => PreviewDisplayBloc(display)
+          ..add(const PreviewDisplayEventStartTimer()));
   }
 
   _buildTimerText(BuildContext context, PreviewDisplayStateSetSecond state) {

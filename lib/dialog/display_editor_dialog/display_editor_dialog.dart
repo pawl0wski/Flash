@@ -39,7 +39,7 @@ class DisplayEditorDialog extends FlashDialog {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) =>
-              PreviewDisplayDialog().show(context));
+              PreviewDisplayDialog(_display).show(context));
     }
   }
 

@@ -40,6 +40,16 @@ abstract class Repository<T> {
     box.put(uuid, object);
   }
 
+  T addOrUpdate(T object) {
+    var uuid = (object as ObjectWithUuid).uuid;
+    if (uuid == "") {
+      return add(object);
+    } else {
+      update(object);
+    }
+    return object;
+  }
+
   @protected
   String generateUuid() {
     return _uuid.v4();
