@@ -8,17 +8,27 @@ part 'display_editor_state.dart';
 
 class DisplayEditorBloc extends Bloc<DisplayEditorEvent, DisplayEditorState> {
   final Display _display;
-  final DisplayRepository _displayRepository;
 
   DisplayEditorBloc(
       {required Display display, DisplayRepository? displayRepository})
       : _display = display,
-        _displayRepository = displayRepository ?? DisplayRepository(),
-        super(DisplayEditorStateShowDisplay(display: display)) {
+        super(DisplayEditorStateShowDisplay(display)) {
+    on<DisplayEditorEventCancel>(_onCancel);
+    on<DisplayEditorEventPreviewDisplay>(_onPreviewDisplay);
     on<DisplayEditorEventChangeName>(_onChangeName);
     on<DisplayEditorEventChangeBrightness>(_onChangeBrightness);
     on<DisplayEditorEventChangeRGB>(_onChangeRGB);
     on<DisplayEditorEventChangeGamma>(_onChangeGamma);
+  }
+
+  _onCancel(
+      DisplayEditorEventCancel event, Emitter<DisplayEditorState> emitter) {
+    emitter(const DisplayEditorStateCancel());
+  }
+
+  _onPreviewDisplay(DisplayEditorEventPreviewDisplay event,
+      Emitter<DisplayEditorState> emitter) {
+    emitter(DisplayEditorStatePreviewDisplay(_display));
   }
 
   _onChangeName(
@@ -46,6 +56,6 @@ class DisplayEditorBloc extends Bloc<DisplayEditorEvent, DisplayEditorState> {
   }
 
   _emitChangeDisplay(Emitter<DisplayEditorState> emitter) {
-    emitter(DisplayEditorStateShowDisplay(display: _display));
+    emitter(DisplayEditorStateShowDisplay(_display));
   }
 }

@@ -4,6 +4,20 @@ abstract class DisplayEditorEvent extends Equatable {
   const DisplayEditorEvent();
 }
 
+class DisplayEditorEventPreviewDisplay extends DisplayEditorEvent {
+  const DisplayEditorEventPreviewDisplay() : super();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class DisplayEditorEventCancel extends DisplayEditorEvent {
+  const DisplayEditorEventCancel() : super();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class DisplayEditorEventChangeName extends DisplayEditorEvent {
   final String newName;
 

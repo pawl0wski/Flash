@@ -19,7 +19,7 @@ class PreviewDisplayDialog extends FlashDialog {
 
   _initializeBloc({required Widget child}) {
     return BlocProvider<PreviewDisplayBloc>(
-        create: (BuildContext context) => PreviewDisplayBloc());
+        child: child, create: (BuildContext context) => PreviewDisplayBloc());
   }
 
   _buildInfoText(BuildContext context) {

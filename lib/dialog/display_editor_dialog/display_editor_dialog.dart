@@ -1,5 +1,6 @@
 import 'package:flash/dialog/display_editor_dialog/bloc/display_editor_bloc.dart';
 import 'package:flash/dialog/flash_dialog.dart';
+import 'package:flash/dialog/preview_display_dialog/preview_display_dialog.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/repository/models/display.dart';
 import 'package:flash/widgets/expanded_button/expanded_button.dart';
@@ -28,7 +29,19 @@ class DisplayEditorDialog extends FlashDialog {
     );
   }
 
-  _listen(BuildContext context, DisplayEditorState state) {}
+  _listen(BuildContext context, DisplayEditorState state) {
+    if (state is DisplayEditorStateCancel) {
+      Navigator.of(context).pop();
+    }
+    if (state is DisplayEditorStatePreviewDisplay) {
+      Navigator.of(context).pop();
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) =>
+              PreviewDisplayDialog().show(context));
+    }
+  }
 
   Widget _build(BuildContext context, DisplayEditorState state) {
     if (state is DisplayEditorStateShowDisplay) {
@@ -43,7 +56,13 @@ class DisplayEditorDialog extends FlashDialog {
               child: _buildBrightnessSlider(context, state),
             ),
             _buildGammaSlider(context, state),
-            _createButtons(context, onPreview: () => {}, onCancel: () => {}),
+            _createButtons(context,
+                onPreview: () => context
+                    .read<DisplayEditorBloc>()
+                    .add(const DisplayEditorEventPreviewDisplay()),
+                onCancel: () => context
+                    .read<DisplayEditorBloc>()
+                    .add(const DisplayEditorEventCancel())),
           ]);
     }
     return Container();
