@@ -108,7 +108,7 @@ class DisplayEditorDialog extends FlashDialog {
         ExpandedButton(
           mainButton: true,
           onClick: onPreview,
-          text: context.l10n.previewAndSave,
+          text: context.l10n.preview,
         ),
         const SizedBox(
           width: 10,

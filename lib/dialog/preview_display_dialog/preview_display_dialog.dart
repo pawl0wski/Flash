@@ -1,5 +1,7 @@
 import 'package:flash/dialog/preview_display_dialog/bloc/preview_display_bloc.dart';
 import 'package:flash/l10n/l10n.dart';
+import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
@@ -13,7 +15,19 @@ class PreviewDisplayDialog extends FlashDialog {
         child: BlocConsumer<PreviewDisplayBloc, PreviewDisplayState>(
             listener: (BuildContext context, PreviewDisplayState state) => {},
             builder: (BuildContext context, PreviewDisplayState state) {
-              return GtkDialog(children: [_buildInfoText(context)]);
+              if (state is PreviewDisplayStateSetSecond) {
+                return GtkDialog(
+                    title: Text(context.l10n.preview),
+                    width: 300,
+                    padding:
+                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                    children: [
+                      _buildTimerText(context, state),
+                      const TransparentDivider(height: 10),
+                      _buildInfoText(context)
+                    ]);
+              }
+              return Container();
             }));
   }
 
@@ -22,7 +36,19 @@ class PreviewDisplayDialog extends FlashDialog {
         child: child, create: (BuildContext context) => PreviewDisplayBloc());
   }
 
+  _buildTimerText(BuildContext context, PreviewDisplayStateSetSecond state) {
+    var theme = Theme.of(context);
+    return Text(
+      "${state.second}s",
+      style: theme.textTheme.headline1,
+      textAlign: TextAlign.center,
+    );
+  }
+
   _buildInfoText(BuildContext context) {
-    return Text(context.l10n.acceptDisplay);
+    return Text(
+      context.l10n.acceptDisplay,
+      textAlign: TextAlign.center,
+    );
   }
 }
