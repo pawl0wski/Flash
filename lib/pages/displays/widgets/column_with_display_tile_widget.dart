@@ -1,5 +1,5 @@
 import 'package:flash/utils/repository/models/display.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'display_tile_widget.dart';
 

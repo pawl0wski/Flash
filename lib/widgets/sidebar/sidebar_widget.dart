@@ -1,6 +1,6 @@
 import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:libadwaita/libadwaita.dart';
 
 class SidebarWidget extends StatelessWidget {

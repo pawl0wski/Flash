@@ -4,7 +4,7 @@ import 'package:flash/utils/repository/models/game.dart';
 import 'package:flash/widgets/expanded_button/expanded_button.dart';
 import 'package:flash/widgets/text_field_with_label/text_field_with_label_widget.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 

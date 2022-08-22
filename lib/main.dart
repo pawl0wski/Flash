@@ -1,6 +1,6 @@
 import 'package:flash/utils/config_directory/config_directory.dart';
 import 'package:flash/utils/repository/init_repositories.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app.dart';

@@ -1,5 +1,5 @@
 import 'package:adwaita/adwaita.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MutedText extends StatelessWidget {
   final String text;

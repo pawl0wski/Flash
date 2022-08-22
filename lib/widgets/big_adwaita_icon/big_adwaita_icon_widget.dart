@@ -1,5 +1,5 @@
 import 'package:adwaita_icons/adwaita_icons.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class BigAdwaitaIcon extends StatelessWidget {
   final String icon;

@@ -2,7 +2,6 @@ import 'package:flash/dialog/preview_display_dialog/bloc/preview_display_bloc.da
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 

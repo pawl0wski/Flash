@@ -3,7 +3,7 @@ import 'package:flash/pages/displays/displays_page.dart';
 import 'package:flash/pages/games/games_page.dart';
 import 'package:flash/pages/welcome/welcome_page.dart';
 import 'package:flash/widgets/sidebar/sidebar_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';

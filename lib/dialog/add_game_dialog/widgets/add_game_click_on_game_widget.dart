@@ -1,7 +1,7 @@
 import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AddGameClickOnGame extends StatelessWidget {
   const AddGameClickOnGame({Key? key}) : super(key: key);

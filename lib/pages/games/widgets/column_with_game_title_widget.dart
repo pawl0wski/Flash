@@ -3,7 +3,7 @@ import 'package:flash/l10n/l10n.dart';
 import 'package:flash/pages/games/bloc/games_bloc.dart';
 import 'package:flash/utils/repository/models/game.dart';
 import 'package:flash/widgets/title_widget/title_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ColumnWithGameTile extends StatelessWidget {
   final GamesStateLoaded state;

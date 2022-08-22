@@ -2,7 +2,7 @@ import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/widgets/loading_widget/loading_widget.dart';
 import 'package:flash/widgets/title_widget/title_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/displays_bloc.dart';
