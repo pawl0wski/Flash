@@ -8,3 +8,7 @@ abstract class PreviewDisplayEvent {
 class PreviewDisplayEventStartTimer extends PreviewDisplayEvent {
   const PreviewDisplayEventStartTimer() : super();
 }
+
+class PreviewDisplayEventAccept extends PreviewDisplayEvent {
+  const PreviewDisplayEventAccept();
+}
