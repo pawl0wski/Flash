@@ -9,3 +9,9 @@ class DisplayEditorStateShowDisplay extends DisplayEditorState {
 
   const DisplayEditorStateShowDisplay({required this.display});
 }
+
+class DisplayEditorStatePreviewDisplay extends DisplayEditorState {
+  final Display display;
+
+  const DisplayEditorStatePreviewDisplay(this.display) : super();
+}
