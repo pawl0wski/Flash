@@ -27,6 +27,7 @@ class PreviewDisplayBloc
       await Future.delayed(const Duration(seconds: 1));
       emitter(PreviewDisplayStateSetSecond(--second));
     }
+    emitter(const PreviewDisplayStateBackToEdit());
   }
 
   _onAccept(

@@ -56,13 +56,7 @@ class DisplayEditorDialog extends FlashDialog {
               child: _buildBrightnessSlider(context, state),
             ),
             _buildGammaSlider(context, state),
-            _createButtons(context,
-                onPreview: () => context
-                    .read<DisplayEditorBloc>()
-                    .add(const DisplayEditorEventPreviewDisplay()),
-                onCancel: () => context
-                    .read<DisplayEditorBloc>()
-                    .add(const DisplayEditorEventCancel())),
+            _buildButtons(context),
           ]);
     }
     return Container();
@@ -101,20 +95,25 @@ class DisplayEditorDialog extends FlashDialog {
         label: context.l10n.gamma);
   }
 
-  Widget _createButtons(BuildContext context,
-      {required void Function() onPreview, required void Function() onCancel}) {
+  Widget _buildButtons(
+    BuildContext context,
+  ) {
     return Row(
       children: [
         ExpandedButton(
           mainButton: true,
-          onClick: onPreview,
+          onClick: () => context
+              .read<DisplayEditorBloc>()
+              .add(const DisplayEditorEventPreviewDisplay()),
           text: context.l10n.preview,
         ),
         const SizedBox(
           width: 10,
         ),
         ExpandedButton(
-          onClick: onCancel,
+          onClick: () => context
+              .read<DisplayEditorBloc>()
+              .add(const DisplayEditorEventCancel()),
           text: context.l10n.cancel,
         )
       ],
