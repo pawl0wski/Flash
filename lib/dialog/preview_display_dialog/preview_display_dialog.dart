@@ -12,8 +12,9 @@ import '../flash_dialog.dart';
 
 class PreviewDisplayDialog extends FlashDialog {
   final Display display;
+  final void Function() afterDisplaySave;
 
-  PreviewDisplayDialog(this.display);
+  PreviewDisplayDialog(this.display, {required this.afterDisplaySave});
 
   @override
   Widget show(BuildContext context) {
@@ -21,6 +22,7 @@ class PreviewDisplayDialog extends FlashDialog {
         child: BlocConsumer<PreviewDisplayBloc, PreviewDisplayState>(
             listener: (BuildContext context, PreviewDisplayState state) {
       if (state is PreviewDisplayStateClose) {
+        afterDisplaySave();
         Navigator.of(context).pop();
       }
       if (state is PreviewDisplayStateBackToEdit) {
@@ -29,7 +31,8 @@ class PreviewDisplayDialog extends FlashDialog {
             context: context,
             barrierDismissible: false,
             builder: (BuildContext context) =>
-                DisplayEditorDialog(display: display).show(context));
+                DisplayEditorDialog(display, afterDisplaySave: afterDisplaySave)
+                    .show(context));
       }
     }, builder: (BuildContext context, PreviewDisplayState state) {
       if (state is PreviewDisplayStateSetSecond) {

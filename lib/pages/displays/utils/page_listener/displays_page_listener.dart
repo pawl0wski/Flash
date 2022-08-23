@@ -14,11 +14,13 @@ class DisplaysPageListener {
 
   void _showEditDisplayDialog(
       BuildContext context, DisplaysStateEditDisplay state) {
+    var displaysPageContext = context;
     showDialog(
-            context: context,
-            builder: (BuildContext context) =>
-                DisplayEditorDialog(display: state.displayToEdit).show(context))
-        .then((value) =>
-            context.read<DisplaysBloc>().add(const DisplaysEventLoad()));
+        context: context,
+        builder: (BuildContext context) => DisplayEditorDialog(
+            state.displayToEdit,
+            afterDisplaySave: () => displaysPageContext
+                .read<DisplaysBloc>()
+                .add(const DisplaysEventLoad())).show(context));
   }
 }

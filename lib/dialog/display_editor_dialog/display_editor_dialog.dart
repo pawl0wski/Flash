@@ -11,9 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libadwaita/libadwaita.dart';
 
 class DisplayEditorDialog extends FlashDialog {
-  final Display _display;
+  final Display display;
+  final void Function() afterDisplaySave;
 
-  DisplayEditorDialog({required Display display}) : _display = display;
+  DisplayEditorDialog(this.display, {required this.afterDisplaySave});
 
   @override
   Widget show(BuildContext context) {
@@ -24,7 +25,7 @@ class DisplayEditorDialog extends FlashDialog {
 
   _initializeBloc({required Widget child}) {
     return BlocProvider(
-      create: (BuildContext context) => DisplayEditorBloc(display: _display),
+      create: (BuildContext context) => DisplayEditorBloc(display: display),
       child: child,
     );
   }
@@ -39,7 +40,8 @@ class DisplayEditorDialog extends FlashDialog {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) =>
-              PreviewDisplayDialog(_display).show(context));
+              PreviewDisplayDialog(display, afterDisplaySave: afterDisplaySave)
+                  .show(context));
     }
   }
 
