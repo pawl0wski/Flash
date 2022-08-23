@@ -6,19 +6,18 @@ part 'rgb.g.dart';
 @HiveType(typeId: 2)
 class RGB extends HiveObject with EquatableMixin {
   @HiveField(0)
-  final int r;
+  final double r;
   @HiveField(1)
-  final int g;
+  final double g;
   @HiveField(2)
-  final int b;
+  final double b;
 
   RGB({required this.r, required this.g, required this.b});
 
-  double get gamma => ((r + g + b) / 3 / 255);
+  double get gamma => ((r + g + b) / 3);
 
   static fromGamma(double gamma) {
-    var color = (gamma * 255).floor();
-    return RGB(r: color, g: color, b: color);
+    return RGB(r: gamma, g: gamma, b: gamma);
   }
 
   @override

@@ -5,11 +5,15 @@ class SliderWithLabel extends StatelessWidget {
   final double value;
   final Function(double newValue) onChanged;
   final String label;
+  final double maxValue;
+  final double minValue;
 
   const SliderWithLabel(
       {required this.value,
       required this.onChanged,
       required this.label,
+      this.maxValue = 1.0,
+      this.minValue = 0.0,
       Key? key})
       : super(key: key);
 
@@ -25,6 +29,8 @@ class SliderWithLabel extends StatelessWidget {
         Slider(
           value: value,
           onChanged: onChanged,
+          min: minValue,
+          max: maxValue,
         )
       ],
     );

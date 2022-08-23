@@ -78,6 +78,8 @@ class DisplayEditorDialog extends FlashDialog {
   Widget _buildBrightnessSlider(
       BuildContext context, DisplayEditorStateShowDisplay state) {
     return SliderWithLabel(
+        minValue: 0.3,
+        maxValue: 2,
         label: context.l10n.brightness,
         value: state.display.brightness,
         onChanged: (double newValue) {
@@ -90,6 +92,8 @@ class DisplayEditorDialog extends FlashDialog {
   Widget _buildGammaSlider(
       BuildContext context, DisplayEditorStateShowDisplay state) {
     return SliderWithLabel(
+        minValue: 0.3,
+        maxValue: 5,
         value: state.display.rgb.gamma,
         onChanged: (double newValue) => context
             .read<DisplayEditorBloc>()

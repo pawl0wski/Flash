@@ -24,8 +24,10 @@ class Display extends HiveObject with EquatableMixin, ObjectWithUuid {
 
   static Display createBlank() {
     return Display(
-        rgb: RGB(r: 128, g: 128, b: 128), brightness: 1, name: 'Blank Display');
+        rgb: RGB(r: 1, g: 1, b: 1), brightness: 1, name: 'Blank Display');
   }
+
+  String get gamma => "${rgb.r}:${rgb.g}:${rgb.b}";
 
   @override
   List<Object> get props => [uuid, name, brightness, rgb];

@@ -15,17 +15,11 @@ class XRandrCommand extends Command {
   }
 
   void changeDisplay({required Display display, required String monitor}) {
-    var rgb = display.rgb;
-    List<String> displayRGBasList = [
-      rgb.r.toString(),
-      rgb.g.toString(),
-      rgb.b.toString()
-    ];
     super.execute([
-      "-d",
+      "--output",
       monitor,
       "--gamma",
-      ...displayRGBasList,
+      display.gamma,
       "--brightness",
       display.brightness.toString()
     ]);
