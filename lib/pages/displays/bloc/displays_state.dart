@@ -15,7 +15,7 @@ class DisplaysStateLoaded extends DisplaysState {
   const DisplaysStateLoaded({required this.displays});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [...displays];
 }
 
 class DisplaysStateEditDisplay extends DisplaysState {

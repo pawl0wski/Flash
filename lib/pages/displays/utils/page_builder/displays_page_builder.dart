@@ -33,9 +33,10 @@ class DisplaysPageBuilder {
         ..._buildDisplayTiles(context, displays: displays)
       ]));
     }
-    return Center(
-      child: child,
-    );
+    return Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [child]);
   }
 
   List<DisplayTile> _buildDisplayTiles(BuildContext context,
