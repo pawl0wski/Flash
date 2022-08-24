@@ -15,11 +15,12 @@ class DisplaysBloc extends Bloc<DisplaysEvent, DisplaysState> {
         super(DisplaysStateLoading()) {
     on<DisplaysEventLoad>(_onLoad);
     on<DisplaysEventCreateNewDisplay>(_onCreateNewDisplay);
+    on<DisplaysEventEditDisplay>(_onEditDisplay);
+    on<DisplaysEventDeleteDisplay>(_onDeleteDisplay);
   }
 
   _onLoad(DisplaysEventLoad event, Emitter<DisplaysState> emitter) {
-    _getDisplaysFromRepository();
-    emitter(DisplaysStateLoaded(displays: _displays));
+    _refreshDisplaysAndEmitLoaded(emitter: emitter);
   }
 
   _onCreateNewDisplay(
@@ -28,7 +29,24 @@ class DisplaysBloc extends Bloc<DisplaysEvent, DisplaysState> {
     emitter(DisplaysStateEditDisplay(displayToEdit: newBlankDisplay));
   }
 
+  _onEditDisplay(
+      DisplaysEventEditDisplay event, Emitter<DisplaysState> emitter) {
+    emitter(DisplaysStateEditDisplay(displayToEdit: event.displayToEdit));
+  }
+
+  _onDeleteDisplay(
+      DisplaysEventDeleteDisplay event, Emitter<DisplaysState> emitter) {
+    var displayToDelete = event.displayToDelete;
+    _displayRepository.delete(displayToDelete.uuid);
+    _refreshDisplaysAndEmitLoaded(emitter: emitter);
+  }
+
   _getDisplaysFromRepository() {
     _displays = _displayRepository.getAll();
+  }
+
+  _refreshDisplaysAndEmitLoaded({required Emitter<DisplaysState> emitter}) {
+    _getDisplaysFromRepository();
+    emitter(DisplaysStateLoaded(displays: _displays));
   }
 }
