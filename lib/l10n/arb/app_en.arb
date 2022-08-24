@@ -28,5 +28,6 @@
   "gamma": "Gamma",
   "preview": "Preview",
   "save": "Save",
-  "acceptDisplay": "Accept this display if it fits or cancel and edit. "
+  "acceptDisplay": "Accept this display if it fits or cancel and edit.",
+  "deleteDisplay": "Delete display"
 }
