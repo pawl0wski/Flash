@@ -1,6 +1,7 @@
 import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/utils/repository/models/game.dart';
+import 'package:flash/widgets/expansion_title_without_color_change/expansion_tile_without_color_change_widget.dart';
 import 'package:flash/widgets/muted_text/muted_text_widget.dart';
 import 'package:flash/widgets/secondary_tile/secondary_tile.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +25,10 @@ class GameTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdwPreferencesGroup(children: [
-      ExpansionTile(
+      ExpansionTileWithoutColorChange(
         leading: const AdwaitaIcon(AdwaitaIcons.gamepad),
         title: Text(_game.name),
         subtitle: MutedText(_game.processName),
-        textColor: Colors.white,
-        iconColor: Colors.white,
         children: [
           _editNameTile(context, onTap: _editGameName),
           _buildDeleteTile(context, onTap: _deleteGame)

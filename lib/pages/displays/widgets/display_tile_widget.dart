@@ -2,6 +2,7 @@ import 'package:adwaita_icons/adwaita_icons.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/pages/displays/bloc/displays_bloc.dart';
 import 'package:flash/utils/repository/models/display.dart';
+import 'package:flash/widgets/expansion_title_without_color_change/expansion_tile_without_color_change_widget.dart';
 import 'package:flash/widgets/secondary_tile/secondary_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class DisplayTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return AdwPreferencesGroup(
       children: [
-        ExpansionTile(
+        ExpansionTileWithoutColorChange(
           title: Text(_display.name),
           children: [
             _buildBrightnessTile(context),
@@ -61,7 +62,7 @@ class DisplayTile extends StatelessWidget {
       leading: const AdwaitaIcon(AdwaitaIcons.edit_delete),
       title: Text(context.l10n.deleteDisplay),
       onTap: () =>
-          context.read<DisplaysBloc>().add(DisplaysEventEditDisplay(display)),
+          context.read<DisplaysBloc>().add(DisplaysEventDeleteDisplay(display)),
     );
   }
 }
