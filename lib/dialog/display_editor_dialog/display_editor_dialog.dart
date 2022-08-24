@@ -32,6 +32,7 @@ class DisplayEditorDialog extends FlashDialog {
 
   _listen(BuildContext context, DisplayEditorState state) {
     if (state is DisplayEditorStateCancel) {
+      afterDisplaySave();
       Navigator.of(context).pop();
     }
     if (state is DisplayEditorStatePreviewDisplay) {
