@@ -15,11 +15,15 @@ class Game extends HiveObject with EquatableMixin, ObjectWithUuid {
   @HiveField(3)
   late String workingDirectory;
 
+  @HiveField(4)
+  late String? displayUuid;
+
   Game(
       {required this.name,
       required this.processName,
       required this.workingDirectory});
 
   @override
-  List<Object> get props => [uuid, name, processName, workingDirectory];
+  List<Object?> get props =>
+      [uuid, name, processName, workingDirectory, displayUuid];
 }
