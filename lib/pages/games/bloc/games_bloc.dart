@@ -37,11 +37,13 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   }
 
   _onEditGame(GamesBlocEventEditGameName event, Emitter<GamesState> emitter) {
-    emitter(GamesStateShowEditNameDialog(game: event.gameToEdit));
+    emitter(GamesStateShowEditNameDialog(event.gameToEdit));
   }
 
   _onChangeDisplay(
-      GamesBlocEventChangeDisplay event, Emitter<GamesState> emitter) {}
+      GamesBlocEventChangeDisplay event, Emitter<GamesState> emitter) {
+    emitter(GamesStateShowChangeDisplayDialog(event.gameToChangeDisplay));
+  }
 
   _getGamesFromRepository() {
     _games = _gameRepository.getAll();

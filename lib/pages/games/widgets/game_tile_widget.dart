@@ -65,6 +65,9 @@ class GameTile extends StatelessWidget {
         ? context.l10n.assignDisplay
         : context.l10n.currentDisplay(display.name);
     return SecondaryTile(
-        leading: const AdwaitaIcon(AdwaitaIcons.sun), title: Text(displayName));
+      leading: const AdwaitaIcon(AdwaitaIcons.sun),
+      title: Text(displayName),
+      onTap: onTap,
+    );
   }
 }

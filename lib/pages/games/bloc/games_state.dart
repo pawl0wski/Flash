@@ -28,10 +28,19 @@ class GamesStateShowAddGameDialog extends GamesState {
 }
 
 class GamesStateShowEditNameDialog extends GamesState {
-  final Game game;
+  final Game gameToEdit;
 
-  const GamesStateShowEditNameDialog({required this.game});
+  const GamesStateShowEditNameDialog(this.gameToEdit);
 
   @override
-  List<Object?> get props => [game];
+  List<Object?> get props => [gameToEdit];
+}
+
+class GamesStateShowChangeDisplayDialog extends GamesState {
+  final Game gameToChangeDisplay;
+
+  const GamesStateShowChangeDisplayDialog(this.gameToChangeDisplay);
+
+  @override
+  List<Object> get props => [gameToChangeDisplay];
 }
