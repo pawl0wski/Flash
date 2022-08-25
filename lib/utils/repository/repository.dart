@@ -14,6 +14,11 @@ abstract class Repository<T> {
       : _hiveBox = hiveBox,
         _uuid = uuid ?? const Uuid();
 
+  T? get(String uuid) {
+    var object = box.get(uuid);
+    return object;
+  }
+
   List<T> getAll() {
     List<T> objects = [];
     for (var uuid in box.keys) {

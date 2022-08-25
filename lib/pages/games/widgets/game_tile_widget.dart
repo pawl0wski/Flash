@@ -11,15 +11,18 @@ class GameTile extends StatelessWidget {
   final Game _game;
   final void Function() _deleteGame;
   final void Function() _editGameName;
+  final void Function() _assignGame;
 
   const GameTile(
       {required Game game,
       required void Function() deleteGame,
       required void Function() editGameName,
+      required void Function() assignGame,
       Key? key})
       : _game = game,
         _deleteGame = deleteGame,
         _editGameName = editGameName,
+        _assignGame = assignGame,
         super(key: key);
 
   @override
@@ -30,8 +33,9 @@ class GameTile extends StatelessWidget {
         title: Text(_game.name),
         subtitle: MutedText(_game.processName),
         children: [
+          _buildDisplayTile(context, onTap: _assignGame),
           _editNameTile(context, onTap: _editGameName),
-          _buildDeleteTile(context, onTap: _deleteGame)
+          _buildDeleteTile(context, onTap: _deleteGame),
         ],
       )
     ]);
@@ -52,5 +56,15 @@ class GameTile extends StatelessWidget {
       title: Text(context.l10n.deleteGame),
       onTap: onTap,
     );
+  }
+
+  Widget _buildDisplayTile(BuildContext context,
+      {required void Function() onTap}) {
+    var display = _game.getDisplay();
+    var displayName = display == null
+        ? context.l10n.assignDisplay
+        : context.l10n.currentDisplay(display.name);
+    return SecondaryTile(
+        leading: const AdwaitaIcon(AdwaitaIcons.sun), title: Text(displayName));
   }
 }

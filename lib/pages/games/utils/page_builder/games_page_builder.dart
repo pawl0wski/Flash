@@ -52,6 +52,8 @@ class GamesPageBuilder {
             context.read<GamesBloc>().add(GamesBlocEventDeleteGame(game)),
         editGameName: () =>
             context.read<GamesBloc>().add(GamesBlocEventEditGameName(game)),
+        assignGame: () =>
+            context.read<GamesBloc>().add(GamesBlocEventChangeDisplay(game)),
       ));
     }
     return gameTiles;

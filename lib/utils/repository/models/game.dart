@@ -2,6 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flash/utils/repository/mixins/object_with_uuid.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../display_repository.dart';
+import 'display.dart';
+
 part 'game.g.dart';
 
 @HiveType(typeId: 0)
@@ -26,4 +29,9 @@ class Game extends HiveObject with EquatableMixin, ObjectWithUuid {
   @override
   List<Object?> get props =>
       [uuid, name, processName, workingDirectory, displayUuid];
+
+  Display? getDisplay({DisplayRepository? displayRepository}) {
+    displayRepository ??= DisplayRepository();
+    return displayRepository.get(uuid);
+  }
 }

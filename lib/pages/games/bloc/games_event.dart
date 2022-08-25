@@ -31,3 +31,12 @@ class GamesBlocEventEditGameName extends GamesEvent {
   @override
   List<Object?> get props => [gameToEdit];
 }
+
+class GamesBlocEventChangeDisplay extends GamesEvent {
+  final Game gameToChangeDisplay;
+
+  const GamesBlocEventChangeDisplay(this.gameToChangeDisplay);
+
+  @override
+  List<Object?> get props => [gameToChangeDisplay];
+}

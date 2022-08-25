@@ -29,5 +29,14 @@
   "preview": "Preview",
   "save": "Save",
   "acceptDisplay": "Accept this display if it fits or cancel and edit.",
-  "deleteDisplay": "Delete display"
+  "deleteDisplay": "Delete display",
+  "currentDisplay": "Current display: {currentDisplay}",
+  "@currentDisplay": {
+    "placeholders": {
+      "currentDisplay": {
+        "type": "String"
+      }
+    }
+  },
+  "assignDisplay": "Assign display"
 }
