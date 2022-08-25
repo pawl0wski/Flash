@@ -17,7 +17,7 @@ class PreviewDisplayDialog extends FlashDialog {
   PreviewDisplayDialog(this.display, {required this.afterDisplaySave});
 
   @override
-  Widget show(BuildContext context) {
+  Widget build(BuildContext context) {
     return _initializeBloc(
         child: BlocConsumer<PreviewDisplayBloc, PreviewDisplayState>(
             listener: (BuildContext context, PreviewDisplayState state) {
@@ -32,7 +32,7 @@ class PreviewDisplayDialog extends FlashDialog {
             barrierDismissible: false,
             builder: (BuildContext context) =>
                 DisplayEditorDialog(display, afterDisplaySave: afterDisplaySave)
-                    .show(context));
+                    .build(context));
       }
     }, builder: (BuildContext context, PreviewDisplayState state) {
       if (state is PreviewDisplayStateSetSecond) {

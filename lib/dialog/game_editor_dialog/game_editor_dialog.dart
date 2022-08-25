@@ -16,7 +16,7 @@ class GameEditorDialog extends FlashDialog {
   GameEditorDialog(this.game);
 
   @override
-  Widget show(BuildContext context) {
+  Widget build(BuildContext context) {
     return _buildBloc(
       child: BlocConsumer<GameEditorBloc, GameEditorState>(
         listener: (context, state) {

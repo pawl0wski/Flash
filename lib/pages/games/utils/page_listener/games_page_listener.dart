@@ -22,34 +22,23 @@ class GamesPageListener {
     }
   }
 
-  _showDialog(BuildContext context,
-      {required Widget Function(BuildContext context) builder}) {
-    return showDialog(
-        context: context, barrierDismissible: false, builder: builder);
-  }
-
   _emitLoadGamesEvent(BuildContext context) =>
       context.read<GamesBloc>().add(GamesEventLoadGames());
 
   _showAddGameDialog(BuildContext context) {
     var addGameDialog = AddGameDialog();
-    _showDialog(context,
-            builder: (BuildContext context) => addGameDialog.show(context))
-        .then((value) => _emitLoadGamesEvent(context));
+    addGameDialog.show(context).then((value) => _emitLoadGamesEvent(context));
   }
 
   _showEditNameDialog(BuildContext context, {required Game game}) {
     var editNameDialog = GameEditorDialog(game);
-    _showDialog(context,
-            builder: (BuildContext context) => editNameDialog.show(context))
-        .then((value) => _emitLoadGamesEvent(context));
+    editNameDialog.show(context).then((value) => _emitLoadGamesEvent(context));
   }
 
   _showChangeDisplayDialog(BuildContext context, {required Game game}) {
     var changeDisplayDialog = ChangeDisplayDialog(game: game);
-    _showDialog(context,
-            builder: (BuildContext context) =>
-                changeDisplayDialog.show(context))
+    changeDisplayDialog
+        .show(context)
         .then((value) => _emitLoadGamesEvent(context));
   }
 }

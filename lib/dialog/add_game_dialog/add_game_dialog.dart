@@ -11,7 +11,7 @@ class AddGameDialog extends FlashDialog {
   AddGameDialog();
 
   @override
-  show(BuildContext context) {
+  build(BuildContext context) {
     return BlocConsumer<AddGameBloc, AddGameState>(
       bloc: AddGameBloc()..add(AddGameEventShowClickOnGame()),
       listener: (BuildContext context, AddGameState state) {

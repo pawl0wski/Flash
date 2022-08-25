@@ -18,7 +18,7 @@ class ChangeDisplayDialog extends FlashDialog {
   });
 
   @override
-  Widget show(BuildContext context) {
+  Widget build(BuildContext context) {
     return _initializeBloc(
         child: BlocConsumer<ChangeDisplayBloc, ChangeDisplayState>(
             listener: (context, state) {
