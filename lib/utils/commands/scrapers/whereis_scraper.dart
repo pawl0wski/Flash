@@ -5,6 +5,7 @@ import 'command_scraper.dart';
 class WhereisScraper extends CommandScraper {
   @override
   ScrapedWhereis scrap(String commandOutput) {
+    commandOutput = commandOutput.trim();
     var commandPaths = _scrapPathsOfCommandFrom(commandOutput);
     var commandName = _scrapCommandNameFrom(commandOutput);
     return _assembleScrapedWhereisUsing(
@@ -14,7 +15,7 @@ class WhereisScraper extends CommandScraper {
   List<String> _scrapPathsOfCommandFrom(String commandOutput) {
     // Get second split of whereis command
     // "executable: /bin/executable /usr/bin/executable" -> "/bin/executable /usr/bin/executable"
-    var secondSplitOfCommandOutput = commandOutput.split(": ").last;
+    var secondSplitOfCommandOutput = commandOutput.split(RegExp(r": ?")).last;
     if (secondSplitOfCommandOutput.isEmpty) {
       return [];
     }

@@ -40,5 +40,14 @@
   },
   "assignDisplay": "Assign display",
   "display": "Display",
-  "close": "Close"
+  "close": "Close",
+  "dependencyMissing": "Dependency missing",
+  "dependencyMissingInfo": "An error occurred while checking dependencies. There is no {missingDependency} on your system. Please install {missingDependency} and try again.",
+  "@dependencyMissingInfo": {
+    "placeholders": {
+      "missingDependency": {
+        "type": "String"
+      }
+    }
+  }
 }

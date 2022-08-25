@@ -14,6 +14,8 @@ class TextDialog extends FlashDialog {
   @override
   Widget build(BuildContext context) {
     return GtkDialog(
+      width: 300,
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       title: Text(title),
       children: [
         Text(content),
@@ -31,6 +33,7 @@ class TextDialog extends FlashDialog {
       children: [
         AdwButton(
           child: Text(context.l10n.close),
+          onPressed: () => Navigator.of(context).pop(),
         )
       ],
     );
