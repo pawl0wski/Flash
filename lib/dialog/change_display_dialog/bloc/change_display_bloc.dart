@@ -62,16 +62,17 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
   }
 
   _setDisplayUuidInGame() {
-    var currentDisplay = _displays[_currentIndex];
-    _game.displayUuid = currentDisplay.uuid;
+    if (_currentIndex != -1) {
+      var currentDisplay = _displays[_currentIndex];
+      _game.displayUuid = currentDisplay.uuid;
+    } else {
+      _game.displayUuid = null;
+    }
     _gameRepository.update(_game);
   }
 
   _setCurrentIndex() {
     _currentIndex = _displays
         .indexWhere((Display display) => display.uuid == _game.displayUuid);
-    if (_currentIndex == -1) {
-      _currentIndex = 0;
-    }
   }
 }

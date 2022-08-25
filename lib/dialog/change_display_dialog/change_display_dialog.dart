@@ -1,7 +1,6 @@
 import 'package:flash/dialog/change_display_dialog/bloc/change_display_bloc.dart';
 import 'package:flash/dialog/flash_dialog.dart';
 import 'package:flash/l10n/l10n.dart';
-import 'package:flash/utils/repository/models/display.dart';
 import 'package:flash/utils/repository/models/game.dart';
 import 'package:flash/widgets/expanded_button/expanded_button.dart';
 import 'package:flash/widgets/transparent_divider/transparent_divider_widget.dart';
@@ -11,8 +10,12 @@ import 'package:libadwaita/libadwaita.dart';
 
 class ChangeDisplayDialog extends FlashDialog {
   final Game game;
+  final bool withNullDisplay;
 
-  ChangeDisplayDialog({required this.game});
+  ChangeDisplayDialog({
+    this.withNullDisplay = true,
+    required this.game,
+  });
 
   @override
   Widget show(BuildContext context) {
@@ -53,13 +56,19 @@ class ChangeDisplayDialog extends FlashDialog {
     return AdwPreferencesGroup(
       children: [
         AdwComboRow(
-          onSelected: (newIndex) => {
+          onSelected: (newIndex) {
+            if (withNullDisplay) {
+              newIndex -= 1;
+            }
             context
                 .read<ChangeDisplayBloc>()
-                .add(ChangeDisplayEventChangeIndex(newIndex))
+                .add(ChangeDisplayEventChangeIndex(newIndex));
           },
-          selectedIndex: state.currentIndex,
-          choices: _changeDisplayListToStringList(state.displays),
+          selectedIndex: withNullDisplay
+              ? state.currentIndexIncludingNone
+              : state.currentIndex,
+          choices:
+              withNullDisplay ? state.displaysNameWithNone : state.displaysName,
           title: context.l10n.display,
         )
       ],
@@ -85,9 +94,5 @@ class ChangeDisplayDialog extends FlashDialog {
         )
       ],
     );
-  }
-
-  List<String> _changeDisplayListToStringList(List<Display> displays) {
-    return displays.map((Display display) => display.name).toList();
   }
 }
