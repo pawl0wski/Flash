@@ -19,9 +19,13 @@ class ChangeDisplayDialog extends FlashDialog {
             listener: (context, state) {},
             builder: (context, state) {
               if (state is ChangeDisplayStateShowDisplays) {
-                return GtkDialog(children: [
-                  _buildComboButton(context, state: state),
-                ]);
+                return GtkDialog(
+                    width: 300,
+                    padding:
+                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                    children: [
+                      _buildComboRow(context, state: state),
+                    ]);
               }
               return Container();
             }));
@@ -35,7 +39,7 @@ class ChangeDisplayDialog extends FlashDialog {
     );
   }
 
-  Widget _buildComboButton(BuildContext context,
+  Widget _buildComboRow(BuildContext context,
       {required ChangeDisplayStateShowDisplays state}) {
     return AdwComboRow(
       onSelected: (newIndex) => {
