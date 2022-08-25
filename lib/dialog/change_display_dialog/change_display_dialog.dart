@@ -18,24 +18,26 @@ class ChangeDisplayDialog extends FlashDialog {
   Widget show(BuildContext context) {
     return _initializeBloc(
         child: BlocConsumer<ChangeDisplayBloc, ChangeDisplayState>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              if (state is ChangeDisplayStateShowDisplays) {
-                return GtkDialog(
-                    title: Text(context.l10n.assignDisplay),
-                    width: 450,
-                    padding:
-                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                    children: [
-                      _buildComboRow(context, state: state),
-                      const TransparentDivider(
-                        height: 15,
-                      ),
-                      _buildButtons(context),
-                    ]);
-              }
-              return Container();
-            }));
+            listener: (context, state) {
+      if (state is ChangeDisplayStateClose) {
+        Navigator.of(context).pop();
+      }
+    }, builder: (context, state) {
+      if (state is ChangeDisplayStateShowDisplays) {
+        return GtkDialog(
+            title: Text(context.l10n.assignDisplay),
+            width: 450,
+            padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+            children: [
+              _buildComboRow(context, state: state),
+              const TransparentDivider(
+                height: 15,
+              ),
+              _buildButtons(context),
+            ]);
+      }
+      return Container();
+    }));
   }
 
   _initializeBloc({required Widget child}) {
@@ -68,14 +70,19 @@ class ChangeDisplayDialog extends FlashDialog {
     return Row(
       children: [
         ExpandedButton(
-          onClick: () {},
+          onClick: () =>
+              context.read<ChangeDisplayBloc>().add(ChangeDisplayEventSave()),
           mainButton: true,
           text: context.l10n.save,
         ),
         const SizedBox(
           width: 10,
         ),
-        ExpandedButton(text: context.l10n.cancel, onClick: () => {})
+        ExpandedButton(
+          text: context.l10n.cancel,
+          onClick: () =>
+              context.read<ChangeDisplayBloc>().add(ChangeDisplayEventClose()),
+        )
       ],
     );
   }

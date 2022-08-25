@@ -22,10 +22,12 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
       : _game = game,
         _gameRepository = gameRepository ?? GameRepository(),
         _displayRepository = displayRepository ?? DisplayRepository(),
-        super(const ChangeDisplayStateShowDisplays(
-            displays: [], currentIndex: 0)) {
+        super(ChangeDisplayStateShowDisplays(
+            displays: [Display.createBlank()], currentIndex: 0)) {
     on<ChangeDisplayEventLoadDisplays>(_onLoadDisplays);
     on<ChangeDisplayEventChangeIndex>(_onChangeIndex);
+    on<ChangeDisplayEventClose>(_onClose);
+    on<ChangeDisplayEventSave>(_onSave);
   }
 
   _onLoadDisplays(ChangeDisplayEventLoadDisplays event,
@@ -37,8 +39,18 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
 
   _onChangeIndex(ChangeDisplayEventChangeIndex event,
       Emitter<ChangeDisplayState> emitter) {
+    print(event.newIndex);
     _currentIndex = event.newIndex;
     _emitShowDisplays(emitter);
+  }
+
+  _onClose(ChangeDisplayEventClose event, Emitter<ChangeDisplayState> emitter) {
+    emitter(ChangeDisplayStateClose());
+  }
+
+  _onSave(ChangeDisplayEventSave event, Emitter<ChangeDisplayState> emitter) {
+    _setDisplayUuidInGame();
+    emitter(ChangeDisplayStateClose());
   }
 
   _emitShowDisplays(Emitter<ChangeDisplayState> emitter) {
@@ -48,6 +60,12 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
 
   _getDisplays() {
     _displays = _displayRepository.getAll();
+  }
+
+  _setDisplayUuidInGame() {
+    var currentDisplay = _displays[_currentIndex];
+    _game.displayUuid = currentDisplay.uuid;
+    _gameRepository.update(_game);
   }
 
   _setCurrentIndex() {

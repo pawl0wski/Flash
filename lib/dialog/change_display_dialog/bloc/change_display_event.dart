@@ -16,5 +16,14 @@ class ChangeDisplayEventChangeIndex extends ChangeDisplayEvent {
 
   @override
   List<Object?> get props => [newIndex];
+}
 
+class ChangeDisplayEventClose extends ChangeDisplayEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class ChangeDisplayEventSave extends ChangeDisplayEvent {
+  @override
+  List<Object?> get props => [];
 }

@@ -12,5 +12,10 @@ class ChangeDisplayStateShowDisplays extends ChangeDisplayState {
       {required this.currentIndex, required this.displays});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [currentIndex, displays];
+}
+
+class ChangeDisplayStateClose extends ChangeDisplayState {
+  @override
+  List<Object?> get props => [];
 }

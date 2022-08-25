@@ -33,6 +33,6 @@ class Game extends HiveObject with EquatableMixin, ObjectWithUuid {
 
   Display? getDisplay({DisplayRepository? displayRepository}) {
     displayRepository ??= DisplayRepository();
-    return displayRepository.get(uuid);
+    return displayRepository.get(displayUuid ?? "");
   }
 }
