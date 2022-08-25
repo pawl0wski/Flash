@@ -24,13 +24,20 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
         _displayRepository = displayRepository ?? DisplayRepository(),
         super(const ChangeDisplayStateShowDisplays(
             displays: [], currentIndex: 0)) {
-    on<ChangeDisplayEvent>((event, emit) {});
+    on<ChangeDisplayEventLoadDisplays>(_onLoadDisplays);
+    on<ChangeDisplayEventChangeIndex>(_onChangeIndex);
   }
 
   _onLoadDisplays(ChangeDisplayEventLoadDisplays event,
       Emitter<ChangeDisplayState> emitter) {
     _getDisplays();
     _setCurrentIndex();
+    _emitShowDisplays(emitter);
+  }
+
+  _onChangeIndex(ChangeDisplayEventChangeIndex event,
+      Emitter<ChangeDisplayState> emitter) {
+    _currentIndex = event.newIndex;
     _emitShowDisplays(emitter);
   }
 
@@ -46,5 +53,8 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
   _setCurrentIndex() {
     _currentIndex = _displays
         .indexWhere((Display display) => display.uuid == _game.displayUuid);
+    if (_currentIndex == -1) {
+      _currentIndex = 0;
+    }
   }
 }

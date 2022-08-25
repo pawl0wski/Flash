@@ -1,5 +1,7 @@
 import 'package:flash/dialog/change_display_dialog/bloc/change_display_bloc.dart';
 import 'package:flash/dialog/flash_dialog.dart';
+import 'package:flash/l10n/l10n.dart';
+import 'package:flash/utils/repository/models/display.dart';
 import 'package:flash/utils/repository/models/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +19,9 @@ class ChangeDisplayDialog extends FlashDialog {
             listener: (context, state) {},
             builder: (context, state) {
               if (state is ChangeDisplayStateShowDisplays) {
-                return const GtkDialog(children: []);
+                return GtkDialog(children: [
+                  _buildComboButton(context, state: state),
+                ]);
               }
               return Container();
             }));
@@ -25,8 +29,27 @@ class ChangeDisplayDialog extends FlashDialog {
 
   _initializeBloc({required Widget child}) {
     return BlocProvider(
-      create: (BuildContext context) => ChangeDisplayBloc(game: game),
+      create: (BuildContext context) =>
+          ChangeDisplayBloc(game: game)..add(ChangeDisplayEventLoadDisplays()),
       child: child,
     );
+  }
+
+  Widget _buildComboButton(BuildContext context,
+      {required ChangeDisplayStateShowDisplays state}) {
+    return AdwComboRow(
+      onSelected: (newIndex) => {
+        context
+            .read<ChangeDisplayBloc>()
+            .add(ChangeDisplayEventChangeIndex(newIndex))
+      },
+      selectedIndex: state.currentIndex,
+      choices: _changeDisplayListToStringList(state.displays),
+      title: context.l10n.assignDisplay,
+    );
+  }
+
+  List<String> _changeDisplayListToStringList(List<Display> displays) {
+    return displays.map((Display display) => display.name).toList();
   }
 }
