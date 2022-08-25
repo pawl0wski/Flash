@@ -38,5 +38,6 @@
       }
     }
   },
-  "assignDisplay": "Assign display"
+  "assignDisplay": "Assign display",
+  "display": "Display"
 }
