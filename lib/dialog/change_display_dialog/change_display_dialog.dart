@@ -20,7 +20,7 @@ class ChangeDisplayDialog extends FlashDialog {
             builder: (context, state) {
               if (state is ChangeDisplayStateShowDisplays) {
                 return GtkDialog(
-                    width: 300,
+                    width: 450,
                     padding:
                         const EdgeInsets.only(bottom: 20, left: 15, right: 15),
                     children: [
@@ -41,15 +41,19 @@ class ChangeDisplayDialog extends FlashDialog {
 
   Widget _buildComboRow(BuildContext context,
       {required ChangeDisplayStateShowDisplays state}) {
-    return AdwComboRow(
-      onSelected: (newIndex) => {
-        context
-            .read<ChangeDisplayBloc>()
-            .add(ChangeDisplayEventChangeIndex(newIndex))
-      },
-      selectedIndex: state.currentIndex,
-      choices: _changeDisplayListToStringList(state.displays),
-      title: context.l10n.assignDisplay,
+    return AdwPreferencesGroup(
+      children: [
+        AdwComboRow(
+          onSelected: (newIndex) => {
+            context
+                .read<ChangeDisplayBloc>()
+                .add(ChangeDisplayEventChangeIndex(newIndex))
+          },
+          selectedIndex: state.currentIndex,
+          choices: _changeDisplayListToStringList(state.displays),
+          title: context.l10n.assignDisplay,
+        )
+      ],
     );
   }
 
