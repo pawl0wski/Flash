@@ -39,7 +39,6 @@ class ChangeDisplayBloc extends Bloc<ChangeDisplayEvent, ChangeDisplayState> {
 
   _onChangeIndex(ChangeDisplayEventChangeIndex event,
       Emitter<ChangeDisplayState> emitter) {
-    print(event.newIndex);
     _currentIndex = event.newIndex;
     _emitShowDisplays(emitter);
   }
