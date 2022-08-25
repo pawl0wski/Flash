@@ -39,5 +39,6 @@
     }
   },
   "assignDisplay": "Assign display",
-  "display": "Display"
+  "display": "Display",
+  "close": "Close"
 }
