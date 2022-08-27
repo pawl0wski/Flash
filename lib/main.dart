@@ -1,5 +1,6 @@
 import 'package:flash/utils/config_directory/config_directory.dart';
 import 'package:flash/utils/repository/init_repositories.dart';
+import 'package:flash/utils/settings/init_settings.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -16,6 +17,7 @@ Future<void> initRepositories(
   await Hive.initFlutter(configDirectory.path);
 
   await initGameRepository();
+  await initSettings();
 }
 
 Future<ConfigDirectory> initConfigDirectory() async {
