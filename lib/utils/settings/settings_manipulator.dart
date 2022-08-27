@@ -1,11 +1,11 @@
 import 'hive_box/settings_hive_box.dart';
 import 'models/settings.dart';
 
-class SettingsChanger {
+class SettingsManipulator {
   final SettingsHiveBox _settingsHiveBox;
 
-  SettingsChanger({required SettingsHiveBox settingsHiveBox})
-      : _settingsHiveBox = settingsHiveBox;
+  SettingsManipulator({SettingsHiveBox? settingsHiveBox})
+      : _settingsHiveBox = settingsHiveBox ?? SettingsHiveBox();
 
   Settings get _settings {
     var box = _settingsHiveBox.box;
