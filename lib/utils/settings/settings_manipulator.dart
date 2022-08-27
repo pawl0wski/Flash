@@ -7,7 +7,7 @@ class SettingsManipulator {
   SettingsManipulator({SettingsHiveBox? settingsHiveBox})
       : _settingsHiveBox = settingsHiveBox ?? SettingsHiveBox();
 
-  Settings get _settings {
+  Settings get settings {
     var box = _settingsHiveBox.box;
     if (box.keys.isEmpty) {
       box.put(0, Settings.createDefault());
@@ -16,23 +16,23 @@ class SettingsManipulator {
   }
 
   changeScreenToChangeDisplay(String? screen) {
-    _settings.screenToChangeDisplay = screen;
-    _settings.save();
+    settings.screenToChangeDisplay = screen;
+    settings.save();
   }
 
-  String? get screenToChangeDisplay => _settings.screenToChangeDisplay;
+  String? get screenToChangeDisplay => settings.screenToChangeDisplay;
 
   changeAvailableScreens(List<String> screens) {
-    _settings.availableScreens = screens;
-    _settings.save();
+    settings.availableScreens = screens;
+    settings.save();
   }
 
-  List<String> get availableScreens => _settings.availableScreens;
+  List<String> get availableScreens => settings.availableScreens;
 
   toggleUseAllScreens() {
-    _settings.useAllScreens = !_settings.useAllScreens;
-    _settings.save();
+    settings.useAllScreens = !settings.useAllScreens;
+    settings.save();
   }
 
-  bool get useAllScreens => _settings.useAllScreens;
+  bool get useAllScreens => settings.useAllScreens;
 }
