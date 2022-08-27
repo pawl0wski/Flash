@@ -19,3 +19,10 @@ class SettingsEventChangeSelectedMonitor extends SettingsEvent {
   @override
   List<Object?> get props => [newMonitor];
 }
+
+class SettingsEventToggleUseAllMonitors extends SettingsEvent {
+  const SettingsEventToggleUseAllMonitors();
+
+  @override
+  List<Object?> get props => [];
+}

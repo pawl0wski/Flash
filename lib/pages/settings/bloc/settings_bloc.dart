@@ -13,6 +13,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         super(const SettingsStateLoading()) {
     on<SettingsEventLoadSettings>(_onLoadSettings);
     on<SettingsEventChangeSelectedMonitor>(_onChangeSelectedMonitor);
+    on<SettingsEventToggleUseAllMonitors>(_onToggleUseAllMonitor);
   }
 
   _onLoadSettings(
@@ -23,6 +24,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   _onChangeSelectedMonitor(SettingsEventChangeSelectedMonitor event,
       Emitter<SettingsState> emitter) {
     _manipulator.changeSelectedMonitor(event.newMonitor);
+    _emitShowSettings(emitter);
+  }
+
+  _onToggleUseAllMonitor(
+      SettingsEventToggleUseAllMonitors event, Emitter<SettingsState> emitter) {
+    _manipulator.toggleUseAllMonitors();
     _emitShowSettings(emitter);
   }
 

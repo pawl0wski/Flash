@@ -51,5 +51,6 @@
       }
     }
   },
-  "selectMonitor": "Select monitor"
+  "selectMonitor": "Select monitor",
+  "useAllMonitors": "Use all monitors"
 }

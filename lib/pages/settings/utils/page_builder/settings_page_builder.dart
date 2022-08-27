@@ -21,8 +21,9 @@ class SettingsPageBuilder {
               icon: AdwaitaIcons.settings,
               title: context.l10n.settings,
               description: context.l10n.settingsDescription),
-          TransparentDivider(height: 20),
-          _buildMonitorSelectTile(context, state)
+          const TransparentDivider(height: 20),
+          _buildMonitorSelectTile(context, state),
+          _buildUseAllMonitorsTile(context, state)
         ],
       ));
     }
@@ -48,4 +49,16 @@ _buildMonitorSelectTile(BuildContext context, SettingsStateShowSettings state) {
           title: context.l10n.selectMonitor),
     ],
   );
+}
+
+_buildUseAllMonitorsTile(
+    BuildContext context, SettingsStateShowSettings state) {
+  var useAllMonitorsEnabled = state.settingsManipulator.useAllMonitors;
+  var bloc = context.read<SettingsBloc>();
+  return AdwPreferencesGroup(children: [
+    AdwSwitchRow(
+        value: useAllMonitorsEnabled,
+        onChanged: (_) => bloc.add(const SettingsEventToggleUseAllMonitors()),
+        title: context.l10n.useAllMonitors)
+  ]);
 }
