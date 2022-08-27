@@ -6,7 +6,7 @@ part 'settings.g.dart';
 @HiveType(typeId: 3)
 class Settings extends HiveObject with EquatableMixin {
   @HiveField(0)
-  String? monitorToChangeDisplay;
+  String? selectedMonitor;
 
   @HiveField(1)
   List<String> availableMonitors = [];
@@ -15,7 +15,7 @@ class Settings extends HiveObject with EquatableMixin {
   bool useAllMonitors;
 
   Settings(
-      {this.monitorToChangeDisplay,
+      {this.selectedMonitor,
       required this.availableMonitors,
       required this.useAllMonitors});
 
@@ -24,5 +24,6 @@ class Settings extends HiveObject with EquatableMixin {
   }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props =>
+      [selectedMonitor, availableMonitors, useAllMonitors];
 }

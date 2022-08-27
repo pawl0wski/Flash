@@ -12,10 +12,17 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       : _manipulator = manipulator ?? SettingsManipulator(),
         super(const SettingsStateLoading()) {
     on<SettingsEventLoadSettings>(_onLoadSettings);
+    on<SettingsEventChangeSelectedMonitor>(_onChangeSelectedMonitor);
   }
 
   _onLoadSettings(
       SettingsEventLoadSettings event, Emitter<SettingsState> emitter) {
+    _emitShowSettings(emitter);
+  }
+
+  _onChangeSelectedMonitor(SettingsEventChangeSelectedMonitor event,
+      Emitter<SettingsState> emitter) {
+    _manipulator.changeSelectedMonitor(event.newMonitor);
     _emitShowSettings(emitter);
   }
 

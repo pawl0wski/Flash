@@ -50,5 +50,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "selectMonitor": "Select monitor"
 }

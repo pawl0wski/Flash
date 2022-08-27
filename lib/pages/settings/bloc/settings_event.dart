@@ -10,3 +10,12 @@ class SettingsEventLoadSettings extends SettingsEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SettingsEventChangeSelectedMonitor extends SettingsEvent {
+  final String newMonitor;
+
+  const SettingsEventChangeSelectedMonitor(this.newMonitor);
+
+  @override
+  List<Object?> get props => [newMonitor];
+}

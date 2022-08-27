@@ -20,12 +20,13 @@ class SettingsManipulator {
     return box.get(0);
   }
 
-  changeMonitorToChangeDisplay(String? monitor) {
-    settings.monitorToChangeDisplay = monitor;
+  changeSelectedMonitor(String? monitor) {
+    settings.selectedMonitor = monitor;
     settings.save();
   }
 
-  String? get monitorToChangeDisplay => settings.monitorToChangeDisplay;
+  String get selectedMonitor =>
+      settings.selectedMonitor ?? availableMonitors.first;
 
   changeAvailableMonitors(List<String> monitors) {
     settings.availableMonitors = monitors;

@@ -8,7 +8,7 @@ class XRandrCommand extends Command {
 
   List<String> getMonitors() {
     var commandOutput = super.execute(["--listmonitors"]);
-    var splitCommandOutputs = commandOutput.split("\n").skip(1);
+    var splitCommandOutputs = commandOutput.trim().split("\n").skip(1);
     return splitCommandOutputs.map((splitCommandOutput) {
       return splitCommandOutput.split(" ").last;
     }).toList();
