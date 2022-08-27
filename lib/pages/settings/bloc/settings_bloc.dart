@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flash/utils/settings/models/settings.dart';
 import 'package:flash/utils/settings/settings_manipulator.dart';
 
 part 'settings_event.dart';
@@ -17,6 +16,15 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   _onLoadSettings(
       SettingsEventLoadSettings event, Emitter<SettingsState> emitter) {
-    emitter(SettingsStateShowSettings(_manipulator.settings));
+    _emitShowSettings(emitter);
+  }
+
+  _emitShowSettings(Emitter<SettingsState> emitter) {
+    _updateMonitors();
+    emitter(SettingsStateShowSettings(_manipulator));
+  }
+
+  _updateMonitors() {
+    _manipulator.updateAllMonitors();
   }
 }

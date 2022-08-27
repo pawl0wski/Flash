@@ -6,21 +6,21 @@ part 'settings.g.dart';
 @HiveType(typeId: 3)
 class Settings extends HiveObject with EquatableMixin {
   @HiveField(0)
-  String? screenToChangeDisplay;
+  String? monitorToChangeDisplay;
 
   @HiveField(1)
-  List<String> availableScreens = [];
+  List<String> availableMonitors = [];
 
   @HiveField(2)
-  bool useAllScreens;
+  bool useAllMonitors;
 
   Settings(
-      {this.screenToChangeDisplay,
-      required this.availableScreens,
-      required this.useAllScreens});
+      {this.monitorToChangeDisplay,
+      required this.availableMonitors,
+      required this.useAllMonitors});
 
   static createDefault() {
-    return Settings(availableScreens: [], useAllScreens: false);
+    return Settings(availableMonitors: [], useAllMonitors: false);
   }
 
   @override

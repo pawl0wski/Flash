@@ -5,12 +5,12 @@ abstract class SettingsState extends Equatable {
 }
 
 class SettingsStateShowSettings extends SettingsState {
-  final Settings settings;
+  final SettingsManipulator settingsManipulator;
 
-  const SettingsStateShowSettings(this.settings);
+  const SettingsStateShowSettings(this.settingsManipulator);
 
   @override
-  List<Object> get props => [settings];
+  List<Object> get props => [settingsManipulator];
 }
 
 class SettingsStateLoading extends SettingsState {
