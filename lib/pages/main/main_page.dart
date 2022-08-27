@@ -4,6 +4,7 @@ import 'package:flash/dialog/text_dialog/text_dialog.dart';
 import 'package:flash/l10n/l10n.dart';
 import 'package:flash/pages/displays/displays_page.dart';
 import 'package:flash/pages/games/games_page.dart';
+import 'package:flash/pages/settings/settings_page.dart';
 import 'package:flash/pages/welcome/welcome_page.dart';
 import 'package:flash/widgets/sidebar/sidebar_widget.dart';
 import 'package:flutter/widgets.dart';
@@ -54,7 +55,12 @@ class MainPage extends StatelessWidget {
   }
 
   List<Widget> _buildViewStackChildren() {
-    return [const WelcomePage(), const GamesPage(), const DisplaysPage()];
+    return [
+      const WelcomePage(),
+      const GamesPage(),
+      const DisplaysPage(),
+      const SettingsPage()
+    ];
   }
 
   AdwSidebar _buildSidebarUsingCubitState(BuildContext context,
