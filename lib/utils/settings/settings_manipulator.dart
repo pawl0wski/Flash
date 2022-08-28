@@ -33,6 +33,11 @@ class SettingsManipulator {
     settings.save();
   }
 
+  updateAllMonitors() {
+    var monitors = _xRandrCommand.getMonitors();
+    changeAvailableMonitors(monitors);
+  }
+
   List<String> get availableMonitors => settings.availableMonitors;
 
   toggleUseAllMonitors() {
@@ -42,8 +47,10 @@ class SettingsManipulator {
 
   bool get useAllMonitors => settings.useAllMonitors;
 
-  updateAllMonitors() {
-    var monitors = _xRandrCommand.getMonitors();
-    changeAvailableMonitors(monitors);
+  updateCheckGameTimeout(int checkGameTimeout) {
+    settings.checkGameTimeout = checkGameTimeout;
+    settings.save();
   }
+
+  int get checkGameTimeout => settings.checkGameTimeout;
 }

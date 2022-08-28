@@ -14,13 +14,18 @@ class Settings extends HiveObject with EquatableMixin {
   @HiveField(2)
   bool useAllMonitors;
 
+  @HiveField(3, defaultValue: 15)
+  int checkGameTimeout;
+
   Settings(
       {this.selectedMonitor,
       required this.availableMonitors,
-      required this.useAllMonitors});
+      required this.useAllMonitors,
+      required this.checkGameTimeout});
 
   static createDefault() {
-    return Settings(availableMonitors: [], useAllMonitors: false);
+    return Settings(
+        availableMonitors: [], useAllMonitors: false, checkGameTimeout: 15);
   }
 
   @override

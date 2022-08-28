@@ -23,7 +23,8 @@ class SettingsPageBuilder {
               description: context.l10n.settingsDescription),
           const TransparentDivider(height: 20),
           _buildMonitorSelectTile(context, state),
-          _buildUseAllMonitorsTile(context, state)
+          _buildUseAllMonitorsTile(context, state),
+          _buildCheckGameTimeout(context, state),
         ],
       ));
     }
@@ -60,5 +61,21 @@ _buildUseAllMonitorsTile(
         value: useAllMonitorsEnabled,
         onChanged: (_) => bloc.add(const SettingsEventToggleUseAllMonitors()),
         title: context.l10n.useAllMonitors)
+  ]);
+}
+
+_buildCheckGameTimeout(BuildContext context, SettingsStateShowSettings state) {
+  var availableCheckGameTimeout = [5, 15, 30, 45, 60, 100];
+  var bloc = context.read<SettingsBloc>();
+  var selectedIndex = availableCheckGameTimeout
+      .indexOf(state.settingsManipulator.checkGameTimeout);
+  return AdwPreferencesGroup(children: [
+    AdwComboRow(
+      selectedIndex: selectedIndex == -1 ? 1 : selectedIndex,
+      onSelected: (newIndex) => bloc.add(SettingsEventChangeCheckGameTimeout(
+          availableCheckGameTimeout[newIndex])),
+      title: context.l10n.checkRunningGames,
+      choices: availableCheckGameTimeout.map((int e) => "${e}s").toList(),
+    )
   ]);
 }

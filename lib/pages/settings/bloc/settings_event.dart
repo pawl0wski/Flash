@@ -26,3 +26,12 @@ class SettingsEventToggleUseAllMonitors extends SettingsEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SettingsEventChangeCheckGameTimeout extends SettingsEvent {
+  final int newCheckGameTimeout;
+
+  const SettingsEventChangeCheckGameTimeout(this.newCheckGameTimeout);
+
+  @override
+  List<Object?> get props => [newCheckGameTimeout];
+}

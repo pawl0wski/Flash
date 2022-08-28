@@ -52,5 +52,6 @@
     }
   },
   "selectMonitor": "Select monitor",
-  "useAllMonitors": "Use all monitors"
+  "useAllMonitors": "Use all monitors",
+  "checkRunningGames": "Check running games every"
 }
