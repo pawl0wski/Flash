@@ -56,6 +56,7 @@ class PreviewDisplayBloc
 
   _setDisplay({Display? display}) {
     _xRandrCommand.changeDisplay(
-        display: display ?? Display.createBlank(), monitor: "HDMI-0");
+        display: display ?? Display.createBlank(),
+        monitor: _settingsManipulator.selectedMonitor);
   }
 }
