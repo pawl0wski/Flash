@@ -55,8 +55,9 @@ class PreviewDisplayBloc
   }
 
   _setDisplay({Display? display}) {
-    _xRandrCommand.changeDisplay(
-        display: display ?? Display.createBlank(),
-        monitor: _settingsManipulator.selectedMonitor);
+    for (var monitor in _settingsManipulator.monitorsToChange) {
+      _xRandrCommand.changeDisplay(
+          display: display ?? Display.createBlank(), monitor: monitor);
+    }
   }
 }

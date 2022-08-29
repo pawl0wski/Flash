@@ -53,4 +53,11 @@ class SettingsManipulator {
   }
 
   int get checkGameTimeout => settings.checkGameTimeout;
+
+  List<String> get monitorsToChange {
+    if (useAllMonitors) {
+      return availableMonitors;
+    }
+    return [selectedMonitor];
+  }
 }
