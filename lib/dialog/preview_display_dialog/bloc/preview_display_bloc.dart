@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flash/utils/commands/xrandr_command.dart';
 import 'package:flash/utils/repository/display_repository.dart';
 import 'package:flash/utils/repository/models/display.dart';
+import 'package:flash/utils/settings/settings_manipulator.dart';
 import 'package:meta/meta.dart';
 
 part 'preview_display_event.dart';
@@ -12,12 +13,16 @@ class PreviewDisplayBloc
   final DisplayRepository _displayRepository;
   final Display _display;
   final XRandrCommand _xRandrCommand;
+  final SettingsManipulator _settingsManipulator;
   int second = 5;
 
   PreviewDisplayBloc(Display display,
-      {DisplayRepository? displayRepository, XRandrCommand? xRandrCommand})
+      {DisplayRepository? displayRepository,
+      XRandrCommand? xRandrCommand,
+      SettingsManipulator? settingsManipulator})
       : _display = display,
         _xRandrCommand = xRandrCommand ?? XRandrCommand(),
+        _settingsManipulator = settingsManipulator ?? SettingsManipulator(),
         _displayRepository = displayRepository ?? DisplayRepository(),
         super(const PreviewDisplayStateSetSecond(5)) {
     on<PreviewDisplayEventStartTimer>(_onStartTimer);
