@@ -1,3 +1,4 @@
+import 'package:flash/system_tray/init_system_tray.dart';
 import 'package:flash/utils/config_directory/config_directory.dart';
 import 'package:flash/utils/repository/init_repositories.dart';
 import 'package:flash/utils/settings/init_settings.dart';
@@ -9,7 +10,8 @@ import 'app.dart';
 Future<void> main() async {
   var configDirectory = await initConfigDirectory();
   await initRepositories(configDirectory: configDirectory);
-  runApp(const FlashApp());
+  await initSystemTray();
+  runApp(FlashApp());
 }
 
 Future<void> initRepositories(
