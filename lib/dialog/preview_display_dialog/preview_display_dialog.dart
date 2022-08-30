@@ -38,12 +38,14 @@ class PreviewDisplayDialog extends FlashDialog {
       if (state is PreviewDisplayStateSetSecond) {
         return GtkDialog(
             title: Text(context.l10n.preview),
-            width: 300,
+            width: 500,
             padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
             children: [
               _buildTimerText(context, state),
               const TransparentDivider(height: 10),
               _buildInfoText(context),
+              const TransparentDivider(height: 10),
+              _buildPreview(context),
               const TransparentDivider(height: 10),
               _buildButtons(context)
             ]);
@@ -95,5 +97,9 @@ class PreviewDisplayDialog extends FlashDialog {
                 .add(const PreviewDisplayEventClose()))
       ],
     );
+  }
+
+  Widget _buildPreview(BuildContext context) {
+    return const Image(image: AssetImage("assets/preview1.jpg"));
   }
 }

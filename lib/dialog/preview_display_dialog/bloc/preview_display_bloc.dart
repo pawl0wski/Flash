@@ -15,7 +15,8 @@ class PreviewDisplayBloc
   final Display _display;
   final XRandrCommand _xRandrCommand;
   final SettingsManipulator _settingsManipulator;
-  int second = 5;
+  bool _dialogClosed = false;
+  int second = 10;
 
   PreviewDisplayBloc(Display display,
       {DisplayRepository? displayRepository,
@@ -25,7 +26,7 @@ class PreviewDisplayBloc
         _xRandrCommand = xRandrCommand ?? XRandrCommand(),
         _settingsManipulator = settingsManipulator ?? SettingsManipulator(),
         _displayRepository = displayRepository ?? DisplayRepository(),
-        super(const PreviewDisplayStateSetSecond(5)) {
+        super(const PreviewDisplayStateSetSecond(10)) {
     on<PreviewDisplayEventStartTimer>(_onStartTimer);
     on<PreviewDisplayEventAccept>(_onAccept);
     on<PreviewDisplayEventClose>(_onClose);
@@ -34,28 +35,34 @@ class PreviewDisplayBloc
   _onStartTimer(PreviewDisplayEventStartTimer event,
       Emitter<PreviewDisplayState> emitter) async {
     _setDisplay(display: _display);
+    Globals.setScannerEnabled(false);
     for (int i = second; i > 0; i--) {
       await Future.delayed(const Duration(seconds: 1));
       emitter(PreviewDisplayStateSetSecond(--second));
     }
-    Globals.setScannerEnabled(false);
-    _setDisplay();
+    if (_dialogClosed == false) {
+      _setDisplay();
+    }
     emitter(const PreviewDisplayStateBackToEdit());
   }
 
   _onAccept(
       PreviewDisplayEventAccept event, Emitter<PreviewDisplayState> emitter) {
     _displayRepository.addOrUpdate(_display);
-    _setDisplay();
-    Globals.setScannerEnabled(true);
+    _setBlankDisplay();
     emitter(const PreviewDisplayStateClose());
   }
 
   _onClose(
       PreviewDisplayEventClose event, Emitter<PreviewDisplayState> emitter) {
-    _setDisplay();
-    Globals.setScannerEnabled(true);
+    _setBlankDisplay();
     emitter(const PreviewDisplayStateBackToEdit());
+  }
+
+  _setBlankDisplay() {
+    Globals.setScannerEnabled(true);
+    _dialogClosed = true;
+    _setDisplay();
   }
 
   _setDisplay({Display? display}) {
