@@ -16,9 +16,13 @@ class Display extends HiveObject with EquatableMixin, ObjectWithUuid {
   @HiveField(3)
   RGB rgb;
 
+  @HiveField(4, defaultValue: false)
+  bool readOnly;
+
   Display({
     required this.rgb,
     required this.name,
+    this.readOnly = false,
     this.brightness = 1.0,
   });
 
