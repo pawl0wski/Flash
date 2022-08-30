@@ -17,18 +17,30 @@ class Settings extends HiveObject with EquatableMixin {
   @HiveField(3, defaultValue: 15)
   int checkGameTimeout;
 
+  @HiveField(4, defaultValue: true)
+  bool closeWillHideWindow;
+
   Settings(
       {this.selectedMonitor,
       required this.availableMonitors,
       required this.useAllMonitors,
-      required this.checkGameTimeout});
+      required this.checkGameTimeout,
+      required this.closeWillHideWindow});
 
   static createDefault() {
     return Settings(
-        availableMonitors: [], useAllMonitors: false, checkGameTimeout: 15);
+        availableMonitors: [],
+        useAllMonitors: false,
+        checkGameTimeout: 15,
+        closeWillHideWindow: true);
   }
 
   @override
-  List<Object?> get props =>
-      [selectedMonitor, availableMonitors, useAllMonitors];
+  List<Object?> get props => [
+        selectedMonitor,
+        availableMonitors,
+        useAllMonitors,
+        checkGameTimeout,
+        closeWillHideWindow
+      ];
 }
