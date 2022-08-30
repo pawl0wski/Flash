@@ -54,6 +54,13 @@ class SettingsManipulator {
 
   int get checkGameTimeout => settings.checkGameTimeout;
 
+  toggleCloseWillHide() {
+    settings.closeWillHideWindow = !settings.closeWillHideWindow;
+    settings.save();
+  }
+
+  bool get closeWillHideWindow => settings.closeWillHideWindow;
+
   List<String> get monitorsToChange {
     if (useAllMonitors) {
       return availableMonitors;
