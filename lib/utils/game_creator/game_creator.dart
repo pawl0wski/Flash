@@ -54,7 +54,6 @@ class GameCreator {
     throw CantFindPsEntry(pid: pid);
   }
 
-  String _getWorkingDirectory({required int pid}) {
-    return _pwdxCommand.executeAndScrap([pid.toString()]).workingDirectory;
-  }
+  String _getWorkingDirectory({required int pid}) =>
+      _pwdxCommand.getWorkingDirectoryOfPid(pid);
 }

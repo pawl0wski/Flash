@@ -1,3 +1,4 @@
+import 'package:flash/scanner/apps_scanner.dart';
 import 'package:flash/system_tray/init_system_tray.dart';
 import 'package:flash/utils/config_directory/config_directory.dart';
 import 'package:flash/utils/repository/init_repositories.dart';
@@ -11,6 +12,7 @@ Future<void> main() async {
   var configDirectory = await initConfigDirectory();
   await initRepositories(configDirectory: configDirectory);
   await initSystemTray();
+  AppsScanner().scan();
   runApp(const FlashApp());
 }
 

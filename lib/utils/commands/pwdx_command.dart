@@ -21,4 +21,7 @@ class PwdxCommand extends Command {
   Future<ScrapedPwdx> executeAndScrapAsync(List<String> arguments) async {
     return await super.executeAndScrapAsync(arguments) as ScrapedPwdx;
   }
+
+  String getWorkingDirectoryOfPid(int pid) =>
+      executeAndScrap([pid.toString()]).workingDirectory;
 }
