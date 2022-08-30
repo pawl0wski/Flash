@@ -1,3 +1,4 @@
+import 'package:flash/globals.dart';
 import 'package:flash/scanner/game_run_checker/game_run_checker.dart';
 import 'package:flash/utils/commands/xrandr_command.dart';
 import 'package:flash/utils/repository/display_repository.dart';
@@ -29,15 +30,17 @@ class AppsScanner {
     while (true) {
       await _waitCheckGameTimeout();
       var anyGameRunning = false;
-      for (var game in _gameRepository.getAll()) {
-        if (_gameRunChecker.checkIfGameIsRunning(game)) {
-          _changeDisplayIfGameHaveDisplay(game);
-          anyGameRunning = true;
-          break;
+      if (Globals.scannerEnabled) {
+        for (var game in _gameRepository.getAll()) {
+          if (_gameRunChecker.checkIfGameIsRunning(game)) {
+            _changeDisplayIfGameHaveDisplay(game);
+            anyGameRunning = true;
+            break;
+          }
         }
-      }
-      if (anyGameRunning == false) {
-        _changeCurrentDisplayToBlank();
+        if (anyGameRunning == false) {
+          _changeCurrentDisplayToBlank();
+        }
       }
     }
   }

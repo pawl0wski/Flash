@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flash/globals.dart';
 import 'package:flash/utils/commands/xrandr_command.dart';
 import 'package:flash/utils/repository/display_repository.dart';
 import 'package:flash/utils/repository/models/display.dart';
@@ -37,6 +38,7 @@ class PreviewDisplayBloc
       await Future.delayed(const Duration(seconds: 1));
       emitter(PreviewDisplayStateSetSecond(--second));
     }
+    Globals.setScannerEnabled(false);
     _setDisplay();
     emitter(const PreviewDisplayStateBackToEdit());
   }
@@ -45,12 +47,14 @@ class PreviewDisplayBloc
       PreviewDisplayEventAccept event, Emitter<PreviewDisplayState> emitter) {
     _displayRepository.addOrUpdate(_display);
     _setDisplay();
+    Globals.setScannerEnabled(true);
     emitter(const PreviewDisplayStateClose());
   }
 
   _onClose(
       PreviewDisplayEventClose event, Emitter<PreviewDisplayState> emitter) {
     _setDisplay();
+    Globals.setScannerEnabled(true);
     emitter(const PreviewDisplayStateBackToEdit());
   }
 
