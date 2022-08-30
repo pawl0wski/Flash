@@ -13,7 +13,6 @@ class DefaultDisplaysCreator {
   }
 
   _createBrightDisplayIfNotExist() {
-    var allDisplays = _displayRepository.getAll();
     if (!_checkIfReadOnlyDisplayExist("Bright")) {
       _displayRepository.add(Display(
           brightness: 1,
@@ -24,11 +23,8 @@ class DefaultDisplaysCreator {
   }
 
   _checkIfReadOnlyDisplayExist(String displayName) {
-    var readOnlyDisplays = _displayRepository
-        .getAll()
-        .where((display) => display.readOnly == true);
-    for (var display in readOnlyDisplays) {
-      if (display.name == displayName) {
+    for (var display in _displayRepository.getAll()) {
+      if (display.readOnly == true && display.name == displayName) {
         return true;
       }
     }

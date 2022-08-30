@@ -1,3 +1,4 @@
+import 'package:flash/utils/repository/close_repositories.dart';
 import 'package:flash/utils/settings/settings_manipulator.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';
 import 'package:system_tray/system_tray.dart';
@@ -21,6 +22,11 @@ class TrayMenuBuilder {
   }
 
   MenuItem _buildQuitMenuItem() {
-    return MenuItemLable(label: "Quit", onClicked: (_) => appWindow?.close());
+    return MenuItemLable(
+        label: "Quit",
+        onClicked: (_) {
+          closeRepositories();
+          appWindow?.close();
+        });
   }
 }
