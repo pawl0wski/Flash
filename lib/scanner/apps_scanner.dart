@@ -33,7 +33,7 @@ class AppsScanner {
       if (Globals.scannerEnabled) {
         for (var game in _gameRepository.getAll()) {
           if (_gameRunChecker.checkIfGameIsRunning(game)) {
-            _changeDisplayIfGameHaveDisplay(game);
+            _changeDisplayForGame(game);
             anyGameRunning = true;
             break;
           }
@@ -48,12 +48,11 @@ class AppsScanner {
   _waitCheckGameTimeout() async => await Future.delayed(
       Duration(seconds: _settingsManipulator.checkGameTimeout));
 
-  _changeDisplayIfGameHaveDisplay(Game game) {
+  _changeDisplayForGame(Game game) {
     var display = _displayRepository.get(game.displayUuid ?? "");
-    if (display != null) {
-      for (var monitor in _settingsManipulator.monitorsToChange) {
-        _xRandrCommand.changeDisplay(display: display, monitor: monitor);
-      }
+    for (var monitor in _settingsManipulator.monitorsToChange) {
+      _xRandrCommand.changeDisplay(
+          display: display ?? Display.createBlank(), monitor: monitor);
     }
   }
 
