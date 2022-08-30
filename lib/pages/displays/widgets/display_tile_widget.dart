@@ -24,8 +24,12 @@ class DisplayTile extends StatelessWidget {
           children: [
             _buildBrightnessTile(context),
             _buildGammaTile(context),
-            _buildEditTile(context, display: _display),
-            _buildDeleteTile(context, display: _display)
+            ...(_display.readOnly
+                ? []
+                : [
+                    _buildEditTile(context, display: _display),
+                    _buildDeleteTile(context, display: _display)
+                  ])
           ],
         )
       ],
