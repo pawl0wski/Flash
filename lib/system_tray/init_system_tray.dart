@@ -6,7 +6,7 @@ Future<void> initSystemTray() async {
   final SystemTray systemTray = SystemTray();
 
   await systemTray.initSystemTray(
-    iconPath: "assets/flash-systemtray-on.png",
+    iconPath: "assets/flash-systemtray.png",
   );
 
   final Menu menu = Menu();
