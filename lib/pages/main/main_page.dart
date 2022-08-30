@@ -6,6 +6,7 @@ import 'package:flash/pages/displays/displays_page.dart';
 import 'package:flash/pages/games/games_page.dart';
 import 'package:flash/pages/settings/settings_page.dart';
 import 'package:flash/pages/welcome/welcome_page.dart';
+import 'package:flash/utils/actions/flash_actions.dart';
 import 'package:flash/widgets/sidebar/sidebar_widget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +43,7 @@ class MainPage extends StatelessWidget {
                     .read<MainBloc>()
                     .add(MainEventChangeIndex(newIndex + 1))),
             body: _buildViewStack(index: state.index),
-            actions: AdwActions().bitsdojo,
+            actions: AdwActions().flash,
           );
         }
         return Container();
