@@ -1,3 +1,4 @@
+import 'package:flash/system_tray/tray_menu_builder.dart';
 import 'package:system_tray/system_tray.dart';
 
 Future<void> initSystemTray() async {
@@ -9,7 +10,7 @@ Future<void> initSystemTray() async {
   );
 
   final Menu menu = Menu();
-  await menu.buildFrom([]);
+  await menu.buildFrom(TrayMenuBuilder().build());
 
   await systemTray.setContextMenu(menu);
 
