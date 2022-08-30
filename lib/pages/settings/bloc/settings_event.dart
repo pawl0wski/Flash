@@ -35,3 +35,10 @@ class SettingsEventChangeCheckGameTimeout extends SettingsEvent {
   @override
   List<Object?> get props => [newCheckGameTimeout];
 }
+
+class SettingsEventToggleCloseWillHideWindow extends SettingsEvent {
+  const SettingsEventToggleCloseWillHideWindow();
+
+  @override
+  List<Object?> get props => [];
+}

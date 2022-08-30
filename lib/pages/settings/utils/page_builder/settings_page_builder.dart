@@ -24,7 +24,8 @@ class SettingsPageBuilder {
           const TransparentDivider(height: 20),
           _buildMonitorSelectTile(context, state),
           _buildUseAllMonitorsTile(context, state),
-          _buildCheckGameTimeout(context, state),
+          _buildCheckGameTimeoutTile(context, state),
+          _buildCloseWillHideWindowTile(context, state),
         ],
       ));
     }
@@ -33,49 +34,65 @@ class SettingsPageBuilder {
     }
     return Container();
   }
-}
 
-_buildMonitorSelectTile(BuildContext context, SettingsStateShowSettings state) {
-  var availableMonitors = state.settingsManipulator.availableMonitors;
-  var selectedMonitor = state.settingsManipulator.selectedMonitor;
-  var bloc = context.read<SettingsBloc>();
-  var selectedIndex = availableMonitors.indexOf(selectedMonitor);
-  return AdwPreferencesGroup(
-    children: [
+  _buildMonitorSelectTile(
+      BuildContext context, SettingsStateShowSettings state) {
+    var availableMonitors = state.settingsManipulator.availableMonitors;
+    var selectedMonitor = state.settingsManipulator.selectedMonitor;
+    var bloc = context.read<SettingsBloc>();
+    var selectedIndex = availableMonitors.indexOf(selectedMonitor);
+    return AdwPreferencesGroup(
+      children: [
+        AdwComboRow(
+            selectedIndex: selectedIndex == -1 ? 0 : selectedIndex,
+            onSelected: (newIndex) => bloc.add(
+                SettingsEventChangeSelectedMonitor(
+                    availableMonitors[newIndex])),
+            choices: availableMonitors,
+            title: context.l10n.selectMonitor),
+      ],
+    );
+  }
+
+  _buildUseAllMonitorsTile(
+      BuildContext context, SettingsStateShowSettings state) {
+    var useAllMonitorsEnabled = state.settingsManipulator.useAllMonitors;
+    var bloc = context.read<SettingsBloc>();
+    return AdwPreferencesGroup(children: [
+      AdwSwitchRow(
+          value: useAllMonitorsEnabled,
+          onChanged: (_) => bloc.add(const SettingsEventToggleUseAllMonitors()),
+          title: context.l10n.useAllMonitors)
+    ]);
+  }
+
+  _buildCheckGameTimeoutTile(
+      BuildContext context, SettingsStateShowSettings state) {
+    var availableCheckGameTimeout = [5, 15, 30, 45, 60, 100];
+    var bloc = context.read<SettingsBloc>();
+    var selectedIndex = availableCheckGameTimeout
+        .indexOf(state.settingsManipulator.checkGameTimeout);
+    return AdwPreferencesGroup(children: [
       AdwComboRow(
-          selectedIndex: selectedIndex == -1 ? 0 : selectedIndex,
-          onSelected: (newIndex) => bloc.add(
-              SettingsEventChangeSelectedMonitor(availableMonitors[newIndex])),
-          choices: availableMonitors,
-          title: context.l10n.selectMonitor),
-    ],
-  );
-}
+        selectedIndex: selectedIndex == -1 ? 1 : selectedIndex,
+        onSelected: (newIndex) => bloc.add(SettingsEventChangeCheckGameTimeout(
+            availableCheckGameTimeout[newIndex])),
+        title: context.l10n.checkRunningGames,
+        choices: availableCheckGameTimeout.map((int e) => "${e}s").toList(),
+      )
+    ]);
+  }
 
-_buildUseAllMonitorsTile(
-    BuildContext context, SettingsStateShowSettings state) {
-  var useAllMonitorsEnabled = state.settingsManipulator.useAllMonitors;
-  var bloc = context.read<SettingsBloc>();
-  return AdwPreferencesGroup(children: [
-    AdwSwitchRow(
-        value: useAllMonitorsEnabled,
-        onChanged: (_) => bloc.add(const SettingsEventToggleUseAllMonitors()),
-        title: context.l10n.useAllMonitors)
-  ]);
-}
-
-_buildCheckGameTimeout(BuildContext context, SettingsStateShowSettings state) {
-  var availableCheckGameTimeout = [5, 15, 30, 45, 60, 100];
-  var bloc = context.read<SettingsBloc>();
-  var selectedIndex = availableCheckGameTimeout
-      .indexOf(state.settingsManipulator.checkGameTimeout);
-  return AdwPreferencesGroup(children: [
-    AdwComboRow(
-      selectedIndex: selectedIndex == -1 ? 1 : selectedIndex,
-      onSelected: (newIndex) => bloc.add(SettingsEventChangeCheckGameTimeout(
-          availableCheckGameTimeout[newIndex])),
-      title: context.l10n.checkRunningGames,
-      choices: availableCheckGameTimeout.map((int e) => "${e}s").toList(),
-    )
-  ]);
+  _buildCloseWillHideWindowTile(
+      BuildContext context, SettingsStateShowSettings state) {
+    var exitWillHideWindow = state.settingsManipulator.closeWillHideWindow;
+    var bloc = context.read<SettingsBloc>();
+    return AdwPreferencesGroup(children: [
+      AdwSwitchRow(
+          value: exitWillHideWindow,
+          onChanged: (_) =>
+              bloc.add(const SettingsEventToggleCloseWillHideWindow()),
+          title: context.l10n.exitWillHideWindow)
+    ]);
+  }
 }

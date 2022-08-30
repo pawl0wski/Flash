@@ -15,6 +15,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<SettingsEventChangeSelectedMonitor>(_onChangeSelectedMonitor);
     on<SettingsEventToggleUseAllMonitors>(_onToggleUseAllMonitor);
     on<SettingsEventChangeCheckGameTimeout>(_onChangeCheckGameTimeout);
+    on<SettingsEventToggleCloseWillHideWindow>(_onToggleCloseWillHideWindow);
   }
 
   _onLoadSettings(
@@ -37,6 +38,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   _onChangeCheckGameTimeout(SettingsEventChangeCheckGameTimeout event,
       Emitter<SettingsState> emitter) {
     _manipulator.updateCheckGameTimeout(event.newCheckGameTimeout);
+    _emitShowSettings(emitter);
+  }
+
+  _onToggleCloseWillHideWindow(SettingsEventToggleCloseWillHideWindow event,
+      Emitter<SettingsState> emitter) {
+    _manipulator.toggleCloseWillHide();
     _emitShowSettings(emitter);
   }
 

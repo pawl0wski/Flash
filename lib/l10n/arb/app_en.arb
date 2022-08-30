@@ -53,5 +53,6 @@
   },
   "selectMonitor": "Select monitor",
   "useAllMonitors": "Use all monitors",
-  "checkRunningGames": "Check running games every"
+  "checkRunningGames": "Check running games every",
+  "exitWillHideWindow": "Exit will hide window"
 }
