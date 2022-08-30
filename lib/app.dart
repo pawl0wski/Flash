@@ -1,12 +1,11 @@
 import 'package:adwaita/adwaita.dart';
 import 'package:flash/pages/main/main_page.dart';
-import 'package:flash/system_tray/init_system_tray.dart';
 import 'package:flash/widgets/rounded_app/rounded_app_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FlashApp extends StatelessWidget {
-  FlashApp({Key? key}) : super(key: key);
+  const FlashApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

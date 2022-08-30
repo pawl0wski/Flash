@@ -11,7 +11,7 @@ Future<void> main() async {
   var configDirectory = await initConfigDirectory();
   await initRepositories(configDirectory: configDirectory);
   await initSystemTray();
-  runApp(FlashApp());
+  runApp(const FlashApp());
 }
 
 Future<void> initRepositories(
