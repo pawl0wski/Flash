@@ -22,11 +22,11 @@ You must have these programs to install Flash.
 * xprop
 * xrandr
 
-#### Ubuntu
+#### Install dependencies on Ubuntu
 
 `sudo apt-get install procps xdotool x11-utils x11-xserver-utils`
 
-### Arch / Manjaro
+#### Install dependencies on Arch / Manjaro
 
 `sudo pacman -S procps-ng xdotool xorg-xprop xorg-xrandr`
 

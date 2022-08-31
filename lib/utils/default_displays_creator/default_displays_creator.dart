@@ -10,14 +10,36 @@ class DefaultDisplaysCreator {
 
   void create() {
     _createBrightDisplayIfNotExist();
+    _createVeryBrightDisplayIfNotExist();
+    _createDarkDisplayIfNotExist();
   }
 
   _createBrightDisplayIfNotExist() {
     if (!_checkIfReadOnlyDisplayExist("Bright")) {
       _displayRepository.add(Display(
           brightness: 1,
-          rgb: RGB.fromGamma(2.4),
+          rgb: RGB.fromGamma(2),
           name: 'Bright',
+          readOnly: true));
+    }
+  }
+
+  _createVeryBrightDisplayIfNotExist() {
+    if (!_checkIfReadOnlyDisplayExist("Very Bright")) {
+      _displayRepository.add(Display(
+          brightness: 1,
+          rgb: RGB.fromGamma(2.5),
+          name: 'Very Bright',
+          readOnly: true));
+    }
+  }
+
+  _createDarkDisplayIfNotExist() {
+    if (!_checkIfReadOnlyDisplayExist("Dark")) {
+      _displayRepository.add(Display(
+          brightness: 1,
+          rgb: RGB.fromGamma(0.5),
+          name: 'Dark',
           readOnly: true));
     }
   }
