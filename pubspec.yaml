@@ -27,6 +27,7 @@ dependencies:
   uuid: ^3.0.6
   path: ^1.8.1
   system_tray: ^2.0.1
+  bitsdojo_window: ^0.1.5
 
 dev_dependencies:
   flutter_test:
