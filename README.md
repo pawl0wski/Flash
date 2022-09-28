@@ -1,6 +1,6 @@
+![flash-icon](https://user-images.githubusercontent.com/59766830/192894812-4a9eff37-14c2-4ade-9dac-c825f88c1905.png)
 # Flash
-
-Set the contrast for each of your games and see more
+Set the contrast for each of your games and see more. 👀
 
 ### What is Flash?
 
@@ -13,16 +13,18 @@ No Flash is not a cheat. It should not be detected by programs like VAC, EAC etc
 as [Redshift](https://github.com/jonls/redshift)
 works.
 
-### Flash dependencies
+## Flash dependencies
 
-You must have these programs to install Flash.
+You must have these programs to run Flash.
+
+NOTE: These dependencies are not provided in the AppImage version
 
 * pwdx
 * xdotool
 * xprop
 * xrandr
 
-#### Install dependencies on Ubuntu
+#### Install dependencies on Debian / Ubuntu
 
 `sudo apt-get install procps xdotool x11-utils x11-xserver-utils`
 
@@ -30,9 +32,13 @@ You must have these programs to install Flash.
 
 `sudo pacman -S procps-ng xdotool xorg-xprop xorg-xrandr`
 
+#### Install dependencies on Fedora
+
+`sudo dnf -S procps-ng xdotool xorg-x11-utils xorg-x11-server-utils`
+
 ## Flash support Wayland?
 
-Unfortunately, Flash only supports X11.
+Unfortunately, Flash only supports X11. In the future, I plan to add Wayland's support.
 
 ## Comparisons
 ![1](https://user-images.githubusercontent.com/59766830/187566430-09aca250-65aa-4ba5-a38b-127670b08ec8.jpg)
