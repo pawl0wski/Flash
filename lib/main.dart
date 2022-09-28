@@ -27,7 +27,7 @@ Future<void> initRepositories(
 }
 
 Future<ConfigDirectory> initConfigDirectory() async {
-  var configDirectory = ConfigDirectory(appName: 'Flash');
+  var configDirectory = ConfigDirectory(appName: 'flash');
   await configDirectory.createDirectoryIfNotExists();
   return configDirectory;
 }

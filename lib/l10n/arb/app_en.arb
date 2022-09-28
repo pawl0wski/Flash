@@ -43,7 +43,7 @@
   "display": "Display",
   "close": "Close",
   "dependencyMissing": "Dependency missing",
-  "dependencyMissingInfo": "An error occurred while checking dependencies. There is no {missingDependency} on your system. Please install {missingDependency} and try again.",
+  "dependencyMissingInfo": "An error occurred while checking dependencies. There is no {missingDependency} on your system. Check the README.MD file on github for a command to download additional dependencies.",
   "@dependencyMissingInfo": {
     "placeholders": {
       "missingDependency": {

@@ -54,3 +54,9 @@ coverage/
 
 # Generated dart code
 *.g.dart
+
+# Python virtualenv
+venv/
+
+# AppImage
+*.AppImage
