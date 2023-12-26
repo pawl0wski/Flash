@@ -34,7 +34,7 @@ NOTE: These dependencies are not provided in the AppImage version
 
 #### Install dependencies on Fedora
 
-`sudo dnf -S procps-ng xdotool xorg-x11-utils xorg-x11-server-utils`
+`sudo dnf install procps-ng xdotool xorg-x11-utils xorg-x11-server-utils`
 
 ## Flash support Wayland?
 
